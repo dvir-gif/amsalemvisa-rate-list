@@ -704,12 +704,13 @@
             "toastCopyError": "שגיאה בהעתקה, אנא נסה שוב.",
             "toastGmail": "פותח את Gmail...",
             "toastOutlook": "פותח את Outlook...",
-            "emailSubject": "העברת טיפול בויזה ל{country} - לקוח: {client}",
+            "emailSubject": "העברת טיפול בויזה ל{country} - לקוח: {client} [מס' פנייה: {trackingId}]",
             "emailBody": `שלום מחלקת ויזות,
 
 אשמח להעביר אליכם לקוח להמשך טיפול בהוצאת ויזה.
 
 --- פרטי הלקוח ---
+מספר פנייה (ליד): {trackingId}
 שם הלקוח/חברה: {client}
 טלפון הלקוח: {phone}
 דוא״ל הלקוח: {email}
@@ -779,12 +780,13 @@
             "toastCopyError": "Error copying, please try again.",
             "toastGmail": "Opening Gmail...",
             "toastOutlook": "Opening Outlook...",
-            "emailSubject": "Visa Lead Transfer for {country} - Client: {client}",
+            "emailSubject": "Visa Lead Transfer for {country} - Client: {client} [Ref: {trackingId}]",
             "emailBody": `Hello Visa Department,
 
 I would like to transfer a client to you for visa processing.
 
 --- Client Details ---
+Lead Reference: {trackingId}
 Client/Company: {client}
 Phone: {phone}
 Email: {email}
@@ -1149,6 +1151,8 @@ Handling Agent: {agent}`
     }
 
     function openLeadModal() { 
+        // שליפת שם הסוכן מהזכרון (אם קיים) ומילוי אוטומטי של השדה
+        document.getElementById('agentName').value = localStorage.getItem('savedAgentName') || '';
         document.getElementById('leadModalOverlay').style.display = 'flex'; 
     }
     
@@ -1182,11 +1186,18 @@ Handling Agent: {agent}`
         const country = document.getElementById('destCountry').value;
         const notes = document.getElementById('leadNotes').value || (currentLang === 'he' ? 'אין הערות נוספות' : 'No additional notes');
 
+        // שמירת שם הסוכן להבא ב-Local Storage
+        localStorage.setItem('savedAgentName', agent);
+
+        // ייצור מספר פנייה למעקב (Tracking ID)
+        const trackingId = 'AMS-' + Math.floor(100000 + Math.random() * 900000); 
+
         // --- גיבוי ושליחת הליד ל-CRM / Webhook (אוטומציה) ---
         const webhookUrl = "https://script.google.com/macros/s/AKfycbyFFGDTP7vAynszYq_4UVo29t3vUfa_LBFiVQCfnO4EI6YY_Q9VtohzFt-3spxaV1AzdQ/exec"; 
         
         if (webhookUrl) {
             const leadData = {
+                trackingId: trackingId,
                 agent: agent,
                 client: client,
                 phone: phone,
@@ -1206,8 +1217,8 @@ Handling Agent: {agent}`
         }
         // --------------------------------------------------------
 
-        let rawSubject = t('emailSubject').replace('{country}', country).replace('{client}', client);
-        let rawBody = t('emailBody').replace('{client}', client).replace('{phone}', phone).replace('{email}', email).replace('{country}', country).replace('{notes}', notes).replace('{agent}', agent);
+        let rawSubject = t('emailSubject').replace('{country}', country).replace('{client}', client).replace('{trackingId}', trackingId);
+        let rawBody = t('emailBody').replace('{client}', client).replace('{phone}', phone).replace('{email}', email).replace('{country}', country).replace('{notes}', notes).replace('{agent}', agent).replace('{trackingId}', trackingId);
 
         const targetEmail = "visa.dept@amsalem.com";
         if (mailType === 'gmail') {
