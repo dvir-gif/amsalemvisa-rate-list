@@ -22,9 +22,9 @@
             --dark-section-bg: #181a1e; 
             
             /* פלטת צבעים אחידה, נקייה ומקצועית */
-            --calc-bg: #f1f5f9; /* רקע אפור-נייטרלי נקי במקום תכלת */
+            --calc-bg: #f1f5f9; 
             --calc-border: #e2e8f0;
-            --accent-tint: #e0f7fa; /* רקע טורקיז עדין לפעולות המרכזיות וסיכום התשלום */
+            --accent-tint: #e0f7fa; 
             --accent-tint-border: #b2ebf2;
             
             --ups-bg: #fff8e1; 
@@ -53,7 +53,7 @@
             --panel-bg: #1e293b;
             --calc-bg: #0f172a;
             --calc-border: #334155;
-            --accent-tint: rgba(0, 188, 212, 0.15); /* התאמה אחידה למצב כהה */
+            --accent-tint: rgba(0, 188, 212, 0.15); 
             --accent-tint-border: rgba(0, 188, 212, 0.3);
             --ups-bg: #332a0b;
             --ups-border: #92400e;
@@ -74,7 +74,6 @@
         body.dark-mode .action-btn-whatsapp:hover { background: #14532d; }
         body.dark-mode .visa-option-card { background: #1e293b; }
         body.dark-mode .visa-price-total { background: #0f172a; border-color: #334155; }
-        body.dark-mode .card-pax-calculator input { background: #1e293b; color: #f1f5f9; border-color: #334155; }
         body.dark-mode .lead-form input, body.dark-mode .lead-form select, body.dark-mode .lead-form textarea { background: #0f172a; color: #f1f5f9; border-color: #334155; }
 
         /* --- הדר (לוגו ושינוי שפה) --- */
@@ -82,7 +81,7 @@
             background-color: var(--panel-bg);
             padding: 15px 40px;
             display: flex;
-            justify-content: center; /* לוגו באמצע */
+            justify-content: center; 
             align-items: center;
             box-shadow: 0 2px 15px rgba(0,0,0,0.03);
             position: relative;
@@ -100,7 +99,7 @@
         /* כפתורי שליטה (שפה) */
         .header-controls {
             position: absolute;
-            inset-inline-start: 40px; /* ממוקם בצד ימין ב-RTL */
+            inset-inline-start: 40px; 
             display: flex;
             align-items: center;
             gap: 10px;
@@ -245,7 +244,7 @@
         .transparent-table .price-td { font-weight: 700; color: #64748b; font-family: 'Heebo', sans-serif; }
         .transparent-table .total-td { background-color: var(--accent-tint); font-weight: 900; color: var(--primary-dark); font-size: 1.05em; border-inline-start: 2px solid var(--accent-tint-border); }
 
-        /* תגיות מעוצבות אחידות, נקיות ורגועות של טבלה */
+        /* תגיות מעוצבות אחידות של טבלה */
         .table-badge {
             display: inline-flex;
             align-items: center;
@@ -266,23 +265,6 @@
             border-color: #334155;
         }
 
-        .table-action-btn {
-            background: transparent;
-            border: none;
-            color: #94a3b8;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-        }
-        .transparent-table tr:hover .table-action-btn {
-            color: var(--primary-color);
-            background-color: rgba(0, 188, 212, 0.1);
-        }
-
         /* --- פאנל צדדי (Side Drawer) --- */
         .side-panel-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(4px); z-index: 2000; opacity: 0; visibility: hidden; transition: all 0.3s; }
         .side-panel-overlay.active { opacity: 1; visibility: visible; }
@@ -297,13 +279,6 @@
         .close-btn { background: none; border: none; color: #fff; font-size: 2em; cursor: pointer; transition: opacity 0.2s; }
         .close-btn:hover { opacity: 0.7; }
         .panel-content { padding: 30px; overflow-y: auto; flex-grow: 1; }
-        
-        /* דגשים חשובים בפאנל (Important Notes) */
-        .important-note {
-            background: #eef2ff; border: 1px dashed #6366f1; color: #3730a3; padding: 15px;
-            border-radius: 12px; margin-bottom: 25px; display: flex; align-items: flex-start; gap: 12px; font-size: 0.95em; line-height: 1.5;
-        }
-        .note-icon { font-size: 1.4em; }
 
         /* כפתורי פעולה בתוך כל כרטיסיה */
         .card-action-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border-color); }
@@ -328,17 +303,6 @@
         .action-btn svg { width: 18px; height: 18px; }
 
         .print-only-element { display: none; }
-
-        /* מחשבון נוסעים אחיד ונקי */
-        .card-pax-calculator {
-            display: flex; align-items: center; justify-content: space-between; background: var(--calc-bg);
-            padding: 10px 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid var(--calc-border);
-        }
-        .card-pax-calculator label { font-weight: 700; color: var(--secondary-color); font-size: 1em; display: flex; align-items: center; gap: 8px; }
-        .card-pax-calculator input {
-            width: 60px; padding: 5px 10px; border: 2px solid var(--primary-color); border-radius: 6px;
-            font-size: 1em; font-weight: 700; text-align: center; outline: none; transition: border-color 0.2s;
-        }
 
         .visa-option-card {
             background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 12px;
@@ -401,7 +365,7 @@
         .toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background-color: #10b981; color: white; padding: 12px 24px; border-radius: 30px; font-weight: 700; box-shadow: 0 10px 20px rgba(0,0,0,0.2); transition: bottom 0.3s ease; z-index: 4000; font-family: inherit; text-align: center; }
         .toast.show { bottom: 30px; }
 
-        /* --- הגדרות הדפסה נקיות --- */
+        /* --- הגדרות הדפסה --- */
         @media print {
             @page { margin: 1cm; size: A4 portrait; }
             body, body.dark-mode { background: #ffffff !important; color: #000000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -410,7 +374,7 @@
             #sidePanel, #sidePanel * { visibility: visible; color: #000000 !important; }
             #sidePanel { position: absolute; left: 0; top: 0; width: 100%; box-shadow: none; background: #ffffff !important; overflow: visible; padding: 0; }
             
-            .panel-header, .close-btn, .card-action-bar, .fab-transfer, .card-pax-calculator, .important-note { display: none !important; }
+            .panel-header, .close-btn, .card-action-bar, .fab-transfer { display: none !important; }
             .visa-option-card:not(.print-active) { display: none !important; }
 
             .print-document-container { display: block !important; visibility: visible !important; width: 100%; }
@@ -530,7 +494,6 @@
                     <th data-i18n="thGovFee">אגרת רשויות</th>
                     <th data-i18n="thServiceFee">דמי שירות, הכנה והגשה</th>
                     <th data-i18n="thTotal">סה"כ לאדם</th>
-                    <th data-i18n="thActions" style="text-align: center;">פעולה</th>
                 </tr>
             </thead>
             <tbody id="tableBody"></tbody>
@@ -669,7 +632,6 @@
             "thGovFee": "אגרת רשויות",
             "thServiceFee": "דמי שירות, הכנה והגשה",
             "thTotal": "סה\"כ לאדם",
-            "thActions": "פעולה",
             "contactTitle": "אנחנו כאן לכל שאלה",
             "contactDesc": "צוות מחלקת הויזות זמין לליווי, בדיקת דרישות כניסה וטיפול בבקשות.",
             "contactPhone": "מוקד טלפוני",
@@ -693,13 +655,11 @@
             "btnCancel": "ביטול",
             "printQuoteTitle": "הצעת מחיר לאשרת כניסה:",
             "printSinglePax": "המחירים המוצגים מתייחסים לנוסע יחיד",
-            "printMultiPax": "המחירים המוצגים משוקללים עבור",
-            "paxCalcLabel": "כמות נוסעים:",
             "lblProcessingTime": "זמן טיפול משוער",
             "lblValidity": "תוקף האשרה",
             "lblGovFee": "אגרת רשויות",
             "lblServiceFee": "דמי שירות, הכנה והגשה",
-            "lblTotalFor": "סה\"כ לתשלום",
+            "lblTotalFor": "עלות כוללת (לאדם):",
             "btnCopy": "העתק ללוח",
             "btnPrint": "הדפס כ-PDF",
             "btnTransferLead": "העבר פרטי לקוח למחלקה",
@@ -745,7 +705,6 @@
             "thGovFee": "Gov Fee",
             "thServiceFee": "Service, Preparation & Submission",
             "thTotal": "Total per Person",
-            "thActions": "Action",
             "contactTitle": "We are here for any question",
             "contactDesc": "Our visa department team is available for support, requirement checks, and application processing.",
             "contactPhone": "Call Center",
@@ -769,13 +728,11 @@
             "btnCancel": "Cancel",
             "printQuoteTitle": "Visa Application Quote:",
             "printSinglePax": "Prices displayed are for a single passenger",
-            "printMultiPax": "Prices displayed are calculated for",
-            "paxCalcLabel": "Passengers:",
             "lblProcessingTime": "Est. Processing Time",
             "lblValidity": "Visa Validity",
             "lblGovFee": "Government Fee",
             "lblServiceFee": "Service, Preparation & Submission",
-            "lblTotalFor": "Total Amount",
+            "lblTotalFor": "Total Amount (Per Person):",
             "btnCopy": "Copy Details",
             "btnPrint": "Print PDF",
             "btnTransferLead": "Send Details to Dept",
@@ -842,7 +799,7 @@ Handling Agent: {agent}`
         }
     }
 
-    // מאגר נתוני הויזות עם תמיכה בעברית ואנגלית (שימוש בתווים תקניים למניעת שבירת קוד)
+    // מאגר נתוני הויזות
     const visaData = {
         "US": { 
             name: { he: "ארה״ב", en: "USA" }, flag: "fi-us", 
@@ -902,7 +859,7 @@ Handling Agent: {agent}`
         "VN": { 
             name: { he: "וייטנאם", en: "Vietnam" }, flag: "fi-vn", options: [
                 { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3-6 ימי עבודה", en: "Up to 3-6 business days" }, validity: { he: "עד 90 ימים", en: "Up to 90 days" }, fee: "$55.00", service: "$35.00", total: "$90.00" },
-                { type: { he: "ויזת תיירות / עסקים, כניסות מרובות", en: "Tourist/Business Visa, Multiple Entries" }, time: { he: "עד 3-6 ימי עבודה", en: "Up to 3-6 business days" }, validity: { he: "עד 90 ימים", en: "Up to 90 days" }, fee: "$80.00", service: "$45.00", total: "$120.00" }
+                { type: { he: "ויזת תיירות / עסקים, כניסות מרובות", en: "Tourist/Business Visa, Multiple Entries" }, time: { he: "עד 3-6 ימי עבודה", en: "Up to 3-6 business days" }, validity: { he: "עד 90 ימים", en: "Up to 90 days" }, fee: "$80.00", service: "$45.00", total: "$125.00" }
             ]
         },
         "MA": { 
@@ -992,7 +949,9 @@ Handling Agent: {agent}`
         while (destSelect.options.length > 1) { destSelect.remove(1); }
 
         const sortedKeys = Object.keys(visaData).sort((a, b) => {
-            return visaData[a].name[currentLang].localeCompare(visaData[b].name[currentLang], currentLang);
+            const nameA = visaData[a].name[currentLang] || '';
+            const nameB = visaData[b].name[currentLang] || '';
+            return nameA.localeCompare(nameB, currentLang);
         });
 
         sortedKeys.forEach(code => {
@@ -1003,18 +962,14 @@ Handling Agent: {agent}`
             card.className = 'country-card';
             card.dataset.name = countryName;
             card.onclick = () => openCountry(code);
-            // סדר מותאם לשפה: השם מימין והדגל משמאל
             card.innerHTML = `<h3>${countryName}</h3><span class="fi ${country.flag}"></span>`;
             listContainer.appendChild(card);
 
-            // תצוגת טבלה משודרגת עם תגים וכפתורי פעולה אינטראקטיביים
+            // תצוגת טבלה נקייה ואינטראקטיבית
             country.options.forEach((opt, index) => {
                 const tr = document.createElement('tr');
                 tr.dataset.name = countryName;
-                tr.onclick = (e) => {
-                    // למנוע פתיחה כפולה אם לוחצים בטעות ישירות על כפתור הפעולה הפנימי
-                    openCountry(code);
-                };
+                tr.onclick = () => { openCountry(code); };
                 tr.innerHTML = `
                     <td class="country-td"><span class="fi ${country.flag}"></span>${countryName}</td>
                     <td style="font-weight: 600; color: var(--secondary-color);">${opt.type[currentLang]}</td>
@@ -1023,23 +978,16 @@ Handling Agent: {agent}`
                     <td class="price-td">${opt.fee}</td>
                     <td class="price-td">${opt.service}</td>
                     <td class="total-td">${opt.total}</td>
-                    <td style="text-align: center; width: 80px;">
-                        <button class="table-action-btn" title="${t('btnTransferLead')}">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; color: var(--primary-color);">
-                                <polyline points="15 3 21 3 21 9"></polyline>
-                                <line x1="10" y1="14" x2="21" y2="3"></line>
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                            </svg>
-                        </button>
-                    </td>
                 `;
                 tableBody.appendChild(tr);
             });
 
-            const option = document.createElement('option');
-            option.value = countryName;
-            option.text = countryName;
-            destSelect.appendChild(option);
+            if (countryName) {
+                const option = document.createElement('option');
+                option.value = countryName;
+                option.text = countryName;
+                destSelect.appendChild(option);
+            }
         });
     }
 
@@ -1068,22 +1016,6 @@ Handling Agent: {agent}`
         handleSearch();
     }
 
-    function getPriceNum(str) { return parseFloat(str.replace(/[^\d.-]/g, '')) || 0; }
-    function formatPriceStr(num) { return num === 0 ? "$0.00" : "$" + num.toFixed(2); }
-
-    function updateCardTotals(index, baseFee, baseService, baseTotal) {
-        let pax = parseInt(document.getElementById(`paxInput-${index}`).value) || 1;
-        if (pax < 1) { pax = 1; document.getElementById(`paxInput-${index}`).value = 1; }
-
-        document.getElementById(`fee-${index}`).innerText = formatPriceStr(getPriceNum(baseFee) * pax);
-        document.getElementById(`service-${index}`).innerText = formatPriceStr(getPriceNum(baseService) * pax);
-        document.getElementById(`total-${index}`).innerText = formatPriceStr(getPriceNum(baseTotal) * pax);
-        
-        document.getElementById(`total-label-${index}`).innerText = t('lblTotalFor') + ` (${pax}):`;
-        document.getElementById(`fee-label-${index}`).innerText = pax > 1 ? `${t('lblGovFee')} (${pax})` : t('lblGovFee');
-        document.getElementById(`service-label-${index}`).innerText = pax > 1 ? `${t('lblServiceFee')} (${pax})` : t('lblServiceFee');
-    }
-
     function openCountry(code) {
         const country = visaData[code];
         const countryName = country.name[currentLang];
@@ -1108,22 +1040,17 @@ Handling Agent: {agent}`
             htmlContent += `
                 <div class="visa-option-card" id="visaCard-${index}">
                     <h3 class="visa-title">${opt.type[currentLang]}</h3>
-                    
-                    <div class="card-pax-calculator">
-                        <label><span>👨‍👩‍👧‍👦</span> ${t('paxCalcLabel')}</label>
-                        <input type="number" id="paxInput-${index}" value="1" min="1" max="99" oninput="updateCardTotals(${index}, '${opt.fee}', '${opt.service}', '${opt.total}')">
-                    </div>
 
                     <div class="visa-details-grid">
                         <div class="detail-item"><span>${t('lblProcessingTime')}</span><strong>${opt.time[currentLang]}</strong></div>
                         <div class="detail-item"><span>${t('lblValidity')}</span><strong>${opt.validity[currentLang]}</strong></div>
-                        <div class="detail-item"><span id="fee-label-${index}">${t('lblGovFee')}</span><strong id="fee-${index}">${opt.fee}</strong></div>
-                        <div class="detail-item"><span id="service-label-${index}">${t('lblServiceFee')}</span><strong id="service-${index}">${opt.service}</strong></div>
+                        <div class="detail-item"><span>${t('lblGovFee')}</span><strong>${opt.fee}</strong></div>
+                        <div class="detail-item"><span>${t('lblServiceFee')}</span><strong>${opt.service}</strong></div>
                     </div>
                     
                     <div class="visa-price-total">
-                        <span id="total-label-${index}">${t('lblTotalFor')} (1):</span>
-                        <strong id="total-${index}">${opt.total}</strong>
+                        <span>${t('lblTotalFor')}</span>
+                        <strong>${opt.total}</strong>
                     </div>
 
                     <div class="card-action-bar">
@@ -1170,7 +1097,6 @@ Handling Agent: {agent}`
         document.getElementById('sidePanel').classList.remove('active');
     }
 
-    // חיפוש וסינון
     function handleSearch() {
         const filter = document.getElementById('searchInput').value.trim().toUpperCase();
         if (currentView === 'cards') {
@@ -1190,22 +1116,20 @@ Handling Agent: {agent}`
         document.getElementById('leadModalOverlay').style.display = 'flex'; 
     }
     
-    // פתיחה בטוחה של מודל העברת ליד ללא הזרקה ישירה של גרשים לשורת ה-HTML
     function openLeadModalWithData(code, index) {
-        closePanel(); // סוגר את הפאנל
+        closePanel(); 
         const country = visaData[code];
         const countryName = country.name[currentLang];
         const visaType = country.options[index].type[currentLang];
 
         const destSelect = document.getElementById('destCountry');
-        destSelect.value = countryName; // בוחר את המדינה אוטומטית
+        destSelect.value = countryName; 
         
-        // מוסיף את סוג הויזה להערות באופן אוטומטי
         const notesArea = document.getElementById('leadNotes');
         const defaultNote = currentLang === 'he' ? `סוג אשרה מבוקשת: ${visaType}\n` : `Requested Visa Type: ${visaType}\n`;
         notesArea.value = defaultNote;
         
-        openLeadModal(); // פותח את המודל
+        openLeadModal(); 
     }
 
     function closeLeadModal() { document.getElementById('leadModalOverlay').style.display = 'none'; document.getElementById('leadForm').reset(); }
@@ -1237,17 +1161,15 @@ Handling Agent: {agent}`
     function buildCopyText(code, index) {
         const country = visaData[code];
         const opt = country.options[index];
-        let pax = parseInt(document.getElementById(`paxInput-${index}`)?.value) || 1;
-        if (pax < 1) pax = 1;
 
         let txt = `*${t('printQuoteTitle')} ${country.name[currentLang]}*\n`;
         txt += `===================\n\n`;
         txt += `*${opt.type[currentLang]}*\n`;
-        if (pax > 1) txt += `_${t('printMultiPax')} ${pax}_\n`;
         txt += `⏳ ${t('lblProcessingTime')}: ${opt.time[currentLang]}\n`;
         txt += `📅 ${t('lblValidity')}: ${opt.validity[currentLang]}\n`;
-        txt += `💳 ${t('lblGovFee')}: ${formatPriceStr(getPriceNum(opt.fee) * pax)} | ${t('lblServiceFee')}: ${formatPriceStr(getPriceNum(opt.service) * pax)}\n`;
-        txt += `💰 *${t('lblTotalFor')} (${pax}): ${formatPriceStr(getPriceNum(opt.total) * pax)}*\n`;
+        txt += `💳 ${t('lblGovFee')}: ${opt.fee} | ${t('lblServiceFee')}: ${opt.service}\n`;
+        
+        txt += `💰 *${t('lblTotalFor')} ${opt.total}*\n`;
         txt += `-------------------\n\n`;
         
         if (['US', 'CN'].includes(code)) txt += `📦 *${t('upsTitle')}* ${t('upsDesc')}\n\n`;
@@ -1258,7 +1180,7 @@ Handling Agent: {agent}`
     
     function copyVisaDetails(code, index) {
         const textArea = document.createElement("textarea");
-        textArea.value = buildCopyText(code, index).replace(/\*/g, '').replace(/_/g, ''); // מסיר סימוני עיצוב של וואטסאפ בהעתקה רגילה
+        textArea.value = buildCopyText(code, index).replace(/\*/g, '').replace(/_/g, ''); 
         document.body.appendChild(textArea);
         textArea.select();
         try { document.execCommand('copy'); showToast(t('toastCopySuccess')); } 
@@ -1266,9 +1188,9 @@ Handling Agent: {agent}`
         document.body.removeChild(textArea);
     }
 
+    // הדפסה
     function printVisaDetails(index) {
-        let pax = parseInt(document.getElementById(`paxInput-${index}`)?.value) || 1;
-        document.getElementById('printPaxSubtitle').innerText = pax > 1 ? `${t('printMultiPax')} ${pax}` : t('printSinglePax');
+        document.getElementById('printPaxSubtitle').innerText = t('printSinglePax');
 
         const allCards = document.querySelectorAll('.visa-option-card');
         allCards.forEach((card, i) => card.classList.toggle('print-active', i === index));
