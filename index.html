@@ -369,6 +369,79 @@
             overflow-y: auto;
             flex-grow: 1;
         }
+        
+        /* כפתורי פעולה בתוך כל כרטיסיה */
+        .card-action-bar {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        .action-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid var(--border-color);
+            background: #fff;
+            color: var(--secondary-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .action-btn:hover {
+            background: var(--bg-color);
+            border-color: #cbd5e1;
+            transform: translateY(-2px);
+        }
+        .action-btn svg { width: 18px; height: 18px; }
+
+        /* אלמנטים של הדפסה בלבד (מוסתרים כברירת מחדל בתצוגה רגילה) */
+        .print-only-element {
+            display: none;
+        }
+
+        /* מחשבון נוסעים בתוך כל כרטיסיה */
+        .card-pax-calculator {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #e0f2fe;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #bae6fd;
+        }
+        .card-pax-calculator label {
+            font-weight: 700;
+            color: var(--secondary-color);
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-pax-calculator input {
+            width: 60px;
+            padding: 5px 10px;
+            border: 2px solid #7dd3fc;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 700;
+            text-align: center;
+            outline: none;
+            color: var(--primary-dark);
+            transition: border-color 0.2s;
+        }
+        .card-pax-calculator input:focus {
+            border-color: var(--primary-color);
+        }
 
         .visa-option-card {
             background: #f8fafc;
@@ -695,6 +768,182 @@
             bottom: 30px;
         }
 
+        /* --- הגדרות הדפסה (עיצוב מסמך רשמי) --- */
+        @media print {
+            @page {
+                margin: 1cm;
+                size: A4 portrait;
+            }
+            body { 
+                background-color: #ffffff; 
+                color: #000000;
+                font-family: 'Heebo', sans-serif;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            body * { visibility: hidden; }
+            
+            #sidePanel, #sidePanel * { visibility: visible; }
+            #sidePanel {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                box-shadow: none;
+                background: #ffffff;
+                overflow: visible;
+                padding: 0;
+            }
+            
+            /* הסתרת ממשק משתמש בהדפסה */
+            .panel-header, .close-btn, .card-action-bar, .fab-transfer, .card-pax-calculator {
+                display: none !important;
+            }
+            
+            /* הסתרת כל כרטיסיות הויזה למעט זו שנבחרה */
+            .visa-option-card:not(.print-active) {
+                display: none !important;
+            }
+
+            /* עיצוב המכתב הרשמי */
+            .print-document-container {
+                display: block !important;
+                visibility: visible !important;
+                width: 100%;
+            }
+
+            .print-only-element { 
+                display: block !important; 
+            }
+
+            .print-header-wrapper {
+                text-align: center;
+                margin-bottom: 15px;
+                padding-bottom: 15px;
+                border-bottom: 3px solid var(--primary-color);
+            }
+            .print-main-logo {
+                max-width: 180px;
+                height: auto;
+                margin-bottom: 10px;
+            }
+            .print-title-container h1 {
+                font-size: 1.8em;
+                color: var(--secondary-color);
+                margin: 0 0 8px 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 12px;
+            }
+            .print-flag {
+                font-size: 0.9em;
+                border-radius: 4px;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            }
+            .print-title-container p {
+                font-size: 1em;
+                color: #64748b;
+                margin: 0;
+            }
+
+            /* עיצוב כרטיסיית הויזה הנבחרת למסמך */
+            .visa-option-card.print-active {
+                border: none !important;
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .visa-option-card.print-active::before {
+                display: none !important;
+            }
+            
+            .visa-option-card.print-active .visa-title {
+                font-size: 1.4em;
+                color: var(--secondary-color);
+                border-bottom: 1px solid #e2e8f0;
+                padding-bottom: 10px;
+                margin-bottom: 15px;
+            }
+
+            .visa-option-card.print-active .visa-details-grid {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 12px;
+                margin-bottom: 20px;
+            }
+
+            .visa-option-card.print-active .detail-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                border-bottom: 1px dashed #e2e8f0;
+                padding-bottom: 5px;
+            }
+            .visa-option-card.print-active .detail-item span {
+                font-size: 1em;
+                color: #64748b;
+                margin: 0;
+            }
+            .visa-option-card.print-active .detail-item strong {
+                font-size: 1.1em;
+                color: #000000;
+            }
+
+            .visa-option-card.print-active .visa-price-total {
+                background-color: transparent !important;
+                border: 2px solid var(--primary-color) !important;
+                border-radius: 12px;
+                padding: 15px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 20px;
+            }
+            .visa-option-card.print-active .visa-price-total span {
+                font-size: 1.2em;
+                color: #000000;
+                font-weight: 700;
+            }
+            .visa-option-card.print-active .visa-price-total strong {
+                font-size: 1.6em;
+                color: var(--primary-dark);
+            }
+
+            /* הערת UPS להדפסה - מצומצמת */
+            .ups-note.print-active-note {
+                display: flex !important;
+                background-color: transparent !important;
+                border: 1px solid #cbd5e1 !important;
+                border-radius: 8px;
+                padding: 10px 15px;
+                margin-top: 25px;
+                color: #334155 !important;
+                font-size: 0.85em !important;
+            }
+            .ups-note:not(.print-active-note) {
+                display: none !important;
+            }
+
+            /* חתימה בתחתית הדף - מוקטנת ומהודקת */
+            .print-footer {
+                display: block !important;
+                margin-top: 35px;
+                text-align: center;
+                border-top: 1px solid #e2e8f0;
+                padding-top: 15px;
+                color: #64748b;
+                line-height: 1.4;
+                font-size: 0.9em;
+            }
+            .print-footer strong {
+                color: var(--secondary-color);
+                font-size: 1.1em;
+                display: block;
+                margin-bottom: 5px;
+            }
+        }
+
         @media (max-width: 768px) {
             .hero-title { font-size: 2.2em; }
             .controls-section { flex-direction: column; align-items: stretch; text-align: center; }
@@ -707,6 +956,7 @@
             .subtitle-logo { height: 20px; }
             .transparent-table th, .transparent-table td { padding: 12px 10px; font-size: 0.85em; }
             .fab-transfer { bottom: 20px; left: 20px; padding: 12px 20px; font-size: 1em; }
+            .card-action-bar { flex-direction: column; }
         }
     </style>
 </head>
@@ -714,7 +964,6 @@
 
 <header>
     <div id="logo-container">
-        <!-- קידוד הרווחים לשם תאימות GitHub -->
         <img src="ויזה%20לוגו%20סופי%20(14).jpg" alt="AMS VISA" class="logo" id="headerLogo" onerror="this.onerror=null; this.style.display='none'; document.getElementById('logoTextFallback').style.display='inline-block';">
         <span id="logoTextFallback" class="logo-text-fallback" style="display: none;">AMS VISA</span>
     </div>
@@ -722,7 +971,6 @@
 
 <div class="hero">
     <div class="hero-subtitle">
-        <!-- קידוד הרווחים לשם תאימות GitHub -->
         <img src="Amsalem_Logo%20NO%20SLOGAN%20(10).png" alt="Amsalem Logo" class="subtitle-logo" onerror="this.onerror=null; this.style.display='none';">
         <span>שירותי ויזות ואשרות מבית אמסלם טורס</span>
     </div>
@@ -1079,6 +1327,36 @@
         handleSearch();
     }
 
+    /* --- מחשבון נוסעים ועזרי חישוב --- */
+    function getPriceNum(str) {
+        return parseFloat(str.replace(/[^\d.-]/g, '')) || 0;
+    }
+
+    function formatPriceStr(num) {
+        if(num === 0) return "$0.00";
+        return "$" + num.toFixed(2);
+    }
+
+    function updateCardTotals(index, baseFee, baseService, baseTotal) {
+        let pax = parseInt(document.getElementById(`paxInput-${index}`).value) || 1;
+        if (pax < 1) {
+            pax = 1;
+            document.getElementById(`paxInput-${index}`).value = 1;
+        }
+
+        const feeNum = getPriceNum(baseFee) * pax;
+        const serviceNum = getPriceNum(baseService) * pax;
+        const totalNum = getPriceNum(baseTotal) * pax;
+
+        document.getElementById(`fee-${index}`).innerText = formatPriceStr(feeNum);
+        document.getElementById(`service-${index}`).innerText = formatPriceStr(serviceNum);
+        document.getElementById(`total-${index}`).innerText = formatPriceStr(totalNum);
+        
+        document.getElementById(`total-label-${index}`).innerText = `סה"כ מחיר ל-${pax} נוסעים:`;
+        document.getElementById(`fee-label-${index}`).innerText = pax > 1 ? `אגרת רשויות (${pax} נוסעים)` : `אגרת רשויות`;
+        document.getElementById(`service-label-${index}`).innerText = pax > 1 ? `דמי טיפול משרד (${pax} נוסעים)` : `דמי טיפול משרד`;
+    }
+
     function openCountry(code) {
         const country = visaData[code];
         document.getElementById('panelFlag').className = "fi " + country.flag;
@@ -1086,45 +1364,88 @@
         
         const contentDiv = document.getElementById('panelContent');
         contentDiv.innerHTML = ''; 
+        
+        // --- התחלת תבנית ההדפסה והתצוגה הרגילה ---
+        
+        // כותרת מיוחדת להדפסה בלבד
+        let htmlContent = `
+            <div class="print-document-container">
+                <div class="print-header-wrapper print-only-element">
+                    <img src="ויזה%20לוגו%20סופי%20(14).jpg" alt="AMS VISA Logo" class="print-main-logo">
+                    <div class="print-title-container">
+                        <h1>הצעת מחיר לאשרת כניסה: <span class="fi ${country.flag} print-flag"></span> ${country.name}</h1>
+                        <p id="printPaxSubtitle">המחירים המוצגים מתייחסים לנוסע יחיד</p>
+                    </div>
+                </div>
+        `;
 
-        country.options.forEach(opt => {
-            contentDiv.innerHTML += `
-                <div class="visa-option-card">
+        country.options.forEach((opt, index) => {
+            htmlContent += `
+                <div class="visa-option-card" id="visaCard-${index}">
                     <h3 class="visa-title">${opt.type}</h3>
+                    
+                    <div class="card-pax-calculator">
+                        <label><span>👨‍👩‍👧‍👦</span> כמות נוסעים:</label>
+                        <input type="number" id="paxInput-${index}" value="1" min="1" max="99" oninput="updateCardTotals(${index}, '${opt.fee}', '${opt.service}', '${opt.total}')">
+                    </div>
+
                     <div class="visa-details-grid">
                         <div class="detail-item">
-                            <span>זמן טיפול</span>
+                            <span>זמן טיפול משוער</span>
                             <strong>${opt.time}</strong>
                         </div>
                         <div class="detail-item">
-                            <span>תוקף</span>
+                            <span>תוקף האשרה</span>
                             <strong>${opt.validity}</strong>
                         </div>
                         <div class="detail-item">
-                            <span>אגרת רשויות</span>
-                            <strong>${opt.fee}</strong>
+                            <span id="fee-label-${index}">אגרת רשויות</span>
+                            <strong id="fee-${index}">${opt.fee}</strong>
                         </div>
                         <div class="detail-item">
-                            <span>דמי טיפול משרד</span>
-                            <strong>${opt.service}</strong>
+                            <span id="service-label-${index}">דמי טיפול משרד</span>
+                            <strong id="service-${index}">${opt.service}</strong>
                         </div>
                     </div>
+                    
                     <div class="visa-price-total">
-                        <span>סה"כ מחיר לאדם:</span>
-                        <strong>${opt.total}</strong>
+                        <span id="total-label-${index}">סה"כ לתשלום (1 נוסעים):</span>
+                        <strong id="total-${index}">${opt.total}</strong>
+                    </div>
+
+                    <!-- כפתורי העתקה והדפסה ספציפיים לאופציה זו -->
+                    <div class="card-action-bar">
+                        <button class="action-btn" onclick="printVisaDetails(${index})">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                            הדפס הצעת מחיר
+                        </button>
+                        <button class="action-btn" onclick="copyVisaDetails('${code}', ${index})">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            העתק ללוח
+                        </button>
                     </div>
                 </div>
             `;
         });
 
-        contentDiv.innerHTML += `
-            <div class="ups-note">
-                <span class="ups-note-icon">📦</span>
-                <div>
-                    <strong>שירות שילוח מסמכים (UPS):</strong> צריכים לשלוח אלינו דרכון פיזי? אנו מציעים שירות איסוף ושילוח מסמכים מאובטח בתוספת של $25.00 בלבד (בהתאם ללוחות הזמנים של חברת השילוח).
+        htmlContent += `
+                <div class="ups-note" id="upsNote">
+                    <span class="ups-note-icon">📦</span>
+                    <div>
+                        <strong>שירות שילוח מסמכים (UPS):</strong> במידה ונדרש לשלוח אלינו דרכון פיזי, אנו מציעים שירות איסוף ושילוח מסמכים מאובטח בתוספת של $25.00 בלבד (בכפוף ללוחות הזמנים של חברת השילוח).
+                    </div>
                 </div>
-            </div>
+
+                <!-- חתימה מוסתרת שמופיעה רק בהדפסה -->
+                <div class="print-footer print-only-element">
+                    <strong>נשמח לעמוד לרשותכם בכל שאלה,</strong>
+                    צוות מחלקת הויזות - אמסלם טורס<br>
+                    📞 04-9700900 &nbsp;|&nbsp; 💬 WhatsApp: 04-670-0998 &nbsp;|&nbsp; ✉️ visa.dept@amsalem.com
+                </div>
+            </div> <!-- סגירת print-document-container -->
         `;
+        
+        contentDiv.innerHTML = htmlContent;
 
         document.getElementById('panelOverlay').classList.add('active');
         document.getElementById('sidePanel').classList.add('active');
@@ -1224,6 +1545,81 @@
         }
 
         closeLeadModal();
+    }
+    
+    /* --- פונקציית העתקה ללוח (ממוקדת לאופציה ספציפית) --- */
+    function copyVisaDetails(code, index) {
+        const country = visaData[code];
+        const opt = country.options[index];
+        const paxInput = document.getElementById(`paxInput-${index}`);
+        let pax = paxInput ? (parseInt(paxInput.value) || 1) : 1;
+        if (pax < 1) pax = 1;
+
+        const feeNum = getPriceNum(opt.fee) * pax;
+        const serviceNum = getPriceNum(opt.service) * pax;
+        const totalNum = getPriceNum(opt.total) * pax;
+
+        let textToCopy = `הצעת מחיר לויזה - ${country.name}\n`;
+        textToCopy += `===============================\n\n`;
+        textToCopy += `סוג הויזה: ${opt.type}\n`;
+        if (pax > 1) {
+            textToCopy += `(חישוב עבור ${pax} נוסעים)\n`;
+        }
+        textToCopy += `זמן טיפול משוער: ${opt.time}\n`;
+        textToCopy += `תוקף האשרה: ${opt.validity}\n`;
+        textToCopy += `אגרת רשויות: ${formatPriceStr(feeNum)} | דמי טיפול משרד: ${formatPriceStr(serviceNum)}\n`;
+        textToCopy += `סה"כ מחיר ל-${pax} נוסעים: ${formatPriceStr(totalNum)}\n`;
+        textToCopy += `-------------------------------\n\n`;
+        textToCopy += `* שירות שילוח מסמכים (UPS) זמין בתוספת של $25.00.\n\n`;
+        textToCopy += `נשמח לעמוד לרשותכם,\nאמסלם טורס`;
+
+        // שימוש בטכניקה שעובדת בכל הדפדפנים כדי להעתיק טקסט
+        const textArea = document.createElement("textarea");
+        textArea.value = textToCopy;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showToast('הפרטים הועתקו ללוח בהצלחה! 📋');
+        } catch (err) {
+            showToast('שגיאה בהעתקה, אנא נסה שוב.');
+        }
+        document.body.removeChild(textArea);
+    }
+
+    /* --- פונקציית הדפסה ממוקדת לאופציה ספציפית --- */
+    function printVisaDetails(index) {
+        // עדכון כותרת המשנה של ההדפסה בהתאם לכמות הנוסעים שהוזנה
+        const paxInput = document.getElementById(`paxInput-${index}`);
+        let pax = paxInput ? (parseInt(paxInput.value) || 1) : 1;
+        const subtitle = document.getElementById('printPaxSubtitle');
+        if (subtitle) {
+            subtitle.innerText = pax > 1 ? `המחירים המוצגים משוקללים עבור ${pax} נוסעים` : `המחירים המוצגים מתייחסים לנוסע יחיד`;
+        }
+
+        // הסתרת הכרטיסיות האחרות והצגת רק את זו הרלוונטית, כולל הערת ה-UPS
+        const allCards = document.querySelectorAll('.visa-option-card');
+        allCards.forEach((card, i) => {
+            if (i === index) {
+                card.classList.add('print-active');
+            } else {
+                card.classList.remove('print-active');
+            }
+        });
+        
+        const upsNote = document.getElementById('upsNote');
+        if(upsNote) {
+            upsNote.classList.add('print-active-note');
+        }
+        
+        // פתיחת חלון ההדפסה של הדפדפן
+        window.print();
+        
+        // ניקוי הקלאסים לאחר ההדפסה כדי שהתצוגה הרגילה תחזור לקדמותה
+        allCards.forEach(card => card.classList.remove('print-active'));
+        if(upsNote) {
+            upsNote.classList.remove('print-active-note');
+        }
     }
 
     function showToast(msg) {
