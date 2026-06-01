@@ -1182,6 +1182,30 @@ Handling Agent: {agent}`
         const country = document.getElementById('destCountry').value;
         const notes = document.getElementById('leadNotes').value || (currentLang === 'he' ? 'אין הערות נוספות' : 'No additional notes');
 
+        // --- גיבוי ושליחת הליד ל-CRM / Webhook (אוטומציה) ---
+        const webhookUrl = "https://script.google.com/macros/s/AKfycbyFFGDTP7vAynszYq_4UVo29t3vUfa_LBFiVQCfnO4EI6YY_Q9VtohzFt-3spxaV1AzdQ/exec"; 
+        
+        if (webhookUrl) {
+            const leadData = {
+                agent: agent,
+                client: client,
+                phone: phone,
+                email: email,
+                country: country,
+                notes: notes,
+                timestamp: new Date().toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' }) // זמן מדויק לישראל
+            };
+            
+            // שליחה אסינכרונית "שקטה" מותאמת לגוגל שיטס
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // חובה לגוגל שיטס כדי למנוע חסימות CORS
+                body: JSON.stringify(leadData),
+                mode: 'no-cors'
+            }).catch(err => console.error("Error saving lead to CRM:", err));
+        }
+        // --------------------------------------------------------
+
         let rawSubject = t('emailSubject').replace('{country}', country).replace('{client}', client);
         let rawBody = t('emailBody').replace('{client}', client).replace('{phone}', phone).replace('{email}', email).replace('{country}', country).replace('{notes}', notes).replace('{agent}', agent);
 
