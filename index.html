@@ -29,23 +29,66 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        /* --- הדר (לוגו) --- */
+        /* --- הדר (לוגו ושינוי שפה) --- */
         header {
             background-color: var(--panel-bg);
             padding: 15px 20px;
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
             position: relative;
             z-index: 100;
         }
+        
+        /* כיווניות של ההדר - תלוי ב-dir */
+        [dir="rtl"] header { flex-direction: row; }
+        [dir="ltr"] header { flex-direction: row; }
+
+        .logo-container {
+            flex: 1;
+            text-align: center;
+        }
+        [dir="ltr"] .logo-container { text-align: center; } /* נשמור אותו תמיד באמצע */
+
         .logo { max-width: 300px; height: auto; }
         .logo-text-fallback {
             font-size: 24px;
             font-weight: 900;
             color: var(--secondary-color);
             letter-spacing: 0.5px;
+        }
+
+        /* כפתור החלפת שפה */
+        .lang-switcher {
+            display: flex;
+            background: #f1f5f9;
+            border-radius: 20px;
+            padding: 4px;
+            gap: 4px;
+            border: 1px solid #e2e8f0;
+            position: absolute;
+            inset-inline-start: 20px; /* תמיד יהיה בצד ההפוך ללוגו (שמאל ב-RTL, ימין ב-LTR) */
+        }
+        .lang-btn {
+            background: transparent;
+            border: none;
+            padding: 6px 12px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 0.9em;
+            color: #64748b;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .lang-btn.active {
+            background: #ffffff;
+            color: var(--primary-dark);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         /* --- אזור כותרת (Hero) --- */
@@ -108,6 +151,7 @@
             font-size: 1em;
             box-shadow: 0 2px 8px rgba(0,0,0,0.02);
             transition: transform 0.2s ease;
+            gap: 8px;
         }
         .feature-item:hover {
             transform: translateY(-2px);
@@ -116,7 +160,6 @@
         .feature-item svg {
             width: 20px;
             height: 20px;
-            margin-left: 8px;
             color: var(--primary-color);
             stroke-width: 2.5;
         }
@@ -139,7 +182,8 @@
         }
         .search-box input {
             width: 100%;
-            padding: 15px 45px 15px 20px;
+            padding: 15px 20px;
+            padding-inline-start: 45px;
             font-size: 1.1em;
             border: 2px solid #cbd5e1;
             border-radius: 40px;
@@ -147,15 +191,15 @@
             font-family: inherit;
             transition: all 0.3s ease;
             box-sizing: border-box;
-            text-align: right;
         }
+        
         .search-box input:focus {
             border-color: var(--primary-color);
             box-shadow: 0 10px 25px rgba(0, 188, 212, 0.15);
         }
         .search-icon {
             position: absolute;
-            right: 18px;
+            inset-inline-start: 18px; /* תומך ב-LTR ו-RTL */
             top: 50%;
             transform: translateY(-50%);
             color: #94a3b8;
@@ -216,7 +260,9 @@
             justify-content: center;
             gap: 15px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            direction: ltr; /* תמיד LTR כדי שהדגל יהיה משמאל לטקסט או לפי הצורך */
         }
+        [dir="rtl"] .country-card { direction: rtl; }
         
         .country-card:hover {
             transform: translateY(-3px);
@@ -254,7 +300,7 @@
         .transparent-table {
             width: 100%;
             border-collapse: collapse;
-            text-align: right;
+            text-align: start;
             min-width: 950px;
         }
         .transparent-table th {
@@ -266,15 +312,21 @@
             position: sticky;
             top: 0;
             z-index: 10;
+            text-align: start;
         }
-        .transparent-table th:first-child { border-top-right-radius: 16px; }
-        .transparent-table th:last-child { border-top-left-radius: 16px; }
+        
+        /* פינות עגולות לטבלה בתמיכה ב-LTR/RTL */
+        [dir="rtl"] .transparent-table th:first-child { border-top-right-radius: 16px; border-top-left-radius: 0;}
+        [dir="rtl"] .transparent-table th:last-child { border-top-left-radius: 16px; border-top-right-radius: 0;}
+        [dir="ltr"] .transparent-table th:first-child { border-top-left-radius: 16px; border-top-right-radius: 0;}
+        [dir="ltr"] .transparent-table th:last-child { border-top-right-radius: 16px; border-top-left-radius: 0;}
         
         .transparent-table td {
             padding: 15px 16px;
             border-bottom: 1px solid var(--border-color);
             vertical-align: middle;
             font-size: 0.95em;
+            text-align: start;
         }
         .transparent-table tbody tr {
             transition: background-color 0.15s ease;
@@ -292,7 +344,7 @@
             border-radius: 3px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             vertical-align: middle;
-            margin-left: 8px;
+            margin-inline-end: 8px;
         }
         .transparent-table .price-td {
             font-weight: 600;
@@ -303,7 +355,7 @@
             font-weight: 900;
             color: var(--primary-dark);
             font-size: 1.05em;
-            border-left: 2px solid #b2ebf2;
+            border-inline-start: 2px solid #b2ebf2;
         }
 
         /* --- פאנל צדדי (Side Drawer) --- */
@@ -324,18 +376,19 @@
 
         .side-panel {
             position: fixed;
-            top: 0; left: -100%;
+            top: 0; 
             width: 100%;
             max-width: 600px;
             height: 100%;
             background: var(--panel-bg);
             z-index: 2001;
             box-shadow: 10px 0 30px rgba(0,0,0,0.2);
-            transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: inset-inline-start 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             flex-direction: column;
+            inset-inline-start: -100%; /* משתמש ב-inline-start שיתאים גם ל-RTL וגם ל-LTR */
         }
-        .side-panel.active { left: 0; }
+        .side-panel.active { inset-inline-start: 0; }
 
         .panel-header {
             padding: 30px;
@@ -455,7 +508,7 @@
         .visa-option-card::before {
             content: '';
             position: absolute;
-            top: 0; right: 0; bottom: 0; width: 4px;
+            top: 0; inset-inline-end: 0; bottom: 0; width: 4px;
             background: var(--primary-color);
         }
         
@@ -602,7 +655,7 @@
         .fab-transfer {
             position: fixed;
             bottom: 30px;
-            left: 30px;
+            inset-inline-start: 30px;
             background: linear-gradient(135deg, #00BCD4 0%, #0097a7 100%);
             color: white;
             border: none;
@@ -666,6 +719,7 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+            text-align: start;
         }
         .form-group {
             display: flex;
@@ -685,6 +739,7 @@
             font-size: 1em;
             outline: none;
             transition: border-color 0.2s;
+            text-align: start;
         }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             border-color: var(--primary-color);
@@ -697,8 +752,7 @@
             margin-top: 10px;
         }
         
-        .btn-gmail {
-            background: #ea4335;
+        .btn-gmail, .btn-outlook {
             color: #fff;
             border: none;
             padding: 12px;
@@ -713,24 +767,10 @@
             align-items: center;
             gap: 8px;
         }
+        .btn-gmail { background: #ea4335; }
         .btn-gmail:hover { background: #c5221f; }
         
-        .btn-outlook {
-            background: #0078d4;
-            color: #fff;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 800;
-            font-size: 1em;
-            font-family: inherit;
-            cursor: pointer;
-            transition: background 0.2s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-        }
+        .btn-outlook { background: #0078d4; }
         .btn-outlook:hover { background: #005a9e; }
         
         .btn-cancel {
@@ -955,7 +995,7 @@
             .hero-subtitle { font-size: 1.1em; gap: 8px; }
             .subtitle-logo { height: 20px; }
             .transparent-table th, .transparent-table td { padding: 12px 10px; font-size: 0.85em; }
-            .fab-transfer { bottom: 20px; left: 20px; padding: 12px 20px; font-size: 1em; }
+            .fab-transfer { inset-inline-start: 20px; bottom: 20px; padding: 12px 20px; font-size: 1em; }
             .card-action-bar { flex-direction: column; }
         }
     </style>
@@ -963,7 +1003,13 @@
 <body>
 
 <header>
-    <div id="logo-container">
+    <!-- כפתור החלפת שפה (עברית / אנגלית) -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" id="btn-he" onclick="setLanguage('he')">עברית</button>
+        <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">English</button>
+    </div>
+
+    <div class="logo-container" id="logo-container">
         <img src="ויזה%20לוגו%20סופי%20(14).jpg" alt="AMS VISA" class="logo" id="headerLogo" onerror="this.onerror=null; this.style.display='none'; document.getElementById('logoTextFallback').style.display='inline-block';">
         <span id="logoTextFallback" class="logo-text-fallback" style="display: none;">AMS VISA</span>
     </div>
@@ -972,23 +1018,23 @@
 <div class="hero">
     <div class="hero-subtitle">
         <img src="Amsalem_Logo%20NO%20SLOGAN%20(10).png" alt="Amsalem Logo" class="subtitle-logo" onerror="this.onerror=null; this.style.display='none';">
-        <span>שירותי ויזות ואשרות מבית אמסלם טורס</span>
+        <span data-i18n="heroSubtitle">שירותי ויזות ואשרות מבית אמסלם טורס</span>
     </div>
-    <h1 class="hero-title">מחירון ויזות ואשרות כניסה<br><span>למגזר העסקי והפרטי</span></h1>
-    <p class="hero-desc">איתור מהיר של דרישות כניסה, עלויות וזמני טיפול, עם ליווי מקצועי מלא מרגע פתיחת הבקשה ועד לקבלת האשרה.</p>
+    <h1 class="hero-title" data-i18n="heroTitle">מחירון ויזות ואשרות כניסה<br><span>למגזר העסקי והפרטי</span></h1>
+    <p class="hero-desc" data-i18n="heroDesc">איתור מהיר של דרישות כניסה, עלויות וזמני טיפול, עם ליווי מקצועי מלא מרגע פתיחת הבקשה ועד לקבלת האשרה.</p>
     
     <div class="hero-features">
         <div class="feature-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-            שירות מקצועי ואמין
+            <span data-i18n="feat1">שירות מקצועי ואמין</span>
         </div>
         <div class="feature-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
-            עלויות וזמנים במקום אחד
+            <span data-i18n="feat2">עלויות וזמנים במקום אחד</span>
         </div>
         <div class="feature-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-            טיפול מהיר
+            <span data-i18n="feat3">טיפול מהיר</span>
         </div>
     </div>
 </div>
@@ -997,18 +1043,18 @@
     <!-- תיבת החיפוש -->
     <div class="search-box">
         <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <input type="text" id="searchInput" placeholder="חיפוש מדינה (ארה״ב, אוסטרליה)..." onkeyup="handleSearch()">
+        <input type="text" id="searchInput" data-i18n-placeholder="searchPlaceholder" placeholder="חיפוש מדינה (ארה״ב, אוסטרליה)..." onkeyup="handleSearch()">
     </div>
 
     <!-- כפתורי מעבר התצוגה (טאבים) -->
     <div class="tabs-container">
         <button class="tab-btn active" id="tabCardsBtn" onclick="switchView('cards')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
-            כרטיסי מדינות
+            <span data-i18n="tabCards">כרטיסי מדינות</span>
         </button>
         <button class="tab-btn" id="tabTableBtn" onclick="switchView('table')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="6" x2="20" y2="6"></line><line x1="9" y1="12" x2="20" y2="12"></line><line x1="9" y1="18" x2="20" y2="18"></line><line x1="5" y1="6" x2="5.01" y2="6"></line><line x1="5" y1="12" x2="5.01" y2="12"></line><line x1="5" y1="18" x2="5.01" y2="18"></line></svg>
-            מחירון מלא ושקוף
+            <span data-i18n="tabTable">מחירון מלא ושקוף</span>
         </button>
     </div>
 </div>
@@ -1022,13 +1068,13 @@
         <table class="transparent-table" id="transparentTable">
             <thead>
                 <tr>
-                    <th>מדינת יעד</th>
-                    <th>סוג אשרה / אישור כניסה</th>
-                    <th>זמן טיפול</th>
-                    <th>תוקף האשרה</th>
-                    <th>אגרת רשויות</th>
-                    <th>דמי טיפול</th>
-                    <th>סה"כ לאדם</th>
+                    <th data-i18n="thCountry">מדינת יעד</th>
+                    <th data-i18n="thType">סוג אשרה / אישור כניסה</th>
+                    <th data-i18n="thTime">זמן טיפול</th>
+                    <th data-i18n="thValidity">תוקף האשרה</th>
+                    <th data-i18n="thGovFee">אגרת רשויות</th>
+                    <th data-i18n="thServiceFee">דמי טיפול</th>
+                    <th data-i18n="thTotal">סה"כ לאדם</th>
                 </tr>
             </thead>
             <tbody id="tableBody"></tbody>
@@ -1038,8 +1084,8 @@
 
 <!-- אזור יצירת קשר -->
 <section class="contact-section">
-    <h2>אנחנו כאן לכל שאלה</h2>
-    <p>צוות מחלקת הויזות זמין לליווי, בדיקת דרישות כניסה וטיפול בבקשות.</p>
+    <h2 data-i18n="contactTitle">אנחנו כאן לכל שאלה</h2>
+    <p data-i18n="contactDesc">צוות מחלקת הויזות זמין לליווי, בדיקת דרישות כניסה וטיפול בבקשות.</p>
     <div class="contact-grid">
         <div class="contact-card">
             <div class="contact-icon-wrapper">
@@ -1047,7 +1093,7 @@
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                 </svg>
             </div>
-            <div class="contact-label">מוקד טלפוני</div>
+            <div class="contact-label" data-i18n="contactPhone">מוקד טלפוני</div>
             <div class="contact-value">04-9700900</div>
         </div>
         <div class="contact-card">
@@ -1066,7 +1112,7 @@
                     <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
             </div>
-            <div class="contact-label">דוא"ל</div>
+            <div class="contact-label" data-i18n="contactEmail">דוא"ל</div>
             <div class="contact-value">visa.dept@amsalem.com</div>
         </div>
     </div>
@@ -1078,56 +1124,56 @@
         <line x1="22" y1="2" x2="11" y2="13"></line>
         <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
     </svg>
-    העבר לקוח לטיפול
+    <span data-i18n="fabTransfer">העבר לקוח לטיפול</span>
 </button>
 
 <!-- מודל (Pop-up) להעברת פרטי לקוח -->
 <div class="lead-modal-overlay" id="leadModalOverlay">
     <div class="lead-modal">
         <div class="lead-modal-header">
-            <h2>טופס העברת לקוח לטיפול ויזה</h2>
+            <h2 data-i18n="modalTitle">טופס העברת לקוח לטיפול ויזה</h2>
             <button class="lead-modal-close" onclick="closeLeadModal()">✕</button>
         </div>
         <form class="lead-form" id="leadForm">
             <div class="form-group">
-                <label for="agentName">שם הסוכן המטפל:</label>
-                <input type="text" id="agentName" placeholder="הכנס את שמך" required>
+                <label for="agentName" data-i18n="lblAgentName">שם הסוכן המטפל:</label>
+                <input type="text" id="agentName" data-i18n-placeholder="plcAgentName" placeholder="הכנס את שמך" required>
             </div>
             <div class="form-group">
-                <label for="clientName">שם הלקוח / חברה:</label>
-                <input type="text" id="clientName" placeholder="שם מלא של הנוסע או החברה" required>
+                <label for="clientName" data-i18n="lblClientName">שם הלקוח / חברה:</label>
+                <input type="text" id="clientName" data-i18n-placeholder="plcClientName" placeholder="שם מלא של הנוסע או החברה" required>
             </div>
             <div class="form-group">
-                <label for="clientPhone">טלפון הלקוח:</label>
-                <input type="tel" id="clientPhone" placeholder="מספר נייד ליצירת קשר" required>
+                <label for="clientPhone" data-i18n="lblClientPhone">טלפון הלקוח:</label>
+                <input type="tel" id="clientPhone" data-i18n-placeholder="plcClientPhone" placeholder="מספר נייד ליצירת קשר" required>
             </div>
             <div class="form-group">
-                <label for="clientEmail">דוא"ל הלקוח:</label>
-                <input type="email" id="clientEmail" placeholder="כתובת אימייל ליצירת קשר" required>
+                <label for="clientEmail" data-i18n="lblClientEmail">דוא"ל הלקוח:</label>
+                <input type="email" id="clientEmail" data-i18n-placeholder="plcClientEmail" placeholder="כתובת אימייל ליצירת קשר" required>
             </div>
             <div class="form-group">
-                <label for="destCountry">מדינת יעד לויזה:</label>
+                <label for="destCountry" data-i18n="lblDestCountry">מדינת יעד לויזה:</label>
                 <select id="destCountry" required>
-                    <option value="" disabled selected>בחר מדינה...</option>
+                    <option value="" disabled selected data-i18n="plcDestCountry">בחר מדינה...</option>
                     <!-- יאוכלס דינמית ב-JS -->
                 </select>
             </div>
             <div class="form-group">
-                <label for="leadNotes">הערות / בקשות מיוחדות:</label>
-                <textarea id="leadNotes" rows="3" placeholder="תאריך טיסה משוער, דחיפות, או כל מידע רלוונטי אחר..."></textarea>
+                <label for="leadNotes" data-i18n="lblNotes">הערות / בקשות מיוחדות:</label>
+                <textarea id="leadNotes" rows="3" data-i18n-placeholder="plcNotes" placeholder="תאריך טיסה משוער, דחיפות, או כל מידע רלוונטי אחר..."></textarea>
             </div>
             
             <!-- כפתורי שליחה חכמים -->
             <div class="form-actions-column">
                 <button type="button" class="btn-gmail" onclick="submitLead('gmail')">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    שלח באמצעות Gmail (דפדפן)
+                    <span data-i18n="btnGmail">שלח באמצעות Gmail (דפדפן)</span>
                 </button>
                 <button type="button" class="btn-outlook" onclick="submitLead('outlook')">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    שלח באמצעות Outlook / תוכנת דואר
+                    <span data-i18n="btnOutlook">שלח באמצעות Outlook / תוכנת דואר</span>
                 </button>
-                <button type="button" class="btn-cancel" onclick="closeLeadModal()">ביטול</button>
+                <button type="button" class="btn-cancel" onclick="closeLeadModal()" data-i18n="btnCancel">ביטול</button>
             </div>
         </form>
     </div>
@@ -1149,95 +1195,401 @@
 </div>
 
 <script>
-    // מאגר נתוני הויזות
+    /* --- מערכת תרגום (i18n) --- */
+    let currentLang = 'he'; // שפת ברירת מחדל
+
+    const translations = {
+        "he": {
+            "heroSubtitle": "שירותי ויזות ואשרות מבית אמסלם טורס",
+            "heroTitle": "מחירון ויזות ואשרות כניסה<br><span>למגזר העסקי והפרטי</span>",
+            "heroDesc": "איתור מהיר של דרישות כניסה, עלויות וזמני טיפול, עם ליווי מקצועי מלא מרגע פתיחת הבקשה ועד לקבלת האשרה.",
+            "feat1": "שירות מקצועי ואמין",
+            "feat2": "עלויות וזמנים במקום אחד",
+            "feat3": "טיפול מהיר",
+            "searchPlaceholder": "חיפוש מדינה (ארה״ב, אוסטרליה)...",
+            "tabCards": "כרטיסי מדינות",
+            "tabTable": "מחירון מלא ושקוף",
+            "thCountry": "מדינת יעד",
+            "thType": "סוג אשרה / אישור כניסה",
+            "thTime": "זמן טיפול",
+            "thValidity": "תוקף האשרה",
+            "thGovFee": "אגרת רשויות",
+            "thServiceFee": "דמי טיפול",
+            "thTotal": "סה\"כ לאדם",
+            "contactTitle": "אנחנו כאן לכל שאלה",
+            "contactDesc": "צוות מחלקת הויזות זמין לליווי, בדיקת דרישות כניסה וטיפול בבקשות.",
+            "contactPhone": "מוקד טלפוני",
+            "contactEmail": "דוא\"ל",
+            "fabTransfer": "העבר לקוח לטיפול",
+            "modalTitle": "טופס העברת לקוח לטיפול ויזה",
+            "lblAgentName": "שם הסוכן המטפל:",
+            "plcAgentName": "הכנס את שמך",
+            "lblClientName": "שם הלקוח / חברה:",
+            "plcClientName": "שם מלא של הנוסע או החברה",
+            "lblClientPhone": "טלפון הלקוח:",
+            "plcClientPhone": "מספר נייד ליצירת קשר",
+            "lblClientEmail": "דוא\"ל הלקוח:",
+            "plcClientEmail": "כתובת אימייל ליצירת קשר",
+            "lblDestCountry": "מדינת יעד לויזה:",
+            "plcDestCountry": "בחר מדינה...",
+            "lblNotes": "הערות / בקשות מיוחדות:",
+            "plcNotes": "תאריך טיסה משוער, דחיפות, או כל מידע רלוונטי אחר...",
+            "btnGmail": "שלח באמצעות Gmail (דפדפן)",
+            "btnOutlook": "שלח באמצעות Outlook / תוכנת דואר",
+            "btnCancel": "ביטול",
+            "printQuoteTitle": "הצעת מחיר לאשרת כניסה:",
+            "printSinglePax": "המחירים המוצגים מתייחסים לנוסע יחיד",
+            "printMultiPax": "המחירים המוצגים משוקללים עבור",
+            "paxCalcLabel": "כמות נוסעים:",
+            "lblProcessingTime": "זמן טיפול משוער",
+            "lblValidity": "תוקף האשרה",
+            "lblGovFee": "אגרת רשויות",
+            "lblServiceFee": "דמי טיפול משרד",
+            "lblTotalFor": "סה\"כ לתשלום",
+            "btnCopy": "העתק ללוח",
+            "btnPrint": "הדפס הצעת מחיר",
+            "upsTitle": "שירות שילוח מסמכים (UPS):",
+            "upsDesc": "במידה ונדרש לשלוח אלינו דרכון פיזי, אנו מציעים שירות איסוף ושילוח מסמכים מאובטח בתוספת של $25.00 בלבד (בכפוף ללוחות הזמנים של חברת השילוח).",
+            "footerThanks": "נשמח לעמוד לרשותכם בכל שאלה,",
+            "footerTeam": "צוות מחלקת הויזות - אמסלם טורס",
+            "toastCopySuccess": "הפרטים הועתקו ללוח בהצלחה! 📋",
+            "toastCopyError": "שגיאה בהעתקה, אנא נסה שוב.",
+            "toastGmail": "פותח את Gmail בדפדפן...",
+            "toastOutlook": "פותח את תוכנת הדוא\"ל (Outlook)...",
+            "emailSubject": "העברת טיפול בויזה ל{country} - לקוח: {client}",
+            "emailBody": "שלום מחלקת ויזות,\n\nאשמח להעביר אליכם לקוח להמשך טיפול בהוצאת ויזה.\n\n--- פרטי הלקוח ---\nשם הלקוח/חברה: {client}\nטלפון הלקוח: {phone}\nדוא\"ל הלקוח: {email}\nמדינת יעד מבוקשת: {country}\n\n--- הערות נוספות ---\n{notes}\n\nתודה רבה,\nהסוכן המטפל: {agent}"
+        },
+        "en": {
+            "heroSubtitle": "Visa Services by Amsalem Tours",
+            "heroTitle": "Global Visa & Entry Permit Pricing<br><span>For Business & Private Sectors</span>",
+            "heroDesc": "Quickly find entry requirements, costs, and processing times, with full professional support from application to visa approval.",
+            "feat1": "Professional & Reliable",
+            "feat2": "Costs & Times in One Place",
+            "feat3": "Fast Processing",
+            "searchPlaceholder": "Search country (USA, Australia)...",
+            "tabCards": "Country Cards",
+            "tabTable": "Full Pricing Table",
+            "thCountry": "Destination",
+            "thType": "Visa / Permit Type",
+            "thTime": "Processing Time",
+            "thValidity": "Validity",
+            "thGovFee": "Gov Fee",
+            "thServiceFee": "Service Fee",
+            "thTotal": "Total per Person",
+            "contactTitle": "We are here for any question",
+            "contactDesc": "Our visa department team is available for support, requirement checks, and application processing.",
+            "contactPhone": "Call Center",
+            "contactEmail": "Email",
+            "fabTransfer": "Transfer Lead",
+            "modalTitle": "Visa Lead Transfer Form",
+            "lblAgentName": "Agent Name:",
+            "plcAgentName": "Enter your name",
+            "lblClientName": "Client / Company Name:",
+            "plcClientName": "Full name of traveler or company",
+            "lblClientPhone": "Client Phone:",
+            "plcClientPhone": "Mobile number for contact",
+            "lblClientEmail": "Client Email:",
+            "plcClientEmail": "Email address for contact",
+            "lblDestCountry": "Destination Country:",
+            "plcDestCountry": "Select country...",
+            "lblNotes": "Notes / Special Requests:",
+            "plcNotes": "Estimated flight date, urgency, or any other relevant information...",
+            "btnGmail": "Send via Gmail (Browser)",
+            "btnOutlook": "Send via Outlook / Mail App",
+            "btnCancel": "Cancel",
+            "printQuoteTitle": "Visa Application Quote:",
+            "printSinglePax": "Prices displayed are for a single passenger",
+            "printMultiPax": "Prices displayed are calculated for",
+            "paxCalcLabel": "Passengers:",
+            "lblProcessingTime": "Est. Processing Time",
+            "lblValidity": "Visa Validity",
+            "lblGovFee": "Government Fee",
+            "lblServiceFee": "Agency Service Fee",
+            "lblTotalFor": "Total Amount",
+            "btnCopy": "Copy Details",
+            "btnPrint": "Print Quote",
+            "upsTitle": "Document Shipping Service (UPS):",
+            "upsDesc": "If a physical passport submission is required, we offer a secure document pickup and delivery service for an additional $25.00 (subject to the shipping company's schedule).",
+            "footerThanks": "We are happy to assist with any questions,",
+            "footerTeam": "Visa Department Team - Amsalem Tours",
+            "toastCopySuccess": "Details copied to clipboard successfully! 📋",
+            "toastCopyError": "Error copying, please try again.",
+            "toastGmail": "Opening Gmail in browser...",
+            "toastOutlook": "Opening Mail App (Outlook)...",
+            "emailSubject": "Visa Lead Transfer for {country} - Client: {client}",
+            "emailBody": "Hello Visa Department,\n\nI would like to transfer a client to you for visa processing.\n\n--- Client Details ---\nClient/Company: {client}\nPhone: {phone}\nEmail: {email}\nDestination: {country}\n\n--- Additional Notes ---\n{notes}\n\nThank you,\nHandling Agent: {agent}"
+        }
+    };
+
+    function t(key) {
+        return translations[currentLang][key] || key;
+    }
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+
+        // Update active button state
+        document.getElementById('btn-he').classList.toggle('active', lang === 'he');
+        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+        updateStaticTranslations();
+        initApp(); // Re-render the dynamic content (cards, table, select options)
+        
+        // If a side panel is open, close it (or re-render it)
+        if (document.getElementById('sidePanel').classList.contains('active')) {
+            closePanel(); 
+        }
+    }
+
+    function updateStaticTranslations() {
+        // Elements with innerHTML/innerText
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            el.innerHTML = t(key);
+        });
+
+        // Elements with placeholders
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            el.placeholder = t(key);
+        });
+    }
+
+    // מאגר נתוני הויזות עם תמיכה בעברית ואנגלית
     const visaData = {
-        "US": { name: "ארה\"ב", flag: "fi-us", options: [
-            { type: "אישור כניסה אלקטרוני ESTA, תיירות / עסקים, כניסות מרובות", time: "עד 72 שעות", validity: "שנתיים או עד פקיעת הדרכון", fee: "$40.00", service: "$35.00", total: "$75.00" },
-            { type: "ויזת B1/B2 לארה\"ב, תיירות / עסקים, כניסות מרובות", time: "בהתאם לזמינות תורים; לאחר ראיון לרוב 7-14 ימי עבודה", validity: "עד 10 שנים", fee: "$205.00", service: "$85.00", total: "$290.00" }
+        "US": { 
+            name: { he: "ארה\"ב", en: "USA" }, flag: "fi-us", options: [
+            { type: { he: "אישור כניסה אלקטרוני ESTA, תיירות / עסקים, כניסות מרובות", en: "ESTA Electronic Authorization, Tourist/Business, Multiple Entries" }, 
+              time: { he: "עד 72 שעות", en: "Up to 72 hours" }, 
+              validity: { he: "שנתיים או עד פקיעת הדרכון", en: "2 years or until passport expiry" }, 
+              fee: "$40.00", service: "$35.00", total: "$75.00" },
+            { type: { he: "ויזת B1/B2 לארה\"ב, תיירות / עסקים, כניסות מרובות", en: "US B1/B2 Visa, Tourist/Business, Multiple Entries" }, 
+              time: { he: "בהתאם לזמינות תורים; לאחר ראיון לרוב 7-14 ימי עבודה", en: "Subject to appointment availability; typically 7-14 days post-interview" }, 
+              validity: { he: "עד 10 שנים", en: "Up to 10 years" }, 
+              fee: "$205.00", service: "$85.00", total: "$290.00" }
         ]},
-        "CA": { name: "קנדה", flag: "fi-ca", options: [
-            { type: "אישור כניסה אלקטרוני eTA, תיירות/עסקים/טרנזיט, כניסות מרובות", time: "עד 72 שעות", validity: "עד 5 שנים או עד פקיעת הדרכון", fee: "$8.00", service: "$35.00", total: "$43.00" }
+        "CA": { 
+            name: { he: "קנדה", en: "Canada" }, flag: "fi-ca", options: [
+            { type: { he: "אישור כניסה אלקטרוני eTA, תיירות/עסקים/טרנזיט, כניסות מרובות", en: "eTA Electronic Authorization, Tourist/Business/Transit, Multiple Entries" }, 
+              time: { he: "עד 72 שעות", en: "Up to 72 hours" }, 
+              validity: { he: "עד 5 שנים או עד פקיעת הדרכון", en: "Up to 5 years or until passport expiry" }, 
+              fee: "$8.00", service: "$35.00", total: "$43.00" }
         ]},
-        "GB": { name: "בריטניה", flag: "fi-gb", options: [
-            { type: "אישור כניסה אלקטרוני ETA, תיירות / עסקים, כניסות מרובות", time: "עד 3 ימי עבודה", validity: "שנתיים או עד פקיעת הדרכון", fee: "$29.00", service: "$35.00", total: "$64.00" }
+        "GB": { 
+            name: { he: "בריטניה", en: "United Kingdom" }, flag: "fi-gb", options: [
+            { type: { he: "אישור כניסה אלקטרוני ETA, תיירות / עסקים, כניסות מרובות", en: "ETA Electronic Authorization, Tourist/Business, Multiple Entries" }, 
+              time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, 
+              validity: { he: "שנתיים או עד פקיעת הדרכון", en: "2 years or until passport expiry" }, 
+              fee: "$29.00", service: "$35.00", total: "$64.00" }
         ]},
-        "AU": { name: "אוסטרליה", flag: "fi-au", options: [
-            { type: "ויזת תיירות אלקטרונית eVisa 600, כניסות מרובות", time: "עד 30 ימי עבודה", validity: "בהתאם לאישור הרשויות", fee: "$200.00", service: "$65.00", total: "$265.00" },
-            { type: "ויזת עסקים אלקטרונית eVisa 600, כניסות מרובות", time: "עד 14-25 ימי עבודה", validity: "בהתאם לאישור הרשויות", fee: "$200.00", service: "$65.00", total: "$265.00" }
+        "AU": { 
+            name: { he: "אוסטרליה", en: "Australia" }, flag: "fi-au", options: [
+            { type: { he: "ויזת תיירות אלקטרונית eVisa 600, כניסות מרובות", en: "eVisa 600 Tourist, Multiple Entries" }, 
+              time: { he: "עד 30 ימי עבודה", en: "Up to 30 business days" }, 
+              validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, 
+              fee: "$200.00", service: "$65.00", total: "$265.00" },
+            { type: { he: "ויזת עסקים אלקטרונית eVisa 600, כניסות מרובות", en: "eVisa 600 Business, Multiple Entries" }, 
+              time: { he: "עד 14-25 ימי עבודה", en: "Up to 14-25 business days" }, 
+              validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, 
+              fee: "$200.00", service: "$65.00", total: "$265.00" }
         ]},
-        "NZ": { name: "ניו זילנד", flag: "fi-nz", options: [
-            { type: "אישור כניסה אלקטרוני NZeTA, תיירות / עסקים, כניסות מרובות", time: "עד 72 שעות", validity: "שנתיים", fee: "$85.00", service: "$65.00", total: "$150.00" }
+        "NZ": { 
+            name: { he: "ניו זילנד", en: "New Zealand" }, flag: "fi-nz", options: [
+            { type: { he: "אישור כניסה אלקטרוני NZeTA, תיירות / עסקים, כניסות מרובות", en: "NZeTA Electronic Authorization, Tourist/Business, Multiple Entries" }, 
+              time: { he: "עד 72 שעות", en: "Up to 72 hours" }, 
+              validity: { he: "שנתיים", en: "2 years" }, 
+              fee: "$85.00", service: "$65.00", total: "$150.00" }
         ]},
-        "IL": { name: "ישראל", flag: "fi-il", options: [
-            { type: "אישור כניסה לישראל, תיירות / עסקים, כניסות מרובות", time: "עד 2-3 ימי עבודה", validity: "עד שנתיים או עד פקיעת הדרכון", fee: "$10.00", service: "$25.00", total: "$35.00" }
+        "IL": { 
+            name: { he: "ישראל", en: "Israel" }, flag: "fi-il", options: [
+            { type: { he: "אישור כניסה לישראל, תיירות / עסקים, כניסות מרובות", en: "Israel Entry Permit, Tourist/Business, Multiple Entries" }, 
+              time: { he: "עד 2-3 ימי עבודה", en: "Up to 2-3 business days" }, 
+              validity: { he: "עד שנתיים או עד פקיעת הדרכון", en: "Up to 2 years or until passport expiry" }, 
+              fee: "$10.00", service: "$25.00", total: "$35.00" }
         ]},
-        "AE": { name: "דובאי", flag: "fi-ae", options: [
-            { type: "ויזת תיירות / עסקים, כניסה אחת", time: "עד 3-5 ימי עבודה", validity: "בהתאם לאישור הרשויות", fee: "$150.00", service: "$45.00", total: "$195.00" }
+        "AE": { 
+            name: { he: "דובאי", en: "UAE / Dubai" }, flag: "fi-ae", options: [
+            { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, 
+              time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, 
+              validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, 
+              fee: "$150.00", service: "$45.00", total: "$195.00" }
         ]},
-        "IN": { name: "הודו", flag: "fi-in", options: [
-            { type: "ויזת תיירות אלקטרונית, שתי כניסות", time: "עד 3 ימי עבודה", validity: "30 ימים", fee: "$15.00", service: "$35.00", total: "$50.00" },
-            { type: "ויזת תיירות אלקטרונית, כניסות מרובות", time: "עד 3 ימי עבודה", validity: "שנה אחת", fee: "$50.00", service: "$45.00", total: "$95.00" },
-            { type: "ויזת תיירות אלקטרונית, כניסות מרובות", time: "עד 3 ימי עבודה", validity: "5 שנים", fee: "$225.00", service: "$65.00", total: "$290.00" },
-            { type: "ויזת עסקים אלקטרונית, כניסות מרובות", time: "עד 3 ימי עבודה", validity: "שנה אחת", fee: "$130.00", service: "$65.00", total: "$195.00" }
+        "IN": { 
+            name: { he: "הודו", en: "India" }, flag: "fi-in", options: [
+            { type: { he: "ויזת תיירות אלקטרונית, שתי כניסות", en: "e-Tourist Visa, Double Entry" }, 
+              time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, 
+              validity: { he: "30 ימים", en: "30 days" }, 
+              fee: "$15.00", service: "$35.00", total: "$50.00" },
+            { type: { he: "ויזת תיירות אלקטרונית, כניסות מרובות", en: "e-Tourist Visa, Multiple Entries" }, 
+              time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, 
+              validity: { he: "שנה אחת", en: "1 year" }, 
+              fee: "$50.00", service: "$45.00", total: "$95.00" },
+            { type: { he: "ויזת תיירות אלקטרונית, כניסות מרובות", en: "e-Tourist Visa, Multiple Entries" }, 
+              time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, 
+              validity: { he: "5 שנים", en: "5 years" }, 
+              fee: "$225.00", service: "$65.00", total: "$290.00" },
+            { type: { he: "ויזת עסקים אלקטרונית, כניסות מרובות", en: "e-Business Visa, Multiple Entries" }, 
+              time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, 
+              validity: { he: "שנה אחת", en: "1 year" }, 
+              fee: "$130.00", service: "$65.00", total: "$195.00" }
         ]},
-        "CN": { name: "סין", flag: "fi-cn", options: [
-            { type: "ויזת תיירות / עסקים, כניסה אחת - נוהל רגיל", time: "5 ימי עבודה", validity: "עד חצי שנה פחות מתוקף הדרכון, לפי החלטת הקונסוליה בלבד", fee: "$90.00", service: "$65.00", total: "$155.00" },
-            { type: "ויזת תיירות / עסקים, כניסה אחת - נוהל מהיר", time: "3 ימי עבודה", validity: "עד חצי שנה פחות מתוקף הדרכון, לפי החלטת הקונסוליה בלבד", fee: "$125.00", service: "$65.00", total: "$190.00" },
-            { type: "ויזת תיירות / עסקים, כניסה אחת - נוהל דחוף", time: "3 ימי עבודה", validity: "עד חצי שנה פחות מתוקף הדרכון, לפי החלטת הקונסוליה בלבד", fee: "$165.00", service: "$65.00", total: "$230.00" },
-            { type: "מילוי טופס בקשה רשמי לויזה", time: "בהתאם להשלמת פרטי הנוסע", validity: "לא רלוונטי", fee: "$0.00", service: "$50.00", total: "$50.00" }
+        "CN": { 
+            name: { he: "סין", en: "China" }, flag: "fi-cn", options: [
+            { type: { he: "ויזת תיירות / עסקים, כניסה אחת - נוהל רגיל", en: "Tourist/Business Visa, Single Entry - Regular" }, 
+              time: { he: "5 ימי עבודה", en: "5 business days" }, 
+              validity: { he: "עד חצי שנה פחות מתוקף הדרכון, לפי החלטת הקונסוליה", en: "Up to 6 months prior to passport expiry, per consulate decision" }, 
+              fee: "$90.00", service: "$65.00", total: "$155.00" },
+            { type: { he: "ויזת תיירות / עסקים, כניסה אחת - נוהל מהיר", en: "Tourist/Business Visa, Single Entry - Express" }, 
+              time: { he: "3 ימי עבודה", en: "3 business days" }, 
+              validity: { he: "עד חצי שנה פחות מתוקף הדרכון, לפי החלטת הקונסוליה", en: "Up to 6 months prior to passport expiry, per consulate decision" }, 
+              fee: "$125.00", service: "$65.00", total: "$190.00" },
+            { type: { he: "ויזת תיירות / עסקים, כניסה אחת - נוהל דחוף", en: "Tourist/Business Visa, Single Entry - Urgent" }, 
+              time: { he: "3 ימי עבודה", en: "3 business days" }, 
+              validity: { he: "עד חצי שנה פחות מתוקף הדרכון, לפי החלטת הקונסוליה", en: "Up to 6 months prior to passport expiry, per consulate decision" }, 
+              fee: "$165.00", service: "$65.00", total: "$230.00" },
+            { type: { he: "מילוי טופס בקשה רשמי לויזה", en: "Official Visa Application Form Filling" }, 
+              time: { he: "בהתאם להשלמת פרטי הנוסע", en: "Subject to completion of traveler details" }, 
+              validity: { he: "לא רלוונטי", en: "N/A" }, 
+              fee: "$0.00", service: "$50.00", total: "$50.00" }
         ]},
-        "TH": { name: "תאילנד", flag: "fi-th", options: [
-            { type: "כרטיס הגעה דיגיטלי, תיירות / עסקים", time: "מיידי", validity: "כניסה אחת", fee: "$0.00", service: "$25.00", total: "$25.00" }
+        "TH": { 
+            name: { he: "תאילנד", en: "Thailand" }, flag: "fi-th", options: [
+            { type: { he: "כרטיס הגעה דיגיטלי, תיירות / עסקים", en: "Digital Arrival Card, Tourist/Business" }, 
+              time: { he: "מיידי", en: "Immediate" }, 
+              validity: { he: "כניסה אחת", en: "Single entry" }, 
+              fee: "$0.00", service: "$25.00", total: "$25.00" }
         ]},
-        "VN": { name: "וייטנאם", flag: "fi-vn", options: [
-            { type: "ויזת תיירות / עסקים, כניסה אחת", time: "עד 3-6 ימי עבודה", validity: "עד 90 ימים", fee: "$55.00", service: "$35.00", total: "$90.00" },
-            { type: "ויזת תיירות / עסקים, כניסות מרובות", time: "עד 3-6 ימי עבודה", validity: "עד 90 ימים", fee: "$80.00", service: "$45.00", total: "$120.00" }
+        "VN": { 
+            name: { he: "וייטנאם", en: "Vietnam" }, flag: "fi-vn", options: [
+            { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, 
+              time: { he: "עד 3-6 ימי עבודה", en: "Up to 3-6 business days" }, 
+              validity: { he: "עד 90 ימים", en: "Up to 90 days" }, 
+              fee: "$55.00", service: "$35.00", total: "$90.00" },
+            { type: { he: "ויזת תיירות / עסקים, כניסות מרובות", en: "Tourist/Business Visa, Multiple Entries" }, 
+              time: { he: "עד 3-6 ימי עבודה", en: "Up to 3-6 business days" }, 
+              validity: { he: "עד 90 ימים", en: "Up to 90 days" }, 
+              fee: "$80.00", service: "$45.00", total: "$120.00" }
         ]},
-        "MA": { name: "מרוקו", flag: "fi-ma", options: [
-            { type: "ויזת תיירות / עסקים, כניסה אחת - נוהל רגיל", time: "עד 3-6 ימי עבודה", validity: "180 ימים", fee: "$90.00", service: "$45.00", total: "$135.00" },
-            { type: "ויזת תיירות / עסקים, כניסה אחת - נוהל מהיר", time: "עד 24-72 שעות", validity: "180 ימים", fee: "$125.00", service: "$65.00", total: "$190.00" }
+        "MA": { 
+            name: { he: "מרוקו", en: "Morocco" }, flag: "fi-ma", options: [
+            { type: { he: "ויזת תיירות / עסקים, כניסה אחת - נוהל רגיל", en: "Tourist/Business Visa, Single Entry - Regular" }, 
+              time: { he: "עד 3-6 ימי עבודה", en: "Up to 3-6 business days" }, 
+              validity: { he: "180 ימים", en: "180 days" }, 
+              fee: "$90.00", service: "$45.00", total: "$135.00" },
+            { type: { he: "ויזת תיירות / עסקים, כניסה אחת - נוהל מהיר", en: "Tourist/Business Visa, Single Entry - Express" }, 
+              time: { he: "עד 24-72 שעות", en: "Up to 24-72 hours" }, 
+              validity: { he: "180 ימים", en: "180 days" }, 
+              fee: "$125.00", service: "$65.00", total: "$190.00" }
         ]},
-        "ET": { name: "אתיופיה", flag: "fi-et", options: [
-            { type: "ויזת תיירות, כניסה אחת", time: "עד 3 ימי עבודה", validity: "90 ימים", fee: "$85.00", service: "$65.00", total: "$150.00" },
-            { type: "ויזת עסקים, כניסה אחת", time: "עד 3 ימי עבודה", validity: "90 ימים", fee: "$52.00", service: "$65.00", total: "$117.00" }
+        "ET": { 
+            name: { he: "אתיופיה", en: "Ethiopia" }, flag: "fi-et", options: [
+            { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, 
+              time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, 
+              validity: { he: "90 ימים", en: "90 days" }, 
+              fee: "$85.00", service: "$65.00", total: "$150.00" },
+            { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, 
+              time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, 
+              validity: { he: "90 ימים", en: "90 days" }, 
+              fee: "$52.00", service: "$65.00", total: "$117.00" }
         ]},
-        "KE": { name: "קניה", flag: "fi-ke", options: [
-            { type: "ויזת תיירות / עסקים, כניסה אחת", time: "עד 3 ימי עבודה", validity: "90 ימים", fee: "$33.00", service: "$45.00", total: "$78.00" },
-            { type: "ויזת תיירות / עסקים, כניסות מרובות", time: "עד 3 ימי עבודה", validity: "שנה אחת", fee: "$330.00", service: "$65.00", total: "$395.00" }
+        "KE": { 
+            name: { he: "קניה", en: "Kenya" }, flag: "fi-ke", options: [
+            { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, 
+              time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, 
+              validity: { he: "90 ימים", en: "90 days" }, 
+              fee: "$33.00", service: "$45.00", total: "$78.00" },
+            { type: { he: "ויזת תיירות / עסקים, כניסות מרובות", en: "Tourist/Business Visa, Multiple Entries" }, 
+              time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, 
+              validity: { he: "שנה אחת", en: "1 year" }, 
+              fee: "$330.00", service: "$65.00", total: "$395.00" }
         ]},
-        "TZ": { name: "טנזניה", flag: "fi-tz", options: [
-            { type: "ויזת תיירות, כניסה אחת", time: "עד 10 ימים", validity: "90 ימים", fee: "$55.00", service: "$45.00", total: "$100.00" },
-            { type: "ויזת עסקים, כניסה אחת", time: "עד 10 ימים", validity: "90 ימים", fee: "$270.00", service: "$65.00", total: "$335.00" }
+        "TZ": { 
+            name: { he: "טנזניה", en: "Tanzania" }, flag: "fi-tz", options: [
+            { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, 
+              time: { he: "עד 10 ימים", en: "Up to 10 days" }, 
+              validity: { he: "90 ימים", en: "90 days" }, 
+              fee: "$55.00", service: "$45.00", total: "$100.00" },
+            { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, 
+              time: { he: "עד 10 ימים", en: "Up to 10 days" }, 
+              validity: { he: "90 ימים", en: "90 days" }, 
+              fee: "$270.00", service: "$65.00", total: "$335.00" }
         ]},
-        "MG": { name: "מדגסקר", flag: "fi-mg", options: [
-            { type: "ויזת תיירות, כניסה אחת", time: "עד 3 ימי עבודה", validity: "15 ימים", fee: "$15.00", service: "$25.00", total: "$40.00" }
+        "MG": { 
+            name: { he: "מדגסקר", en: "Madagascar" }, flag: "fi-mg", options: [
+            { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, 
+              time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, 
+              validity: { he: "15 ימים", en: "15 days" }, 
+              fee: "$15.00", service: "$25.00", total: "$40.00" }
         ]},
-        "SC": { name: "סיישל", flag: "fi-sc", options: [
-            { type: "אישור כניסה לתיירות / עסקים, כניסה אחת", time: "עד 24-72 שעות", validity: "30 ימים", fee: "$20.00", service: "$25.00", total: "$45.00" }
+        "SC": { 
+            name: { he: "סיישל", en: "Seychelles" }, flag: "fi-sc", options: [
+            { type: { he: "אישור כניסה לתיירות / עסקים, כניסה אחת", en: "Travel Authorization Tourist/Business, Single Entry" }, 
+              time: { he: "עד 24-72 שעות", en: "Up to 24-72 hours" }, 
+              validity: { he: "30 ימים", en: "30 days" }, 
+              fee: "$20.00", service: "$25.00", total: "$45.00" }
         ]},
-        "AM": { name: "ארמניה", flag: "fi-am", options: [
-            { type: "ויזת תיירות / עסקים, כניסה אחת", time: "עד 3 ימי עבודה", validity: "21 ימים", fee: "$10.00", service: "$25.00", total: "$35.00" },
-            { type: "ויזת תיירות / עסקים, כניסה אחת", time: "עד 3 ימי עבודה", validity: "120 ימים", fee: "$15.00", service: "$25.00", total: "$40.00" }
+        "AM": { 
+            name: { he: "ארמניה", en: "Armenia" }, flag: "fi-am", options: [
+            { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, 
+              time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, 
+              validity: { he: "21 ימים", en: "21 days" }, 
+              fee: "$10.00", service: "$25.00", total: "$35.00" },
+            { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, 
+              time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, 
+              validity: { he: "120 ימים", en: "120 days" }, 
+              fee: "$15.00", service: "$25.00", total: "$40.00" }
         ]},
-        "AZ": { name: "אזרבייג'ן", flag: "fi-az", options: [
-            { type: "ויזת תיירות / עסקים, כניסה אחת", time: "עד 3 ימי עבודה", validity: "90 ימים", fee: "$35.00", service: "$45.00", total: "$80.00" }
+        "AZ": { 
+            name: { he: "אזרבייג'ן", en: "Azerbaijan" }, flag: "fi-az", options: [
+            { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, 
+              time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, 
+              validity: { he: "90 ימים", en: "90 days" }, 
+              fee: "$35.00", service: "$45.00", total: "$80.00" }
         ]},
-        "KR": { name: "דרום קוריאה", flag: "fi-kr", options: [
-            { type: "אישור כניסה אלקטרוני K-ETA, תיירות / עסקים, כניסות מרובות", time: "עד 72 שעות", validity: "3 שנים", fee: "$8.00", service: "$25.00", total: "$33.00" }
+        "KR": { 
+            name: { he: "דרום קוריאה", en: "South Korea" }, flag: "fi-kr", options: [
+            { type: { he: "אישור כניסה אלקטרוני K-ETA, תיירות / עסקים, כניסות מרובות", en: "K-ETA Electronic Authorization, Tourist/Business, Multiple Entries" }, 
+              time: { he: "עד 72 שעות", en: "Up to 72 hours" }, 
+              validity: { he: "3 שנים", en: "3 years" }, 
+              fee: "$8.00", service: "$25.00", total: "$33.00" }
         ]},
-        "LK": { name: "סרי לנקה", flag: "fi-lk", options: [
-            { type: "ויזת תיירות / עסקים, שתי כניסות", time: "עד 24-72 שעות", validity: "30 ימים", fee: "$60.00", service: "$45.00", total: "$105.00" }
+        "LK": { 
+            name: { he: "סרי לנקה", en: "Sri Lanka" }, flag: "fi-lk", options: [
+            { type: { he: "ויזת תיירות / עסקים, שתי כניסות", en: "Tourist/Business Visa, Double Entry" }, 
+              time: { he: "עד 24-72 שעות", en: "Up to 24-72 hours" }, 
+              validity: { he: "30 ימים", en: "30 days" }, 
+              fee: "$60.00", service: "$45.00", total: "$105.00" }
         ]},
-        "KH": { name: "קמבודיה", flag: "fi-kh", options: [
-            { type: "ויזת תיירות, כניסה אחת", time: "עד 3 ימי עסקים", validity: "90 ימים", fee: "$40.00", service: "$35.00", total: "$75.00" },
-            { type: "ויזת עסקים, כניסה אחת", time: "עד 3-5 ימי עבודה", validity: "90 ימים", fee: "$50.00", service: "$35.00", total: "$85.00" }
+        "KH": { 
+            name: { he: "קמבודיה", en: "Cambodia" }, flag: "fi-kh", options: [
+            { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, 
+              time: { he: "עד 3 ימי עסקים", en: "Up to 3 business days" }, 
+              validity: { he: "90 ימים", en: "90 days" }, 
+              fee: "$40.00", service: "$35.00", total: "$75.00" },
+            { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, 
+              time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, 
+              validity: { he: "90 ימים", en: "90 days" }, 
+              fee: "$50.00", service: "$35.00", total: "$85.00" }
         ]},
-        "LA": { name: "לאוס", flag: "fi-la", options: [
-            { type: "ויזת תיירות, כניסה אחת", time: "עד 3 ימי עבודה", validity: "60 ימים", fee: "$60.00", service: "$45.00", total: "$105.00" }
+        "LA": { 
+            name: { he: "לאוס", en: "Laos" }, flag: "fi-la", options: [
+            { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, 
+              time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, 
+              validity: { he: "60 ימים", en: "60 days" }, 
+              fee: "$60.00", service: "$45.00", total: "$105.00" }
         ]},
-        "MM": { name: "מיאנמר", flag: "fi-mm", options: [
-            { type: "ויזת תיירות, כניסה אחת", time: "עד 3 ימי עבודה", validity: "90 ימים", fee: "$55.00", service: "$35.00", total: "$90.00" },
-            { type: "ויזת עסקים, כניסה אחת", time: "עד 3-5 ימי עבודה", validity: "90 ימים", fee: "$75.00", service: "$45.00", total: "$120.00" }
+        "MM": { 
+            name: { he: "מיאנמר", en: "Myanmar" }, flag: "fi-mm", options: [
+            { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, 
+              time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, 
+              validity: { he: "90 ימים", en: "90 days" }, 
+              fee: "$55.00", service: "$35.00", total: "$90.00" },
+            { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, 
+              time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, 
+              validity: { he: "90 ימים", en: "90 days" }, 
+              fee: "$75.00", service: "$45.00", total: "$120.00" }
         ]}
     };
 
@@ -1259,32 +1611,33 @@
         }
 
         const sortedKeys = Object.keys(visaData).sort((a, b) => {
-            return visaData[a].name.localeCompare(visaData[b].name, 'he');
+            return visaData[a].name[currentLang].localeCompare(visaData[b].name[currentLang], currentLang);
         });
 
         sortedKeys.forEach(code => {
             const country = visaData[code];
+            const countryName = country.name[currentLang];
             
             // 1. כרטיסיות
             const card = document.createElement('div');
             card.className = 'country-card';
-            card.dataset.name = country.name;
+            card.dataset.name = countryName;
             card.onclick = () => openCountry(code);
             card.innerHTML = `
                 <span class="fi ${country.flag}"></span>
-                <h3>${country.name}</h3>
+                <h3>${countryName}</h3>
             `;
             listContainer.appendChild(card);
 
             // 2. טבלה
             country.options.forEach(opt => {
                 const tr = document.createElement('tr');
-                tr.dataset.name = country.name;
+                tr.dataset.name = countryName;
                 tr.innerHTML = `
-                    <td class="country-td"><span class="fi ${country.flag}"></span>${country.name}</td>
-                    <td style="font-weight: 500; color: var(--secondary-color);">${opt.type}</td>
-                    <td style="white-space: nowrap;">${opt.time}</td>
-                    <td>${opt.validity}</td>
+                    <td class="country-td"><span class="fi ${country.flag}"></span>${countryName}</td>
+                    <td style="font-weight: 500; color: var(--secondary-color);">${opt.type[currentLang]}</td>
+                    <td style="white-space: nowrap;">${opt.time[currentLang]}</td>
+                    <td>${opt.validity[currentLang]}</td>
                     <td class="price-td">${opt.fee}</td>
                     <td class="price-td">${opt.service}</td>
                     <td class="total-td">${opt.total}</td>
@@ -1294,8 +1647,8 @@
 
             // 3. אכלוס הרשימה בטופס
             const option = document.createElement('option');
-            option.value = country.name;
-            option.text = country.name;
+            option.value = countryName;
+            option.text = countryName;
             destSelect.appendChild(option);
         });
     }
@@ -1352,29 +1705,32 @@
         document.getElementById(`service-${index}`).innerText = formatPriceStr(serviceNum);
         document.getElementById(`total-${index}`).innerText = formatPriceStr(totalNum);
         
-        document.getElementById(`total-label-${index}`).innerText = `סה"כ מחיר ל-${pax} נוסעים:`;
-        document.getElementById(`fee-label-${index}`).innerText = pax > 1 ? `אגרת רשויות (${pax} נוסעים)` : `אגרת רשויות`;
-        document.getElementById(`service-label-${index}`).innerText = pax > 1 ? `דמי טיפול משרד (${pax} נוסעים)` : `דמי טיפול משרד`;
+        document.getElementById(`total-label-${index}`).innerText = t('lblTotalFor') + ` (${pax}):`;
+        
+        const govFeeStr = t('lblGovFee');
+        const serviceFeeStr = t('lblServiceFee');
+        document.getElementById(`fee-label-${index}`).innerText = pax > 1 ? `${govFeeStr} (${pax})` : govFeeStr;
+        document.getElementById(`service-label-${index}`).innerText = pax > 1 ? `${serviceFeeStr} (${pax})` : serviceFeeStr;
     }
 
     function openCountry(code) {
         const country = visaData[code];
+        const countryName = country.name[currentLang];
         document.getElementById('panelFlag').className = "fi " + country.flag;
-        document.getElementById('panelCountryName').innerText = country.name;
+        document.getElementById('panelCountryName').innerText = countryName;
         
         const contentDiv = document.getElementById('panelContent');
         contentDiv.innerHTML = ''; 
         
         // --- התחלת תבנית ההדפסה והתצוגה הרגילה ---
         
-        // כותרת מיוחדת להדפסה בלבד
         let htmlContent = `
             <div class="print-document-container">
                 <div class="print-header-wrapper print-only-element">
                     <img src="ויזה%20לוגו%20סופי%20(14).jpg" alt="AMS VISA Logo" class="print-main-logo">
                     <div class="print-title-container">
-                        <h1>הצעת מחיר לאשרת כניסה: <span class="fi ${country.flag} print-flag"></span> ${country.name}</h1>
-                        <p id="printPaxSubtitle">המחירים המוצגים מתייחסים לנוסע יחיד</p>
+                        <h1>${t('printQuoteTitle')} <span class="fi ${country.flag} print-flag"></span> ${countryName}</h1>
+                        <p id="printPaxSubtitle">${t('printSinglePax')}</p>
                     </div>
                 </div>
         `;
@@ -1382,64 +1738,68 @@
         country.options.forEach((opt, index) => {
             htmlContent += `
                 <div class="visa-option-card" id="visaCard-${index}">
-                    <h3 class="visa-title">${opt.type}</h3>
+                    <h3 class="visa-title">${opt.type[currentLang]}</h3>
                     
                     <div class="card-pax-calculator">
-                        <label><span>👨‍👩‍👧‍👦</span> כמות נוסעים:</label>
+                        <label><span>👨‍👩‍👧‍👦</span> ${t('paxCalcLabel')}</label>
                         <input type="number" id="paxInput-${index}" value="1" min="1" max="99" oninput="updateCardTotals(${index}, '${opt.fee}', '${opt.service}', '${opt.total}')">
                     </div>
 
                     <div class="visa-details-grid">
                         <div class="detail-item">
-                            <span>זמן טיפול משוער</span>
-                            <strong>${opt.time}</strong>
+                            <span>${t('lblProcessingTime')}</span>
+                            <strong>${opt.time[currentLang]}</strong>
                         </div>
                         <div class="detail-item">
-                            <span>תוקף האשרה</span>
-                            <strong>${opt.validity}</strong>
+                            <span>${t('lblValidity')}</span>
+                            <strong>${opt.validity[currentLang]}</strong>
                         </div>
                         <div class="detail-item">
-                            <span id="fee-label-${index}">אגרת רשויות</span>
+                            <span id="fee-label-${index}">${t('lblGovFee')}</span>
                             <strong id="fee-${index}">${opt.fee}</strong>
                         </div>
                         <div class="detail-item">
-                            <span id="service-label-${index}">דמי טיפול משרד</span>
+                            <span id="service-label-${index}">${t('lblServiceFee')}</span>
                             <strong id="service-${index}">${opt.service}</strong>
                         </div>
                     </div>
                     
                     <div class="visa-price-total">
-                        <span id="total-label-${index}">סה"כ לתשלום (1 נוסעים):</span>
+                        <span id="total-label-${index}">${t('lblTotalFor')} (1):</span>
                         <strong id="total-${index}">${opt.total}</strong>
                     </div>
 
-                    <!-- כפתורי העתקה והדפסה ספציפיים לאופציה זו -->
                     <div class="card-action-bar">
                         <button class="action-btn" onclick="printVisaDetails(${index})">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-                            הדפס הצעת מחיר
+                            ${t('btnPrint')}
                         </button>
                         <button class="action-btn" onclick="copyVisaDetails('${code}', ${index})">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                            העתק ללוח
+                            ${t('btnCopy')}
                         </button>
                     </div>
                 </div>
             `;
         });
 
-        htmlContent += `
+        // הצגת הערת UPS רק לארה"ב ולסין
+        if (['US', 'CN'].includes(code)) {
+            htmlContent += `
                 <div class="ups-note" id="upsNote">
                     <span class="ups-note-icon">📦</span>
                     <div>
-                        <strong>שירות שילוח מסמכים (UPS):</strong> במידה ונדרש לשלוח אלינו דרכון פיזי, אנו מציעים שירות איסוף ושילוח מסמכים מאובטח בתוספת של $25.00 בלבד (בכפוף ללוחות הזמנים של חברת השילוח).
+                        <strong>${t('upsTitle')}</strong> ${t('upsDesc')}
                     </div>
                 </div>
+            `;
+        }
 
+        htmlContent += `
                 <!-- חתימה מוסתרת שמופיעה רק בהדפסה -->
                 <div class="print-footer print-only-element">
-                    <strong>נשמח לעמוד לרשותכם בכל שאלה,</strong>
-                    צוות מחלקת הויזות - אמסלם טורס<br>
+                    <strong>${t('footerThanks')}</strong>
+                    ${t('footerTeam')}<br>
                     📞 04-9700900 &nbsp;|&nbsp; 💬 WhatsApp: 04-670-0998 &nbsp;|&nbsp; ✉️ visa.dept@amsalem.com
                 </div>
             </div> <!-- סגירת print-document-container -->
@@ -1492,7 +1852,6 @@
         document.getElementById('leadForm').reset(); 
     }
 
-    // סגירת הפופ-אפ כשלוחצים מחוץ לחלון
     document.getElementById('leadModalOverlay').addEventListener('click', function(e) {
         if (e.target === this) {
             closeLeadModal();
@@ -1502,7 +1861,6 @@
     function submitLead(mailType) {
         const form = document.getElementById('leadForm');
         
-        // בדיקת תקינות השדות
         if (!form.checkValidity()) {
             form.reportValidity();
             return;
@@ -1513,35 +1871,29 @@
         const clientPhone = document.getElementById('clientPhone').value;
         const clientEmail = document.getElementById('clientEmail').value;
         const destCountry = document.getElementById('destCountry').value;
-        const notes = document.getElementById('leadNotes').value;
+        const notes = document.getElementById('leadNotes').value || (currentLang === 'he' ? 'אין הערות נוספות' : 'No additional notes');
 
-        // בניית נושא וגוף המייל
-        const rawSubject = `העברת טיפול בויזה ל${destCountry} - לקוח: ${clientName}`;
-        const rawBody = `שלום מחלקת ויזות,\n\n` +
-                     `אשמח להעביר אליכם לקוח להמשך טיפול בהוצאת ויזה.\n\n` +
-                     `--- פרטי הלקוח ---\n` +
-                     `שם הלקוח/חברה: ${clientName}\n` +
-                     `טלפון הלקוח: ${clientPhone}\n` +
-                     `דוא"ל הלקוח: ${clientEmail}\n` +
-                     `מדינת יעד מבוקשת: ${destCountry}\n\n` +
-                     `--- הערות נוספות ---\n` +
-                     `${notes ? notes : 'אין הערות נוספות'}\n\n` +
-                     `תודה רבה,\n` +
-                     `הסוכן המטפל: ${agentName}`;
+        let rawSubject = t('emailSubject').replace('{country}', destCountry).replace('{client}', clientName);
+        let rawBody = t('emailBody')
+                        .replace('{client}', clientName)
+                        .replace('{phone}', clientPhone)
+                        .replace('{email}', clientEmail)
+                        .replace('{country}', destCountry)
+                        .replace('{notes}', notes)
+                        .replace('{agent}', agentName);
 
         const targetEmail = "visa.dept@amsalem.com";
         const encodedSubject = encodeURIComponent(rawSubject);
         const encodedBody = encodeURIComponent(rawBody);
 
-        // ניתוב ל-Gmail אינטרנטי או תוכנת מייל מקומית
         if (mailType === 'gmail') {
             const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${targetEmail}&su=${encodedSubject}&body=${encodedBody}`;
             window.open(gmailUrl, '_blank');
-            showToast('פותח את Gmail בדפדפן...');
+            showToast(t('toastGmail'));
         } else {
             const mailtoLink = `mailto:${targetEmail}?subject=${encodedSubject}&body=${encodedBody}`;
             window.location.href = mailtoLink;
-            showToast('פותח את תוכנת הדוא"ל (Outlook)...');
+            showToast(t('toastOutlook'));
         }
 
         closeLeadModal();
@@ -1550,6 +1902,7 @@
     /* --- פונקציית העתקה ללוח (ממוקדת לאופציה ספציפית) --- */
     function copyVisaDetails(code, index) {
         const country = visaData[code];
+        const countryName = country.name[currentLang];
         const opt = country.options[index];
         const paxInput = document.getElementById(`paxInput-${index}`);
         let pax = paxInput ? (parseInt(paxInput.value) || 1) : 1;
@@ -1559,45 +1912,46 @@
         const serviceNum = getPriceNum(opt.service) * pax;
         const totalNum = getPriceNum(opt.total) * pax;
 
-        let textToCopy = `הצעת מחיר לויזה - ${country.name}\n`;
+        let textToCopy = `${t('printQuoteTitle')} ${countryName}\n`;
         textToCopy += `===============================\n\n`;
-        textToCopy += `סוג הויזה: ${opt.type}\n`;
+        textToCopy += `${opt.type[currentLang]}\n`;
         if (pax > 1) {
-            textToCopy += `(חישוב עבור ${pax} נוסעים)\n`;
+            textToCopy += `(${t('printMultiPax')} ${pax})\n`;
         }
-        textToCopy += `זמן טיפול משוער: ${opt.time}\n`;
-        textToCopy += `תוקף האשרה: ${opt.validity}\n`;
-        textToCopy += `אגרת רשויות: ${formatPriceStr(feeNum)} | דמי טיפול משרד: ${formatPriceStr(serviceNum)}\n`;
-        textToCopy += `סה"כ מחיר ל-${pax} נוסעים: ${formatPriceStr(totalNum)}\n`;
+        textToCopy += `${t('lblProcessingTime')}: ${opt.time[currentLang]}\n`;
+        textToCopy += `${t('lblValidity')}: ${opt.validity[currentLang]}\n`;
+        textToCopy += `${t('lblGovFee')}: ${formatPriceStr(feeNum)} | ${t('lblServiceFee')}: ${formatPriceStr(serviceNum)}\n`;
+        textToCopy += `${t('lblTotalFor')} (${pax}): ${formatPriceStr(totalNum)}\n`;
         textToCopy += `-------------------------------\n\n`;
-        textToCopy += `* שירות שילוח מסמכים (UPS) זמין בתוספת של $25.00.\n\n`;
-        textToCopy += `נשמח לעמוד לרשותכם,\nאמסלם טורס`;
+        
+        if (['US', 'CN'].includes(code)) {
+            textToCopy += `* ${t('upsDesc')}\n\n`;
+        }
+        
+        textToCopy += `${t('footerThanks')}\n${t('footerTeam')}`;
 
-        // שימוש בטכניקה שעובדת בכל הדפדפנים כדי להעתיק טקסט
         const textArea = document.createElement("textarea");
         textArea.value = textToCopy;
         document.body.appendChild(textArea);
         textArea.select();
         try {
             document.execCommand('copy');
-            showToast('הפרטים הועתקו ללוח בהצלחה! 📋');
+            showToast(t('toastCopySuccess'));
         } catch (err) {
-            showToast('שגיאה בהעתקה, אנא נסה שוב.');
+            showToast(t('toastCopyError'));
         }
         document.body.removeChild(textArea);
     }
 
     /* --- פונקציית הדפסה ממוקדת לאופציה ספציפית --- */
     function printVisaDetails(index) {
-        // עדכון כותרת המשנה של ההדפסה בהתאם לכמות הנוסעים שהוזנה
         const paxInput = document.getElementById(`paxInput-${index}`);
         let pax = paxInput ? (parseInt(paxInput.value) || 1) : 1;
         const subtitle = document.getElementById('printPaxSubtitle');
         if (subtitle) {
-            subtitle.innerText = pax > 1 ? `המחירים המוצגים משוקללים עבור ${pax} נוסעים` : `המחירים המוצגים מתייחסים לנוסע יחיד`;
+            subtitle.innerText = pax > 1 ? `${t('printMultiPax')} ${pax}` : t('printSinglePax');
         }
 
-        // הסתרת הכרטיסיות האחרות והצגת רק את זו הרלוונטית, כולל הערת ה-UPS
         const allCards = document.querySelectorAll('.visa-option-card');
         allCards.forEach((card, i) => {
             if (i === index) {
@@ -1612,10 +1966,8 @@
             upsNote.classList.add('print-active-note');
         }
         
-        // פתיחת חלון ההדפסה של הדפדפן
         window.print();
         
-        // ניקוי הקלאסים לאחר ההדפסה כדי שהתצוגה הרגילה תחזור לקדמותה
         allCards.forEach(card => card.classList.remove('print-active'));
         if(upsNote) {
             upsNote.classList.remove('print-active-note');
