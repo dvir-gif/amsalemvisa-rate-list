@@ -316,10 +316,10 @@
         
         /* שורת סיכום תשלום בטורקיז רך ואחיד */
         .visa-price-total {
-            background: var(--accent-tint); padding: 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-top: 15px; border: 1px solid var(--accent-tint-border);
+            background: var(--accent-tint); padding: 12px 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-top: 12px; border: 1px solid var(--accent-tint-border);
         }
-        .visa-price-total span { color: var(--primary-dark); font-weight: 700; }
-        .visa-price-total strong { font-size: 1.5em; font-weight: 900; color: var(--secondary-color); }
+        .visa-price-total span { color: var(--primary-dark); font-weight: 700; font-size: 0.95em; }
+        .visa-price-total strong { font-size: 1.35em; font-weight: 900; color: var(--secondary-color); }
 
         .ups-note {
             background: var(--ups-bg); border: 1px dashed var(--ups-border); color: var(--ups-text); padding: 15px;
@@ -328,16 +328,41 @@
         .ups-note-icon { font-size: 1.6em; flex-shrink: 0; }
 
         /* --- אזור יצירת קשר --- */
-        .contact-section { background-color: var(--dark-section-bg); color: #ffffff; padding: 60px 20px; text-align: center; margin-top: 80px; border-top: 1px solid #2d3139; }
-        .contact-section h2 { font-size: 2.5em; font-weight: 900; margin: 0 0 10px 0; }
-        .contact-section p { color: #94a3b8; font-size: 1.2em; max-width: 600px; margin: 0 auto 40px auto; line-height: 1.5; }
-        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
-        .contact-card { background-color: var(--dark-card-bg); border-radius: 16px; padding: 35px 20px; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; border: 1px solid #2d3139; }
+        .contact-section { background-color: var(--dark-section-bg); color: #ffffff; padding: 40px 20px; text-align: center; margin-top: 60px; border-top: 1px solid #2d3139; }
+        .contact-section h2 { font-size: 2em; font-weight: 900; margin: 0 0 10px 0; }
+        .contact-section p { color: #94a3b8; font-size: 1.1em; max-width: 600px; margin: 0 auto 30px auto; line-height: 1.5; }
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; max-width: 1000px; margin: 0 auto; }
+        .contact-card { background-color: var(--dark-card-bg); border-radius: 12px; padding: 25px 15px; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; border: 1px solid #2d3139; }
         .contact-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-color: var(--primary-color); }
-        .contact-icon-wrapper { width: 70px; height: 70px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.05); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--primary-color); }
-        .contact-icon-wrapper svg { width: 32px; height: 32px; }
-        .contact-label { font-size: 1.1em; color: #94a3b8; margin-bottom: 10px; font-weight: 500; }
-        .contact-value { font-size: 1.4em; font-weight: 800; color: #ffffff; direction: ltr; }
+        .contact-icon-wrapper { width: 50px; height: 50px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.05); display: flex; align-items: center; justify-content: center; margin-bottom: 15px; color: var(--primary-color); }
+        .contact-icon-wrapper svg { width: 24px; height: 24px; }
+        .contact-label { font-size: 1em; color: #94a3b8; margin-bottom: 5px; font-weight: 500; }
+        .contact-value { font-size: 1.2em; font-weight: 800; color: #ffffff; direction: ltr; }
+
+        /* אזור הערות משפטיות בתחתית העמוד הראשי - מכווץ ואלגנטי */
+        .legal-footer {
+            max-width: 900px;
+            margin: 30px auto 0 auto;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #64748b;
+            font-size: 0.75em;
+            line-height: 1.4;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .legal-footer p { margin: 0; }
+        .update-badge {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
 
         /* --- כפתור צף העברת ליד --- */
         .fab-transfer {
@@ -501,7 +526,7 @@
     </div>
 </div>
 
-<!-- אזור יצירת קשר -->
+<!-- אזור יצירת קשר עם תוספת משפטית בתחתית -->
 <section class="contact-section">
     <h2 data-i18n="contactTitle">אנחנו כאן לכל שאלה</h2>
     <p data-i18n="contactDesc">צוות מחלקת הויזות זמין לליווי, בדיקת דרישות כניסה וטיפול בבקשות.</p>
@@ -534,6 +559,12 @@
             <div class="contact-label" data-i18n="contactEmail">דוא"ל</div>
             <div class="contact-value">visa.dept@amsalem.com</div>
         </div>
+    </div>
+    
+    <!-- הערות משפטיות בתחתית העמוד הראשי -->
+    <div class="legal-footer">
+        <p data-i18n="legalDisclaimer">* האגרות, זמני הטיפול ותנאי הזכאות נתונים להחלטתן הבלעדית של הרשויות / השגרירויות ועשויים להשתנות בכל עת ללא הודעה מוקדמת. זמני הטיפול הינם משוערים ומתייחסים לימי עבודה בלבד, מרגע קליטת הבקשה בשגרירות. המחירים בדולרים הינם מוערכים ועשויים להשתנות מעט בהתאם לשערי החליפין ביום ההגשה.</p>
+        <div class="update-badge" data-i18n="lastUpdated">מחירון זה מעודכן לחודש יוני 2026</div>
     </div>
 </section>
 
@@ -665,6 +696,8 @@
             "btnTransferLead": "העבר פרטי לקוח למחלקה",
             "upsTitle": "שירות שילוח מסמכים (UPS):",
             "upsDesc": "במידה ונדרש לשלוח אלינו דרכון פיזי, אנו מציעים שירות איסוף ושילוח מסמכים מאובטח בתוספת של $25.00 בלבד (בכפוף ללוחות הזמנים של חברת השילוח).",
+            "legalDisclaimer": "* האגרות, זמני הטיפול ותנאי הזכאות נתונים להחלטתן הבלעדית של הרשויות / השגרירויות ועשויים להשתנות בכל עת ללא הודעה מוקדמת. זמני הטיפול הינם משוערים ומתייחסים לימי עבודה בלבד, מרגע קליטת הבקשה בשגרירות. המחירים בדולרים הינם מוערכים ועשויים להשתנות מעט בהתאם לשערי החליפין ביום ההגשה.",
+            "lastUpdated": "מחירון זה מעודכן לחודש יוני 2026",
             "footerThanks": "נשמח לעמוד לרשותכם בכל שאלה,",
             "footerTeam": "צוות מחלקת הויזות - אמסלם טורס",
             "toastCopySuccess": "הפרטים הועתקו ללוח בהצלחה! 📋",
@@ -738,6 +771,8 @@
             "btnTransferLead": "Send Details to Dept",
             "upsTitle": "Document Shipping Service (UPS):",
             "upsDesc": "If a physical passport submission is required, we offer a secure document pickup and delivery service for an additional $25.00 (subject to the shipping company's schedule).",
+            "legalDisclaimer": "* Fees, processing times, and eligibility are at the sole discretion of the authorities/embassies and may change without prior notice. Processing times are estimated in business days from application submission. Prices in USD are approximate and may vary slightly based on exchange rates.",
+            "lastUpdated": "Pricing updated for June 2026",
             "footerThanks": "We are happy to assist with any questions,",
             "footerTeam": "Visa Department Team - Amsalem Tours",
             "toastCopySuccess": "Details copied to clipboard successfully! 📋",
@@ -1081,6 +1116,7 @@ Handling Agent: {agent}`
 
         htmlContent += `
                 <div class="print-footer print-only-element">
+                    <div style="font-size: 0.85em; color: #666; margin-bottom: 10px;">${t('legalDisclaimer')}</div>
                     <strong>${t('footerThanks')}</strong> ${t('footerTeam')}<br>
                     📞 04-9700900 &nbsp;|&nbsp; 💬 WhatsApp: 04-670-0998 &nbsp;|&nbsp; ✉️ visa.dept@amsalem.com
                 </div>
