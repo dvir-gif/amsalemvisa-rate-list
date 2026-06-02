@@ -327,41 +327,81 @@
         }
         .ups-note-icon { font-size: 1.6em; flex-shrink: 0; }
 
-        /* --- אזור יצירת קשר --- */
-        .contact-section { background-color: var(--dark-section-bg); color: #ffffff; padding: 40px 20px; text-align: center; margin-top: 60px; border-top: 1px solid #2d3139; }
-        .contact-section h2 { font-size: 2em; font-weight: 900; margin: 0 0 10px 0; }
-        .contact-section p { color: #94a3b8; font-size: 1.1em; max-width: 600px; margin: 0 auto 30px auto; line-height: 1.5; }
-        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; max-width: 1000px; margin: 0 auto; }
-        .contact-card { background-color: var(--dark-card-bg); border-radius: 12px; padding: 25px 15px; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; border: 1px solid #2d3139; text-decoration: none; cursor: pointer; }
-        .contact-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-color: var(--primary-color); transform: translateY(-3px); }
-        .contact-icon-wrapper { width: 50px; height: 50px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.05); display: flex; align-items: center; justify-content: center; margin-bottom: 15px; color: var(--primary-color); }
-        .contact-icon-wrapper svg { width: 24px; height: 24px; }
-        .contact-label { font-size: 1em; color: #94a3b8; margin-bottom: 5px; font-weight: 500; }
-        .contact-value { font-size: 1.2em; font-weight: 800; color: #ffffff; direction: ltr; }
+        /* --- אזור יצירת קשר (כרטיסיות גדולות כמו בהתחלה) --- */
+        .contact-section { 
+            background-color: var(--dark-section-bg); 
+            color: #ffffff; 
+            padding: 60px 20px 140px 20px; /* מניעת חפיפה עם הכפתור הצף */
+            text-align: center; 
+            margin-top: 80px; 
+            border-top: 1px solid #2d3139; 
+        }
+        .contact-section h2 { font-size: 2.5em; font-weight: 900; margin: 0 0 10px 0; }
+        .contact-section p { color: #94a3b8; font-size: 1.2em; max-width: 600px; margin: 0 auto 40px auto; line-height: 1.5; }
+        
+        .contact-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .contact-card { 
+            background-color: var(--dark-card-bg); 
+            border-radius: 16px; 
+            padding: 35px 20px; 
+            transition: all 0.3s ease; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            border: 1px solid #2d3139; 
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .contact-card:hover { 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+            border-color: var(--primary-color); 
+            transform: translateY(-5px);
+        }
+        .contact-icon-wrapper { 
+            width: 70px; 
+            height: 70px; 
+            border-radius: 50%; 
+            background-color: rgba(255, 255, 255, 0.05); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin-bottom: 20px; 
+            color: var(--primary-color); 
+        }
+        .contact-icon-wrapper svg { width: 32px; height: 32px; }
+        .contact-label { font-size: 1.1em; color: #94a3b8; margin-bottom: 10px; font-weight: 500; }
+        .contact-value { font-size: 1.4em; font-weight: 800; color: #ffffff; direction: ltr; }
 
-        /* אזור הערות משפטיות בתחתית העמוד הראשי - מכווץ ואלגנטי */
+        /* אזור הערות משפטיות בתחתית העמוד הראשי - קומפקטי וממורכז */
         .legal-footer {
             max-width: 900px;
-            margin: 30px auto 0 auto;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin: 50px auto 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid #2d3139;
             color: #94a3b8;
-            font-size: 0.75em;
-            line-height: 1.4;
+            font-size: 0.9em;
+            line-height: 1.6;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
-        .legal-footer p { margin: 0; }
         .update-badge {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 188, 212, 0.1);
             color: var(--primary-color);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            border: 1px solid rgba(0, 188, 212, 0.2);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85em;
+            font-weight: 700;
+            white-space: nowrap;
         }
 
         /* --- כפתור צף העברת ליד --- */
@@ -433,6 +473,7 @@
             .side-panel { width: 100%; max-width: 100%; }
             .visa-details-grid { grid-template-columns: 1fr; }
             .fab-transfer { inset-inline-start: 20px; bottom: 20px; padding: 12px 20px; font-size: 1em; }
+            .legal-footer { flex-direction: column; text-align: center; gap: 15px; }
         }
     </style>
 </head>
@@ -528,8 +569,8 @@
 
 <!-- אזור יצירת קשר עם תוספת משפטית בתחתית -->
 <section class="contact-section">
-    <h2 data-i18n="contactTitle">אנחנו כאן לכל שאלה</h2>
-    <p data-i18n="contactDesc">צוות מחלקת הויזות זמין לליווי, בדיקת דרישות כניסה וטיפול בבקשות.</p>
+    <h2>אנחנו כאן לכל שאלה</h2>
+    <p>צוות מחלקת הויזות זמין לליווי, בדיקת דרישות כניסה וטיפול בבקשות.</p>
     <div class="contact-grid">
         <a href="tel:+97249700900" class="contact-card">
             <div class="contact-icon-wrapper">
@@ -563,7 +604,7 @@
     
     <!-- הערות משפטיות בתחתית העמוד הראשי -->
     <div class="legal-footer">
-        <p data-i18n="legalDisclaimer">* האגרות, זמני הטיפול ותנאי הזכאות נתונים להחלטתן הבלעדית של הרשויות / השגרירויות ועשויים להשתנות בכל עת ללא הודעה מוקדמת. זמני הטיפול הינם משוערים ומתייחסים לימי עבודה בלבד, מרגע קליטת הבקשה בשגרירות. המחירים בדולרים הינם מוערכים ועשויים להשתנות מעט בהתאם לשערי החליפין ביום ההגשה.</p>
+        <p class="legal-text" data-i18n="legalDisclaimer">* האגרות, זמני הטיפול ותנאי הזכאות נתונים להחלטתן הבלעדית של הרשויות / השגרירויות ועשויים להשתנות בכל עת ללא הודעה מוקדמת. זמני הטיפול הינם משוערים ומתייחסים לימי עבודה בלבד, מרגע קליטת הבקשה בשגרירות. המחירים בדולרים הינם מוערכים ועשויים להשתנות מעט בהתאם לשערי החליפין ביום ההגשה.</p>
         <div class="update-badge" data-i18n="lastUpdated">מחירון זה מעודכן לחודש יוני 2026</div>
     </div>
 </section>
@@ -957,7 +998,7 @@ Handling Agent: {agent}`
         "KH": { 
             name: { he: "קמבודיה", en: "Cambodia" }, flag: "fi-kh", options: [
                 { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עסקים", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 40.00", service: "USD 35.00", total: "USD 75.00" },
-                { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 50.00", service: "USD 35.00", total: "USD 85.00" }
+                { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: "USD 50.00", service: "USD 35.00", total: "USD 85.00" }
             ]
         },
         "LA": { 
