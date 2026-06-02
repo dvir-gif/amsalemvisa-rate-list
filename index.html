@@ -332,8 +332,8 @@
         .contact-section h2 { font-size: 2em; font-weight: 900; margin: 0 0 10px 0; }
         .contact-section p { color: #94a3b8; font-size: 1.1em; max-width: 600px; margin: 0 auto 30px auto; line-height: 1.5; }
         .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; max-width: 1000px; margin: 0 auto; }
-        .contact-card { background-color: var(--dark-card-bg); border-radius: 12px; padding: 25px 15px; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; border: 1px solid #2d3139; }
-        .contact-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-color: var(--primary-color); }
+        .contact-card { background-color: var(--dark-card-bg); border-radius: 12px; padding: 25px 15px; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; border: 1px solid #2d3139; text-decoration: none; cursor: pointer; }
+        .contact-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-color: var(--primary-color); transform: translateY(-3px); }
         .contact-icon-wrapper { width: 50px; height: 50px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.05); display: flex; align-items: center; justify-content: center; margin-bottom: 15px; color: var(--primary-color); }
         .contact-icon-wrapper svg { width: 24px; height: 24px; }
         .contact-label { font-size: 1em; color: #94a3b8; margin-bottom: 5px; font-weight: 500; }
@@ -345,7 +345,7 @@
             margin: 30px auto 0 auto;
             padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: #64748b;
+            color: #94a3b8;
             font-size: 0.75em;
             line-height: 1.4;
             text-align: center;
@@ -531,7 +531,7 @@
     <h2 data-i18n="contactTitle">אנחנו כאן לכל שאלה</h2>
     <p data-i18n="contactDesc">צוות מחלקת הויזות זמין לליווי, בדיקת דרישות כניסה וטיפול בבקשות.</p>
     <div class="contact-grid">
-        <div class="contact-card">
+        <a href="tel:+97249700900" class="contact-card">
             <div class="contact-icon-wrapper">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
@@ -539,8 +539,8 @@
             </div>
             <div class="contact-label" data-i18n="contactPhone">מוקד טלפוני</div>
             <div class="contact-value">04-9700900</div>
-        </div>
-        <div class="contact-card">
+        </a>
+        <a href="https://wa.me/97246700998" target="_blank" class="contact-card">
             <div class="contact-icon-wrapper">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
@@ -548,8 +548,8 @@
             </div>
             <div class="contact-label">WhatsApp</div>
             <div class="contact-value">+972 4-670-0998</div>
-        </div>
-        <div class="contact-card">
+        </a>
+        <a href="mailto:visa.dept@amsalem.com" class="contact-card">
             <div class="contact-icon-wrapper">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -558,7 +558,7 @@
             </div>
             <div class="contact-label" data-i18n="contactEmail">דוא"ל</div>
             <div class="contact-value">visa.dept@amsalem.com</div>
-        </div>
+        </a>
     </div>
     
     <!-- הערות משפטיות בתחתית העמוד הראשי -->
@@ -695,12 +695,12 @@
             "btnPrint": "הדפס כ-PDF",
             "btnTransferLead": "העבר פרטי לקוח למחלקה",
             "upsTitle": "שירות שילוח מסמכים (UPS):",
-            "upsDesc": "במידה ונדרש לשלוח אלינו דרכון פיזי, אנו מציעים שירות איסוף ושילוח מסמכים מאובטח בתוספת של $25.00 בלבד (בכפוף ללוחות הזמנים של חברת השילוח).",
+            "upsDesc": "במידה ונדרש לשלוח אלינו דרכון פיזי, אנו מציעים שירות איסוף ושילוח מסמכים מאובטח בתוספת של USD 25.00 בלבד (בכפוף ללוחות הזמנים של חברת השילוח).",
             "legalDisclaimer": "* האגרות, זמני הטיפול ותנאי הזכאות נתונים להחלטתן הבלעדית של הרשויות / השגרירויות ועשויים להשתנות בכל עת ללא הודעה מוקדמת. זמני הטיפול הינם משוערים ומתייחסים לימי עבודה בלבד, מרגע קליטת הבקשה בשגרירות. המחירים בדולרים הינם מוערכים ועשויים להשתנות מעט בהתאם לשערי החליפין ביום ההגשה.",
             "lastUpdated": "מחירון זה מעודכן לחודש יוני 2026",
             "footerThanks": "נשמח לעמוד לרשותכם בכל שאלה,",
             "footerTeam": "צוות מחלקת הויזות - אמסלם טורס",
-            "toastCopySuccess": "הפרטים הועתקו ללוח בהצלחה! 📋",
+            "toastCopySuccess": "הפרטים הועתקו ללוח בהצלחה!",
             "toastCopyError": "שגיאה בהעתקה, אנא נסה שוב.",
             "toastGmail": "פותח את Gmail...",
             "toastOutlook": "פותח את Outlook...",
@@ -771,12 +771,12 @@
             "btnPrint": "Print PDF",
             "btnTransferLead": "Send Details to Dept",
             "upsTitle": "Document Shipping Service (UPS):",
-            "upsDesc": "If a physical passport submission is required, we offer a secure document pickup and delivery service for an additional $25.00 (subject to the shipping company's schedule).",
+            "upsDesc": "If a physical passport submission is required, we offer a secure document pickup and delivery service for an additional USD 25.00 (subject to the shipping company's schedule).",
             "legalDisclaimer": "* Fees, processing times, and eligibility are at the sole discretion of the authorities/embassies and may change without prior notice. Processing times are estimated in business days from application submission. Prices in USD are approximate and may vary slightly based on exchange rates.",
             "lastUpdated": "Pricing updated for June 2026",
             "footerThanks": "We are happy to assist with any questions,",
             "footerTeam": "Visa Department Team - Amsalem Tours",
-            "toastCopySuccess": "Details copied to clipboard successfully! 📋",
+            "toastCopySuccess": "Details copied to clipboard successfully!",
             "toastCopyError": "Error copying, please try again.",
             "toastGmail": "Opening Gmail...",
             "toastOutlook": "Opening Outlook...",
@@ -841,134 +841,134 @@ Handling Agent: {agent}`
         "US": { 
             name: { he: "ארה״ב", en: "USA" }, flag: "fi-us", 
             options: [
-                { type: { he: "אישור כניסה אלקטרוני ESTA, תיירות / עסקים", en: "ESTA Electronic Authorization, Tourist/Business" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "שנתיים או עד פקיעת הדרכון", en: "2 years or until passport expiry" }, fee: "$40.00", service: "$35.00", total: "$75.00" },
-                { type: { he: "ויזת B1/B2 לארה״ב, תיירות / עסקים", en: "US B1/B2 Visa, Tourist/Business" }, time: { he: "בכפוף לזמינות תורים; לרוב 7-14 ימי עבודה לאחר הראיון", en: "Subject to appointment availability; 7-14 days post-interview" }, validity: { he: "עד 10 שנים", en: "Up to 10 years" }, fee: "$205.00", service: "$85.00", total: "$290.00" }
+                { type: { he: "אישור כניסה אלקטרוני ESTA, תיירות / עסקים", en: "ESTA Electronic Authorization, Tourist/Business" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "שנתיים או עד פקיעת הדרכון", en: "2 years or until passport expiry" }, fee: "USD 40.00", service: "USD 35.00", total: "USD 75.00" },
+                { type: { he: "ויזת B1/B2 לארה״ב, תיירות / עסקים", en: "US B1/B2 Visa, Tourist/Business" }, time: { he: "בכפוף לזמינות תורים; לרוב 7-14 ימי עבודה לאחר הראיון", en: "Subject to appointment availability; 7-14 days post-interview" }, validity: { he: "עד 10 שנים", en: "Up to 10 years" }, fee: "USD 205.00", service: "USD 85.00", total: "USD 290.00" }
             ]
         },
         "CA": { 
             name: { he: "קנדה", en: "Canada" }, flag: "fi-ca", options: [
-                { type: { he: "אישור כניסה אלקטרוני eTA", en: "eTA Electronic Authorization" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "עד 5 שנים או עד פקיעת הדרכון", en: "Up to 5 years or until passport expiry" }, fee: "$8.00", service: "$35.00", total: "$43.00" }
+                { type: { he: "אישור כניסה אלקטרוני eTA", en: "eTA Electronic Authorization" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "עד 5 שנים או עד פקיעת הדרכון", en: "Up to 5 years or until passport expiry" }, fee: "USD 8.00", service: "USD 35.00", total: "USD 43.00" }
             ]
         },
         "GB": { 
             name: { he: "בריטניה", en: "United Kingdom" }, flag: "fi-gb", options: [
-                { type: { he: "אישור כניסה אלקטרוני ETA", en: "ETA Electronic Authorization" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "שנתיים או עד פקיעת הדרכון", en: "2 years or until passport expiry" }, fee: "$29.00", service: "$35.00", total: "$64.00" }
+                { type: { he: "אישור כניסה אלקטרוני ETA", en: "ETA Electronic Authorization" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "שנתיים או עד פקיעת הדרכון", en: "2 years or until passport expiry" }, fee: "USD 29.00", service: "USD 35.00", total: "USD 64.00" }
             ]
         },
         "AU": { 
             name: { he: "אוסטרליה", en: "Australia" }, flag: "fi-au", options: [
-                { type: { he: "ויזת תיירות אלקטרונית eVisa 600", en: "eVisa 600 Tourist" }, time: { he: "עד 30 ימי עבודה", en: "Up to 30 business days" }, validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, fee: "$200.00", service: "$65.00", total: "$265.00" },
-                { type: { he: "ויזת עסקים אלקטרונית eVisa 600", en: "eVisa 600 Business" }, time: { he: "עד 14-25 ימי עבודה", en: "Up to 14-25 business days" }, validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, fee: "$200.00", service: "$65.00", total: "$265.00" }
+                { type: { he: "ויזת תיירות אלקטרונית eVisa 600", en: "eVisa 600 Tourist" }, time: { he: "עד 30 ימי עבודה", en: "Up to 30 business days" }, validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, fee: "USD 200.00", service: "USD 65.00", total: "USD 265.00" },
+                { type: { he: "ויזת עסקים אלקטרונית eVisa 600", en: "eVisa 600 Business" }, time: { he: "עד 14-25 ימי עבודה", en: "Up to 14-25 business days" }, validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, fee: "USD 200.00", service: "USD 65.00", total: "USD 265.00" }
             ]
         },
         "NZ": { 
             name: { he: "ניו זילנד", en: "New Zealand" }, flag: "fi-nz", options: [
-                { type: { he: "אישור כניסה אלקטרוני NZeTA", en: "NZeTA Electronic Authorization" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "שנתיים", en: "2 years" }, fee: "$85.00", service: "$65.00", total: "$150.00" }
+                { type: { he: "אישור כניסה אלקטרוני NZeTA", en: "NZeTA Electronic Authorization" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "שנתיים", en: "2 years" }, fee: "USD 85.00", service: "USD 65.00", total: "USD 150.00" }
             ]
         },
         "AE": { 
             name: { he: "דובאי", en: "UAE / Dubai" }, flag: "fi-ae", options: [
-                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, fee: "$150.00", service: "$45.00", total: "$195.00" }
+                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, fee: "USD 150.00", service: "USD 45.00", total: "USD 195.00" }
             ]
         },
         "IN": { 
             name: { he: "הודו", en: "India" }, flag: "fi-in", options: [
-                { type: { he: "ויזת תיירות אלקטרונית, כניסות מרובות (שנה)", en: "e-Tourist Visa, Multiple Entries (1 Year)" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "שנה אחת", en: "1 year" }, fee: "$50.00", service: "$45.00", total: "$95.00" },
-                { type: { he: "ויזת עסקים אלקטרונית, כניסות מרובות", en: "e-Business Visa, Multiple Entries" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "שנה אחת", en: "1 year" }, fee: "$130.00", service: "$65.00", total: "$195.00" }
+                { type: { he: "ויזת תיירות אלקטרונית, כניסות מרובות (שנה)", en: "e-Tourist Visa, Multiple Entries (1 Year)" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "שנה אחת", en: "1 year" }, fee: "USD 50.00", service: "USD 45.00", total: "USD 95.00" },
+                { type: { he: "ויזת עסקים אלקטרונית, כניסות מרובות", en: "e-Business Visa, Multiple Entries" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "שנה אחת", en: "1 year" }, fee: "USD 130.00", service: "USD 65.00", total: "USD 195.00" }
             ]
         },
         "CN": { 
             name: { he: "סין", en: "China" }, flag: "fi-cn", options: [
-                { type: { he: "ויזת תיירות / עסקים - נוהל רגיל", en: "Tourist/Business Visa - Regular" }, time: { he: "5 ימי עבודה", en: "5 business days" }, validity: { he: "לפי החלטת הקונסוליה", en: "Per consulate decision" }, fee: "$90.00", service: "$65.00", total: "$155.00" },
-                { type: { he: "ויזת תיירות / עסקים - נוהל דחוף", en: "Tourist/Business Visa - Urgent" }, time: { he: "3 ימי עבודה", en: "3 business days" }, validity: { he: "לפי החלטת הקונסוליה", en: "Per consulate decision" }, fee: "$165.00", service: "$65.00", total: "$230.00" }
+                { type: { he: "ויזת תיירות / עסקים - נוהל רגיל", en: "Tourist/Business Visa - Regular" }, time: { he: "5 ימי עבודה", en: "5 business days" }, validity: { he: "לפי החלטת הקונסוליה", en: "Per consulate decision" }, fee: "USD 90.00", service: "USD 65.00", total: "USD 155.00" },
+                { type: { he: "ויזת תיירות / עסקים - נוהל דחוף", en: "Tourist/Business Visa - Urgent" }, time: { he: "3 ימי עבודה", en: "3 business days" }, validity: { he: "לפי החלטת הקונסוליה", en: "Per consulate decision" }, fee: "USD 165.00", service: "USD 65.00", total: "USD 230.00" }
             ]
         },
         "TH": { 
             name: { he: "תאילנד", en: "Thailand" }, flag: "fi-th", options: [
-                { type: { he: "כרטיס הגעה דיגיטלי", en: "Digital Arrival Card" }, time: { he: "מיידי", en: "Immediate" }, validity: { he: "כניסה אחת", en: "Single entry" }, fee: "$0.00", service: "$25.00", total: "$25.00" }
+                { type: { he: "כרטיס הגעה דיגיטלי", en: "Digital Arrival Card" }, time: { he: "מיידי", en: "Immediate" }, validity: { he: "כניסה אחת", en: "Single entry" }, fee: "USD 0.00", service: "USD 25.00", total: "USD 25.00" }
             ]
         },
         "IL": { 
             name: { he: "ישראל", en: "Israel" }, flag: "fi-il", options: [
-                { type: { he: "אישור כניסה לישראל, תיירות / עסקים, כניסות מרובות", en: "Israel Entry Permit, Tourist/Business, Multiple Entries" }, time: { he: "עד 2-3 ימי עבודה", en: "Up to 2-3 business days" }, validity: { he: "עד שנתיים או עד פקיעת הדרכון", en: "Up to 2 years or until passport expiry" }, fee: "$10.00", service: "$25.00", total: "$35.00" }
+                { type: { he: "אישור כניסה לישראל, תיירות / עסקים, כניסות מרובות", en: "Israel Entry Permit, Tourist/Business, Multiple Entries" }, time: { he: "עד 2-3 ימי עבודה", en: "Up to 2-3 business days" }, validity: { he: "עד שנתיים או עד פקיעת הדרכון", en: "Up to 2 years or until passport expiry" }, fee: "USD 10.00", service: "USD 25.00", total: "USD 35.00" }
             ]
         },
         "VN": { 
             name: { he: "וייטנאם", en: "Vietnam" }, flag: "fi-vn", options: [
-                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3-6 ימי עבודה", en: "Up to 3-6 business days" }, validity: { he: "עד 90 ימים", en: "Up to 90 days" }, fee: "$55.00", service: "$35.00", total: "$90.00" },
-                { type: { he: "ויזת תיירות / עסקים, כניסות מרובות", en: "Tourist/Business Visa, Multiple Entries" }, time: { he: "עד 3-6 ימי עבודה", en: "Up to 3-6 business days" }, validity: { he: "עד 90 ימים", en: "Up to 90 days" }, fee: "$80.00", service: "$45.00", total: "$125.00" }
+                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3-6 ימי עבודה", en: "Up to 3-6 business days" }, validity: { he: "עד 90 ימים", en: "Up to 90 days" }, fee: "USD 55.00", service: "USD 35.00", total: "USD 90.00" },
+                { type: { he: "ויזת תיירות / עסקים, כניסות מרובות", en: "Tourist/Business Visa, Multiple Entries" }, time: { he: "עד 3-6 ימי עבודה", en: "Up to 3-6 business days" }, validity: { he: "עד 90 ימים", en: "Up to 90 days" }, fee: "USD 80.00", service: "USD 45.00", total: "USD 125.00" }
             ]
         },
         "MA": { 
             name: { he: "מרוקו", en: "Morocco" }, flag: "fi-ma", options: [
-                { type: { he: "ויזת תיירות / עסקים, כניסה אחת - נוהל רגיל", en: "Tourist/Business Visa, Single Entry - Regular" }, time: { he: "עד 3-6 ימי עבודה", en: "Up to 3-6 business days" }, validity: { he: "180 ימים", en: "180 days" }, fee: "$90.00", service: "$45.00", total: "$135.00" },
-                { type: { he: "ויזת תיירות / עסקים, כניסה אחת - נוהל מהיר", en: "Tourist/Business Visa, Single Entry - Express" }, time: { he: "עד 24-72 שעות", en: "Up to 24-72 hours" }, validity: { he: "180 ימים", en: "180 days" }, fee: "$125.00", service: "$65.00", total: "$190.00" }
+                { type: { he: "ויזת תיירות / עסקים, כניסה אחת - נוהל רגיל", en: "Tourist/Business Visa, Single Entry - Regular" }, time: { he: "עד 3-6 ימי עבודה", en: "Up to 3-6 business days" }, validity: { he: "180 ימים", en: "180 days" }, fee: "USD 90.00", service: "USD 45.00", total: "USD 135.00" },
+                { type: { he: "ויזת תיירות / עסקים, כניסה אחת - נוהל מהיר", en: "Tourist/Business Visa, Single Entry - Express" }, time: { he: "עד 24-72 שעות", en: "Up to 24-72 hours" }, validity: { he: "180 ימים", en: "180 days" }, fee: "USD 125.00", service: "USD 65.00", total: "USD 190.00" }
             ]
         },
         "ET": { 
             name: { he: "אתיופיה", en: "Ethiopia" }, flag: "fi-et", options: [
-                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "$85.00", service: "$65.00", total: "$150.00" },
-                { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "$52.00", service: "$65.00", total: "$117.00" }
+                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 85.00", service: "USD 65.00", total: "USD 150.00" },
+                { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 52.00", service: "USD 65.00", total: "USD 117.00" }
             ]
         },
         "KE": { 
             name: { he: "קניה", en: "Kenya" }, flag: "fi-ke", options: [
-                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "$33.00", service: "$45.00", total: "$78.00" },
-                { type: { he: "ויזת תיירות / עסקים, כניסות מרובות", en: "Tourist/Business Visa, Multiple Entries" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "שנה אחת", en: "1 year" }, fee: "$330.00", service: "$65.00", total: "$395.00" }
+                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 33.00", service: "USD 45.00", total: "USD 78.00" },
+                { type: { he: "ויזת תיירות / עסקים, כניסות מרובות", en: "Tourist/Business Visa, Multiple Entries" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "שנה אחת", en: "1 year" }, fee: "USD 330.00", service: "USD 65.00", total: "USD 395.00" }
             ]
         },
         "TZ": { 
             name: { he: "טנזניה", en: "Tanzania" }, flag: "fi-tz", options: [
-                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 10 ימים", en: "Up to 10 days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "$55.00", service: "$45.00", total: "$100.00" },
-                { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, time: { he: "עד 10 ימים", en: "Up to 10 days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "$270.00", service: "$65.00", total: "$335.00" }
+                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 10 ימים", en: "Up to 10 days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 55.00", service: "USD 45.00", total: "USD 100.00" },
+                { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, time: { he: "עד 10 ימים", en: "Up to 10 days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 270.00", service: "USD 65.00", total: "USD 335.00" }
             ]
         },
         "MG": { 
             name: { he: "מדגסקר", en: "Madagascar" }, flag: "fi-mg", options: [
-                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "15 ימים", en: "15 days" }, fee: "$15.00", service: "$25.00", total: "$40.00" }
+                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "15 ימים", en: "15 days" }, fee: "USD 15.00", service: "USD 25.00", total: "USD 40.00" }
             ]
         },
         "SC": { 
             name: { he: "סיישל", en: "Seychelles" }, flag: "fi-sc", options: [
-                { type: { he: "אישור כניסה לתיירות / עסקים, כניסה אחת", en: "Travel Authorization Tourist/Business, Single Entry" }, time: { he: "עד 24-72 שעות", en: "Up to 24-72 hours" }, validity: { he: "30 ימים", en: "30 days" }, fee: "$20.00", service: "$25.00", total: "$45.00" }
+                { type: { he: "אישור כניסה לתיירות / עסקים, כניסה אחת", en: "Travel Authorization Tourist/Business, Single Entry" }, time: { he: "עד 24-72 שעות", en: "Up to 24-72 hours" }, validity: { he: "30 ימים", en: "30 days" }, fee: "USD 20.00", service: "USD 25.00", total: "USD 45.00" }
             ]
         },
         "AM": { 
             name: { he: "ארמניה", en: "Armenia" }, flag: "fi-am", options: [
-                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "21 ימים", en: "21 days" }, fee: "$10.00", service: "$25.00", total: "$35.00" },
-                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "120 ימים", en: "120 days" }, fee: "$15.00", service: "$25.00", total: "$40.00" }
+                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "21 ימים", en: "21 days" }, fee: "USD 10.00", service: "USD 25.00", total: "USD 35.00" },
+                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "120 ימים", en: "120 days" }, fee: "USD 15.00", service: "USD 25.00", total: "USD 40.00" }
             ]
         },
         "AZ": { 
             name: { he: "אזרבייג׳ן", en: "Azerbaijan" }, flag: "fi-az", options: [
-                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "$35.00", service: "$45.00", total: "$80.00" }
+                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 35.00", service: "USD 45.00", total: "USD 80.00" }
             ]
         },
         "KR": { 
             name: { he: "דרום קוריאה", en: "South Korea" }, flag: "fi-kr", options: [
-                { type: { he: "אישור כניסה אלקטרוני K-ETA, תיירות / עסקים, כניסות מרובות", en: "K-ETA Electronic Authorization, Tourist/Business, Multiple Entries" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "3 שנים", en: "3 years" }, fee: "$8.00", service: "$25.00", total: "$33.00" }
+                { type: { he: "אישור כניסה אלקטרוני K-ETA, תיירות / עסקים, כניסות מרובות", en: "K-ETA Electronic Authorization, Tourist/Business, Multiple Entries" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "3 שנים", en: "3 years" }, fee: "USD 8.00", service: "USD 25.00", total: "USD 33.00" }
             ]
         },
         "LK": { 
             name: { he: "סרי לנקה", en: "Sri Lanka" }, flag: "fi-lk", options: [
-                { type: { he: "ויזת תיירות / עסקים, שתי כניסות", en: "Tourist/Business Visa, Double Entry" }, time: { he: "עד 24-72 שעות", en: "Up to 24-72 hours" }, validity: { he: "30 ימים", en: "30 days" }, fee: "$60.00", service: "$45.00", total: "$105.00" }
+                { type: { he: "ויזת תיירות / עסקים, שתי כניסות", en: "Tourist/Business Visa, Double Entry" }, time: { he: "עד 24-72 שעות", en: "Up to 24-72 hours" }, validity: { he: "30 ימים", en: "30 days" }, fee: "USD 60.00", service: "USD 45.00", total: "USD 105.00" }
             ]
         },
         "KH": { 
             name: { he: "קמבודיה", en: "Cambodia" }, flag: "fi-kh", options: [
-                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עסקים", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "$40.00", service: "$35.00", total: "$75.00" },
-                { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "$50.00", service: "$35.00", total: "$85.00" }
+                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עסקים", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 40.00", service: "USD 35.00", total: "USD 75.00" },
+                { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 50.00", service: "USD 35.00", total: "USD 85.00" }
             ]
         },
         "LA": { 
             name: { he: "לאוס", en: "Laos" }, flag: "fi-la", options: [
-                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "60 ימים", en: "60 days" }, fee: "$60.00", service: "$45.00", total: "$105.00" }
+                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "60 ימים", en: "60 days" }, fee: "USD 60.00", service: "USD 45.00", total: "USD 105.00" }
             ]
         },
         "MM": { 
             name: { he: "מיאנמר", en: "Myanmar" }, flag: "fi-mm", options: [
-                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "$55.00", service: "$35.00", total: "$90.00" },
-                { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "$75.00", service: "$45.00", total: "$120.00" }
+                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 55.00", service: "USD 35.00", total: "USD 90.00" },
+                { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 75.00", service: "USD 45.00", total: "USD 120.00" }
             ]
         }
     };
@@ -1052,6 +1052,9 @@ Handling Agent: {agent}`
         document.getElementById('tableViewContainer').style.display = view === 'table' ? 'block' : 'none';
         handleSearch();
     }
+
+    function getPriceNum(str) { return parseFloat(str.replace(/[^\d.-]/g, '')) || 0; }
+    function formatPriceStr(num) { return num === 0 ? "USD 0.00" : "USD " + num.toFixed(2); }
 
     function openCountry(code) {
         const country = visaData[code];
@@ -1236,14 +1239,14 @@ Handling Agent: {agent}`
         let txt = `*${t('printQuoteTitle')} ${country.name[currentLang]}*\n`;
         txt += `===================\n\n`;
         txt += `*${opt.type[currentLang]}*\n`;
-        txt += `⏳ ${t('lblProcessingTime')}: ${opt.time[currentLang]}\n`;
-        txt += `📅 ${t('lblValidity')}: ${opt.validity[currentLang]}\n`;
-        txt += `💳 ${t('lblGovFee')}: ${opt.fee} | ${t('lblServiceFee')}: ${opt.service}\n`;
+        txt += `${t('lblProcessingTime')}: ${opt.time[currentLang]}\n`;
+        txt += `${t('lblValidity')}: ${opt.validity[currentLang]}\n`;
+        txt += `${t('lblGovFee')}: ${opt.fee} | ${t('lblServiceFee')}: ${opt.service}\n`;
         
-        txt += `💰 *${t('lblTotalFor')} ${opt.total}*\n`;
+        txt += `*${t('lblTotalFor')} ${opt.total}*\n`;
         txt += `-------------------\n\n`;
         
-        if (['US', 'CN'].includes(code)) txt += `📦 *${t('upsTitle')}* ${t('upsDesc')}\n\n`;
+        if (['US', 'CN'].includes(code)) txt += `*${t('upsTitle')}* ${t('upsDesc')}\n\n`;
         
         txt += `${t('footerThanks')}\n${t('footerTeam')}`;
         return txt;
