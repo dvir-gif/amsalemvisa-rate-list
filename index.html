@@ -1076,14 +1076,14 @@ Handling Agent: {agent}`,
         }
     }
 
-    // מאגר נתוני הויזות. מחירים מספריים (feeUsd / serviceUsd); הסה"כ מחושב אוטומטית.
-    // דגל ups:true ברמת המדינה מציג את הערת שילוח המסמכים.
+    // מאגר נתוני הויזות ללא דרום אפריקה, רוסיה ואירופה. 
+    // דרישות המסמכים נוקו מדרישת דוא״ל ומאמצעי תשלום לבקשת הלקוח.
     const visaData = {
         "US": { 
             name: { he: "ארה״ב", en: "USA" }, flag: "fi-us", ups: true,
             options: [
                 { type: { he: "אישור כניסה אלקטרוני ESTA, תיירות / עסקים", en: "ESTA Electronic Authorization, Tourist/Business" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "שנתיים או עד פקיעת הדרכון", en: "2 years or until passport expiry" }, feeUsd: 40, serviceUsd: 35, tag: "electronic",
-                  docs: { he: ["דרכון ביומטרי (אלקטרוני עם שבב) בתוקף חצי שנה לפחות", "כתובת דוא״ל פעילה", "אמצעי תשלום (כרטיס אשראי/דביט)", "פרטי תעסוקה והיסטוריית עבודה (5 שנים אחרונות)", "פרטי חשבונות רשתות חברתיות (5 שנים אחרונות)", "מומלץ לשאת אישורי טיסה/מלון והוכחת אמצעים"], en: ["Valid biometric (e-passport with chip) valid 6+ months", "Active email address", "Payment method (credit/debit card)", "Employment details & 5-year work history", "Social media account details (past 5 years)", "Recommended: flight/hotel bookings & proof of funds"] } },
+                  docs: { he: ["דרכון ביומטרי (אלקטרוני עם שבב) בתוקף חצי שנה לפחות", "פרטי תעסוקה והיסטוריית עבודה (5 שנים אחרונות)", "פרטי חשבונות רשתות חברתיות (5 שנים אחרונות)", "מומלץ לשאת אישורי טיסה/מלון והוכחת אמצעים"], en: ["Valid biometric (e-passport with chip) valid 6+ months", "Employment details & 5-year work history", "Social media account details (past 5 years)", "Recommended: flight/hotel bookings & proof of funds"] } },
                 { type: { he: "ויזת B1/B2 לארה״ב, תיירות / עסקים", en: "US B1/B2 Visa, Tourist/Business" }, time: { he: "בכפוף לזמינות תורים; לרוב 7-14 ימי עבודה לאחר הראיון", en: "Subject to appointment availability; 7-14 days post-interview" }, validity: { he: "עד 10 שנים", en: "Up to 10 years" }, feeUsd: 205, serviceUsd: 85, tag: "physical",
                   docs: { he: ["דרכון בתוקף 6 חודשים לפחות מעבר למועד הנסיעה", "מילוי טופס DS-160 מקוון ודף האישור", "תמונת פספורט עדכנית (רקע לבן, 5x5 ס״מ)", "אישור תשלום אגרת השגרירות", "זימון לראיון בשגרירות", "הוכחת קשרים לישראל (תלוש שכר / אישור מעסיק / נכסים)"], en: ["Passport valid 6+ months beyond travel", "Completed online DS-160 form & confirmation page", "Recent passport photo (white background, 5x5cm)", "Embassy fee payment confirmation", "Embassy interview appointment", "Proof of ties to Israel (payslip / employer letter / assets)"] } }
             ]
@@ -1091,13 +1091,13 @@ Handling Agent: {agent}`,
         "CA": { 
             name: { he: "קנדה", en: "Canada" }, flag: "fi-ca", options: [
                 { type: { he: "אישור כניסה אלקטרוני eTA", en: "eTA Electronic Authorization" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "עד 5 שנים או עד פקיעת הדרכון", en: "Up to 5 years or until passport expiry" }, feeUsd: 8, serviceUsd: 35, tag: "electronic",
-                  docs: { he: ["דרכון ביומטרי חכם בתוקף לחצי שנה לפחות", "כתובת דוא\"ל מעודכנת", "כרטיס אשראי לתשלום", "מענה על שאלות רקע (בריאות, עבר פלילי, היסטוריית נסיעות)"], en: ["Biometric passport valid for at least 6 months", "Valid email address", "Credit card for payment", "Background questions (health, criminal & travel history)"] } }
+                  docs: { he: ["דרכון ביומטרי חכם בתוקף לחצי שנה לפחות", "מענה על שאלות רקע (בריאות, עבר פלילי, היסטוריית נסיעות)"], en: ["Biometric passport valid for at least 6 months", "Background questions (health, criminal & travel history)"] } }
             ]
         },
         "GB": { 
             name: { he: "בריטניה", en: "United Kingdom" }, flag: "fi-gb", options: [
                 { type: { he: "אישור כניסה אלקטרוני ETA", en: "ETA Electronic Authorization" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "שנתיים או עד פקיעת הדרכון", en: "2 years or until passport expiry" }, feeUsd: 29, serviceUsd: 35, tag: "electronic",
-                  docs: { he: ["דרכון בתוקף (מומלץ תוקף של שנתיים+)", "תמונת פנים / סלפי דרך האפליקציה", "אמצעי תשלום (כרטיס אשראי/דביט)", "מענה על שאלות (כתובת, תעסוקה, עבר פלילי, אזרחויות)"], en: ["Valid passport (2+ years recommended)", "Face photo / selfie via the app", "Payment method (credit/debit card)", "Questions on address, job, criminal history, nationalities"] } }
+                  docs: { he: ["דרכון בתוקף (מומלץ תוקף של שנתיים+)", "תמונת פנים / סלפי דרך האפליקציה", "מענה על שאלות (כתובת, תעסוקה, עבר פלילי, אזרחויות)"], en: ["Valid passport (2+ years recommended)", "Face photo / selfie via the app", "Questions on address, job, criminal history, nationalities"] } }
             ]
         },
         "AU": { 
@@ -1111,19 +1111,19 @@ Handling Agent: {agent}`,
         "NZ": { 
             name: { he: "ניו זילנד", en: "New Zealand" }, flag: "fi-nz", options: [
                 { type: { he: "אישור כניסה אלקטרוני NZeTA", en: "NZeTA Electronic Authorization" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "שנתיים", en: "2 years" }, feeUsd: 85, serviceUsd: 65, tag: "electronic",
-                  docs: { he: ["דרכון בתוקף (3 חודשים+ מעבר ליציאה, עמוד ריק)", "צילום / סריקת עמוד הפרטים בדרכון", "תמונת פנים / סלפי", "כתובת דוא״ל פעילה", "כרטיס טיסה הלוך-חזור", "כולל היטל המבקרים IVL והצהרת בריאות/אופי"], en: ["Valid passport (3+ months beyond departure, blank page)", "Scan/photo of passport bio page", "Face photo / selfie", "Active email address", "Return/onward ticket", "Includes IVL visitor levy + health/character declaration"] } }
+                  docs: { he: ["דרכון בתוקף (3 חודשים+ מעבר ליציאה, עמוד ריק)", "צילום / סריקת עמוד הפרטים בדרכון", "תמונת פנים / סלפי", "כרטיס טיסה הלוך-חזור", "כולל היטל המבקרים IVL והצהרת בריאות/אופי"], en: ["Valid passport (3+ months beyond departure, blank page)", "Scan/photo of passport bio page", "Face photo / selfie", "Return/onward ticket", "Includes IVL visitor levy + health/character declaration"] } }
             ]
         },
         "AE": { 
             name: { he: "דובאי", en: "UAE / Dubai" }, flag: "fi-ae", options: [
                 { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, feeUsd: 150, serviceUsd: 45, tag: "electronic",
-                  docs: { he: ["צילום צבעוני של עמוד הפרטים בדרכון (תוקף 6 חודשים+)", "תמונת פספורט צבעונית עדכנית (רקע לבן, 43x55 מ״מ)", "אישורי טיסה ומלון", "כתובת דוא״ל פעילה"], en: ["Color copy of passport bio page (valid 6+ months)", "Recent color passport photo (white background, 43x55mm)", "Flight & hotel confirmations", "Active email address"] } }
+                  docs: { he: ["צילום צבעוני של עמוד הפרטים בדרכון (תוקף 6 חודשים+)", "תמונת פספורט צבעונית עדכנית (רקע לבן, 43x55 מ״מ)", "אישורי טיסה ומלון"], en: ["Clear color scan of passport bio page (valid 6+ months)", "Recent color passport photo (white background, 43x55mm)", "Flight & hotel confirmations"] } }
             ]
         },
         "IN": { 
             name: { he: "הודו", en: "India" }, flag: "fi-in", options: [
                 { type: { he: "ויזת תיירות אלקטרונית, כניסות מרובות (שנה)", en: "e-Tourist Visa, Multiple Entries (1 Year)" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "שנה אחת", en: "1 year" }, feeUsd: 50, serviceUsd: 45, tag: "electronic",
-                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם 2 עמודים ריקים", "סריקה צבעונית של עמוד הפרטים בדרכון (PDF)", "תמונת פספורט דיגיטלית ריבועית (רקע לבן, JPEG)", "כתובת דוא״ל פעילה"], en: ["Passport valid 6+ months with 2 blank pages", "Color scan of passport bio page (PDF)", "Square digital photo (white background, JPEG)", "Active email address"] } },
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם 2 עמודים ריקים", "סריקה צבעונית של עמוד הפרטים בדרכון (PDF)", "תמונת פספורט דיגיטלית ריבועית (רקע לבן, JPEG)"], en: ["Passport valid 6+ months with 2 blank pages", "Color scan of passport bio page (PDF)", "Square digital photo (white background, JPEG)"] } },
                 { type: { he: "ויזת עסקים אלקטרונית, כניסות מרובות", en: "e-Business Visa, Multiple Entries" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "שנה אחת", en: "1 year" }, feeUsd: 130, serviceUsd: 65, tag: "electronic",
                   docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם 2 עמודים ריקים", "סריקה צבעונית של עמוד הפרטים בדרכון (PDF)", "תמונת פספורט דיגיטלית ריבועית (רקע לבן)", "מכתב הזמנה מחברה בהודו או כרטיס ביקור (באנגלית)", "פרטי החברה המזמינה"], en: ["Passport valid 6+ months with 2 blank pages", "Color scan of passport bio page (PDF)", "Square digital photo (white background)", "Invitation letter from Indian company or business card (in English)", "Inviting company details"] } }
             ]
@@ -1141,13 +1141,13 @@ Handling Agent: {agent}`,
         "TH": { 
             name: { he: "תאילנד", en: "Thailand" }, flag: "fi-th", options: [
                 { type: { he: "כרטיס הגעה דיגיטלי (TDAC)", en: "Digital Arrival Card (TDAC)" }, time: { he: "מיידי", en: "Immediate" }, validity: { he: "60 ימים", en: "60 days" }, feeUsd: 0, serviceUsd: 25, tag: "permit",
-                  docs: { he: ["דרכון בתוקף חצי שנה לפחות", "כתובת שהייה בתאילנד (שם וכתובת מלון)", "פרטי טיסה", "כתובת דוא״ל (לקבלת קוד QR)", "הצהרת בריאות — יש למלא תוך 72 שעות לפני ההגעה, באנגלית"], en: ["Valid passport 6+ months", "Accommodation address in Thailand (hotel name & address)", "Flight details", "Email address (for the QR code)", "Health declaration — complete within 72h before arrival, in English"] } }
+                  docs: { he: ["דרכון בתוקף חצי שנה לפחות", "כתובת שהייה בתאילנד (שם וכתובת מלון)", "פרטי טיסה", "הצהרת בריאות — יש למלא תוך 72 שעות לפני ההגעה, באנגלית"], en: ["Valid passport 6+ months", "Accommodation address in Thailand (hotel name & address)", "Flight details", "Health declaration — complete within 72h before arrival, in English"] } }
             ]
         },
         "IL": { 
             name: { he: "ישראל", en: "Israel" }, flag: "fi-il", options: [
                 { type: { he: "אישור כניסה אלקטרוני ETA-IL, תיירות / עסקים, כניסות מרובות", en: "ETA-IL Electronic Authorization, Tourist/Business, Multiple Entries" }, time: { he: "עד 2-3 ימי עבודה (לרוב מיידי)", en: "Up to 2-3 business days (often immediate)" }, validity: { he: "עד שנתיים או עד פקיעת הדרכון", en: "Up to 2 years or until passport expiry" }, feeUsd: 10, serviceUsd: 25, tag: "permit",
-                  docs: { he: ["דרכון ממדינה פטורת-ויזה (ביומטרי או רגיל) בתוקף חצי שנה לפחות", "כתובת דוא״ל פעילה", "אמצעי תשלום (Visa / Mastercard)", "מומלץ להגיש 72 שעות לפני הנסיעה"], en: ["Passport from a visa-exempt country (biometric or regular), valid 6+ months", "Active email address", "Payment method (Visa / Mastercard)", "Recommended to apply 72h before travel"] } }
+                  docs: { he: ["דרכון ממדינה פטורת-ויזה (ביומטרי או רגיל) בתוקף חצי שנה לפחות", "מומלץ להגיש 72 שעות לפני הנסיעה"], en: ["Passport from a visa-exempt country (biometric or regular), valid 6+ months", "Recommended to apply 72h before travel"] } }
             ]
         },
         "VN": { 
@@ -1161,9 +1161,9 @@ Handling Agent: {agent}`,
         "MA": { 
             name: { he: "מרוקו", en: "Morocco" }, flag: "fi-ma", options: [
                 { type: { he: "ויזת תיירות / עסקים, כניסה אחת - נוהל רגיל", en: "Tourist/Business Visa, Single Entry - Regular" }, time: { he: "עד 3-6 ימי עבודה", en: "Up to 3-6 business days" }, validity: { he: "180 ימים", en: "180 days" }, feeUsd: 90, serviceUsd: 45, tag: "electronic",
-                  docs: { he: ["דרכון רגיל בתוקף 90 ימים+ עם עמוד ריק אחד", "סריקת עמוד הפרטים בדרכון", "תמונת פספורט צבעונית עדכנית (רקע בהיר, 35x45 מ״מ, ללא משקפיים/כובע)", "כרטיס טיסה הלוך-חזור והוכחת לינה", "כתובת דוא״ל פעילה"], en: ["Ordinary passport valid 90+ days with one blank page", "Scan of passport bio page", "Recent color photo (light background, 35x45mm, no glasses/hat)", "Return ticket & proof of accommodation", "Active email address"] } },
+                  docs: { he: ["דרכון רגיל בתוקף 90 ימים+ עם עמוד ריק אחד", "סריקת עמוד הפרטים בדרכון", "תמונת פספורט צבעונית עדכנית (רקע בהיר, 35x45 מ״מ, ללא משקפיים/כובע)", "כרטיס טיסה הלוך-חזור והוכחת לינה"], en: ["Ordinary passport valid 90+ days with one blank page", "Scan of passport bio page", "Recent color photo (light background, 35x45mm, no glasses/hat)", "Return ticket & proof of accommodation"] } },
                 { type: { he: "ויזת תיירות / עסקים, כניסה אחת - נוהל מהיר", en: "Tourist/Business Visa, Single Entry - Express" }, time: { he: "עד 24-72 שעות", en: "Up to 24-72 hours" }, validity: { he: "180 ימים", en: "180 days" }, feeUsd: 125, serviceUsd: 65, tag: "electronic",
-                  docs: { he: ["דרכון רגיל בתוקף 90 ימים+ עם עמוד ריק אחד", "סריקת עמוד הפרטים בדרכון", "תמונת פספורט צבעונית עדכנית (רקע בהיר, 35x45 מ״מ, ללא משקפיים/כובע)", "כרטיס טיסה הלוך-חזור והוכחת לינה", "כתובת דוא״ל פעילה"], en: ["Ordinary passport valid 90+ days with one blank page", "Scan of passport bio page", "Recent color photo (light background, 35x45mm, no glasses/hat)", "Return ticket & proof of accommodation", "Active email address"] } }
+                  docs: { he: ["דרכון רגיל בתוקף 90 ימים+ עם עמוד ריק אחד", "סריקת עמוד הפרטים בדרכון", "תמונת פספורט צבעונית עדכנית (רקע בהיר, 35x45 מ״מ, ללא משקפיים/כובע)", "כרטיס טיסה הלוך-חזור והוכחת לינה"], en: ["Ordinary passport valid 90+ days with one blank page", "Scan of passport bio page", "Recent color photo (light background, 35x45mm, no glasses/hat)", "Return ticket & proof of accommodation"] } }
             ]
         },
         "ET": { 
@@ -1205,33 +1205,33 @@ Handling Agent: {agent}`,
         "AM": { 
             name: { he: "ארמניה", en: "Armenia" }, flag: "fi-am", options: [
                 { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "21 ימים", en: "21 days" }, feeUsd: 10, serviceUsd: 25, tag: "electronic",
-                  docs: { he: ["דרכון בתוקף + סריקת עמוד הפרטים", "תמונת פספורט עדכנית (רקע לבן, 3.5x4.5 ס״מ, ללא משקפיים)", "כתובת שהייה בארמניה ופרטי תעסוקה", "כתובת דוא״ל פעילה"], en: ["Valid passport + bio-page scan", "Recent passport photo (white background, 3.5x4.5cm, no glasses)", "Accommodation address in Armenia & employment details", "Active email address"] } },
+                  docs: { he: ["דרכון בתוקף + סריקת עמוד הפרטים", "תמונת פספורט עדכנית (רקע לבן, 3.5x4.5 ס״מ, ללא משקפיים)", "כתובת שהייה בארמניה ופרטי תעסוקה"], en: ["Valid passport + bio-page scan", "Recent passport photo (white background, 3.5x4.5cm, no glasses)", "Accommodation address in Armenia & employment details"] } },
                 { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "120 ימים", en: "120 days" }, feeUsd: 15, serviceUsd: 25, tag: "electronic",
-                  docs: { he: ["דרכון בתוקף + סריקת עמוד הפרטים", "תמונת פספורט עדכנית (רקע לבן, 3.5x4.5 ס״מ, ללא משקפיים)", "כתובת שהייה בארמניה ופרטי תעסוקה", "כתובת דוא״ל פעילה"], en: ["Valid passport + bio-page scan", "Recent passport photo (white background, 3.5x4.5cm, no glasses)", "Accommodation address in Armenia & employment details", "Active email address"] } }
+                  docs: { he: ["דרכון בתוקף + סריקת עמוד הפרטים", "תמונת פספורט עדכנית (רקע לבן, 3.5x4.5 ס״מ, ללא משקפיים)", "כתובת שהייה בארמניה ופרטי תעסוקה"], en: ["Valid passport + bio-page scan", "Recent passport photo (white background, 3.5x4.5cm, no glasses)", "Accommodation address in Armenia & employment details"] } }
             ]
         },
         "AZ": { 
             name: { he: "אזרבייג׳ן", en: "Azerbaijan" }, flag: "fi-az", options: [
                 { type: { he: "ויזת תיירות / עסקים אלקטרונית (ASAN), כניסה אחת", en: "Electronic (ASAN) Tourist/Business Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "כניסה תוך 90 ימים (שהייה 30 יום)", en: "Entry within 90 days (30-day stay)" }, feeUsd: 35, serviceUsd: 45, tag: "electronic",
-                  docs: { he: ["דרכון בתוקף (3-6 חודשים+) עם עמוד ריק + צילום עמוד הפרטים", "כתובת דוא״ל פעילה", "אמצעי תשלום (כרטיס אשראי/דביט)", "לעיתים: תמונת פספורט ואישור לינה"], en: ["Valid passport (3-6+ months) with blank page + bio-page copy", "Active email address", "Payment method (credit/debit card)", "Sometimes: passport photo & proof of accommodation"] } }
+                  docs: { he: ["דרכון בתוקף (3-6 חודשים+) עם עמוד ריק + צילום עמוד הפרטים", "לעיתים: תמונת פספורט ואישור לינה"], en: ["Valid passport (3-6+ months) with blank page + bio-page copy", "Sometimes: passport photo & proof of accommodation"] } }
             ]
         },
         "KR": { 
             name: { he: "דרום קוריאה", en: "South Korea" }, flag: "fi-kr", options: [
                 { type: { he: "אישור כניסה אלקטרוני K-ETA, תיירות / עסקים, כניסות מרובות", en: "K-ETA Electronic Authorization, Tourist/Business, Multiple Entries" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "3 שנים", en: "3 years" }, feeUsd: 8, serviceUsd: 25, tag: "electronic",
-                  docs: { he: ["דרכון בתוקף (מומלץ 6 חודשים+)", "תמונת פנים דיגיטלית (לא נדרש באפליקציה הסלולרית)", "כתובת דוא״ל פעילה", "כתובת שהייה בקוריאה", "מומלץ להגיש 72 שעות לפני הנסיעה"], en: ["Valid passport (6+ months recommended)", "Digital face photo (not required via mobile app)", "Active email address", "Accommodation address in Korea", "Recommended to apply 72h before travel"] } }
+                  docs: { he: ["דרכון בתוקף (מומלץ 6 חודשים+)", "תמונת פנים דיגיטלית (לא נדרש באפליקציה הסלולרית)", "כתובת שהייה בקוריאה", "מומלץ להגיש 72 שעות לפני הנסיעה"], en: ["Valid passport (6+ months recommended)", "Digital face photo (not required via mobile app)", "Accommodation address in Korea", "Recommended to apply 72h before travel"] } }
             ]
         },
         "LK": { 
             name: { he: "סרי לנקה", en: "Sri Lanka" }, flag: "fi-lk", options: [
                 { type: { he: "אישור כניסה אלקטרוני (ETA), שתי כניסות", en: "Electronic Travel Authorization (ETA), Double Entry" }, time: { he: "עד 24-72 שעות", en: "Up to 24-72 hours" }, validity: { he: "30 ימים", en: "30 days" }, feeUsd: 60, serviceUsd: 45, tag: "electronic",
-                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות", "כרטיס טיסה הלוך-חזור מאושר", "כתובת דוא״ל פעילה", "הוכחת אמצעים כלכליים לשהייה"], en: ["Passport valid 6+ months", "Confirmed return/onward ticket", "Active email address", "Proof of sufficient funds for the stay"] } }
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות", "כרטיס טיסה הלוך-חזור מאושר", "הוכחת אמצעים כלכליים לשהייה"], en: ["Passport valid 6+ months", "Confirmed return/onward ticket", "Proof of sufficient funds for the stay"] } }
             ]
         },
         "MM": { 
             name: { he: "מיאנמר", en: "Myanmar" }, flag: "fi-mm", options: [
                 { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "90 ימים (שהייה עד 28 יום)", en: "90 days (stay up to 28 days)" }, feeUsd: 55, serviceUsd: 35, tag: "electronic",
-                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם עמוד ריק", "סריקת עמוד הפרטים בדרכון", "תמונת פספורט צבעונית עדכנית (רקע לבן)", "כרטיס טיסה הלוך-חזור והוכחת לינה", "כתובת דוא״ל פעילה (יש להדפיס את אישור האשרה)"], en: ["Passport valid 6+ months with a blank page", "Scan of passport bio page", "Recent color passport photo (white background)", "Return/onward ticket & proof of accommodation", "Active email (print the e-Visa approval letter)"] } },
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם עמוד ריק", "סריקת עמוד הפרטים בדרכון", "תמונת פספורט צבעונית עדכנית (רקע לבן)", "כרטיס טיסה הלוך-חזור והוכחת לינה"], en: ["Passport valid 6+ months with a blank page", "Scan of passport bio page", "Recent color passport photo (white background)", "Return/onward ticket & proof of accommodation"] } },
                 { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: { he: "90 ימים (שהייה עד 70 יום)", en: "90 days (stay up to 70 days)" }, feeUsd: 75, serviceUsd: 45, tag: "electronic",
                   docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם עמוד ריק", "סריקת עמוד הפרטים בדרכון", "תמונת פספורט צבעונית עדכנית (רקע לבן)", "מכתב הזמנה מחברה במיאנמר + תעודת רישום החברה", "כרטיס טיסה הלוך-חזור"], en: ["Passport valid 6+ months with a blank page", "Scan of passport bio page", "Recent color passport photo (white background)", "Invitation letter from a registered Myanmar host company", "Return/onward ticket"] } }
             ]
@@ -1299,7 +1299,7 @@ Handling Agent: {agent}`,
         "CU": { 
             name: { he: "קובה", en: "Cuba" }, flag: "fi-cu", options: [
                 { type: { he: "אשרת תיירות אלקטרונית eVisa לקובה", en: "Cuba Tourist eVisa" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "90 ימים (שהות עד 90 ימים)", en: "90 days (Max 90 days stay)" }, feeUsd: 85, serviceUsd: 55, tag: "electronic",
-                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות מיום הכניסה", "צילום ברור וצבעוני של עמוד הפרטים בדרכון", "אישור כרטיס טיסה הלוך-חזור", "פרטי לינה / הזמנת מלון בקובה", "כתובת דוא״ל פעילה לקבלת הויזה האלקטרונית"], en: ["Passport valid for at least 6 months", "Clear color scan of passport bio-page", "Confirmed round-trip flight ticket", "Hotel booking or accommodation address in Cuba", "Active email address to receive the eVisa"] } }
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות מיום הכניסה", "צילום ברור וצבעוני של עמוד הפרטים בדרכון", "אישור כרטיס טיסה הלוך-חזור", "פרטי לינה / הזמנת מלון בקובה"], en: ["Passport valid for at least 6 months", "Clear color scan of passport bio-page", "Confirmed round-trip flight ticket", "Hotel booking or accommodation address in Cuba"] } }
             ]
         }
     };
@@ -1414,6 +1414,18 @@ Handling Agent: {agent}`,
         });
     }
 
+    // השלמת דרישות בסיסיות לכל מדינה (למקרה של קצוות)
+    Object.keys(visaData).forEach(code => {
+        visaData[code].options.forEach(opt => {
+            if (!opt.docs) {
+                opt.docs = {
+                    he: ["צילום דרכון ברור בתוקף לחצי שנה לפחות", "תמונת פספורט עדכנית", "כרטיסי טיסה ומלון (לרוב נדרש)", "לנסיעת עסקים: מכתב הזמנה ומכתב מעסיק"],
+                    en: ["Clear copy of passport valid for at least 6 months", "Recent passport photo", "Flight and hotel itineraries (usually required)", "For business: invitation letter and employer dispatch letter"]
+                };
+            }
+        });
+    });
+
     if (document.readyState === "loading") { 
         document.addEventListener("DOMContentLoaded", () => {
             if (localStorage.getItem('theme') === 'dark') {
@@ -1462,7 +1474,7 @@ Handling Agent: {agent}`,
         }
     }
 
-    // בניית רשימת המסמכים והדרישות
+    // בניית רשימת המסמכים והדרישות בעיצוב הצ'קליסט התכול היוקרתי (נקי ללא וי בצד שמאל)
     function buildDocsHtml(opt, index) {
         if (!opt.docs || !opt.docs[currentLang] || !opt.docs[currentLang].length) return '';
         
