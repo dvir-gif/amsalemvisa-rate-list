@@ -74,7 +74,53 @@
         body.dark-mode .action-btn-whatsapp:hover { background: #14532d; }
         body.dark-mode .visa-option-card { background: #1e293b; }
         body.dark-mode .visa-price-total { background: #0f172a; border-color: #334155; }
+        body.dark-mode .visa-docs { background: #1e293b !important; border-color: #334155 !important; }
         body.dark-mode .lead-form input, body.dark-mode .lead-form select, body.dark-mode .lead-form textarea { background: #0f172a; color: #f1f5f9; border-color: #334155; }
+
+        /* --- תגיות סוגי תהליכים (עיצוב נקי ויוקרתי ללא צבעים זרים) --- */
+        .process-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 800;
+            border: 1px solid transparent;
+        }
+        /* ירוק מנטה עדין ונקי */
+        .process-tag-electronic {
+            background-color: #e6f4ea;
+            color: #137333;
+            border: 1px solid #ceead6;
+        }
+        body.dark-mode .process-tag-electronic {
+            background-color: rgba(52, 211, 153, 0.15);
+            color: #34d399;
+            border-color: rgba(52, 211, 153, 0.3);
+        }
+        /* אפור ניטרלי, נקי ומינימליסטי */
+        .process-tag-physical {
+            background-color: #f1f5f9;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+        }
+        body.dark-mode .process-tag-physical {
+            background-color: rgba(148, 163, 184, 0.15);
+            color: #94a3b8;
+            border-color: rgba(148, 163, 184, 0.3);
+        }
+        /* תכלת-טורקיז רך המתכתב עם המותג */
+        .process-tag-permit {
+            background-color: #e0f7fa;
+            color: #006064;
+            border: 1px solid #b2ebf2;
+        }
+        body.dark-mode .process-tag-permit {
+            background-color: rgba(0, 188, 212, 0.15);
+            color: #22d3ee;
+            border-color: rgba(0, 188, 212, 0.3);
+        }
 
         /* --- הדר (לוגו ושינוי שפה) --- */
         header {
@@ -302,6 +348,13 @@
         }
         .action-btn svg { width: 18px; height: 18px; }
 
+        /* מראה פעיל של כפתור הצגת המסמכים */
+        .action-btn.btn-toggle-docs.active {
+            background-color: var(--accent-tint) !important;
+            border-color: var(--primary-color) !important;
+            color: var(--primary-dark) !important;
+        }
+
         .print-only-element { display: none; }
 
         .visa-option-card {
@@ -320,6 +373,88 @@
         }
         .visa-price-total span { color: var(--primary-dark); font-weight: 700; font-size: 0.95em; }
         .visa-price-total strong { font-size: 1.35em; font-weight: 900; color: var(--secondary-color); }
+
+        /* --- אקורדיון חלק לדרישות מסמכים (עיצוב פרימיום נקי ללא וי בצד שמאל) --- */
+        .visa-docs {
+            display: none;
+            opacity: 0;
+            transform: translateY(-8px);
+            transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+            background-color: #f1f8fc !important; /* רקע תכול מעולה ובהיר כמו בתמונה */
+            border: 1px solid rgba(0, 188, 212, 0.12) !important;
+            border-radius: 12px !important;
+            padding: 18px 22px !important;
+            margin-top: 15px !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.01);
+            text-align: start;
+        }
+        .visa-docs.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .visa-docs-title {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            margin: 0 0 15px 0 !important;
+            font-size: 1.05em !important;
+            font-weight: 800 !important;
+            color: #1e293b !important;
+            border-bottom: 1px solid rgba(0, 188, 212, 0.15) !important;
+            padding-bottom: 10px !important;
+        }
+        .visa-docs-title svg {
+            width: 22px;
+            height: 22px;
+            color: var(--primary-color);
+            flex-shrink: 0;
+        }
+        .visa-docs-list {
+            margin: 0 !important;
+            padding: 0 !important;
+            list-style: none !important;
+            display: flex;
+            flex-direction: column;
+            gap: 0px;
+        }
+        .visa-docs-list li {
+            position: relative;
+            padding: 12px 0 !important;
+            padding-inline-start: 18px !important; /* רווח קבוע עבור הבולט בצד ימין */
+            border-bottom: 1px dashed rgba(0, 188, 212, 0.12) !important;
+            text-align: start !important;
+        }
+        /* בולט טורקיז עדין ומדויק בתחילת השורה */
+        .visa-docs-list li::before {
+            content: "•";
+            position: absolute;
+            inset-inline-start: 0;
+            color: var(--primary-color);
+            font-size: 1.2em;
+            line-height: 1;
+            top: 10px;
+        }
+        .visa-docs-list li:last-child {
+            border-bottom: none !important;
+        }
+        .visa-docs-list li span {
+            font-size: 0.95em !important;
+            font-weight: 500 !important;
+            color: var(--text-color) !important;
+            line-height: 1.5 !important;
+        }
+        body.dark-mode .visa-docs {
+            background-color: #1e293b !important;
+            border-color: #334155 !important;
+        }
+        body.dark-mode .visa-docs-title {
+            color: #f1f5f9 !important;
+            border-color: #334155 !important;
+        }
+        body.dark-mode .visa-docs-list li {
+            border-color: rgba(51, 65, 85, 0.4) !important;
+        }
 
         .ups-note {
             background: var(--ups-bg); border: 1px dashed var(--ups-border); color: var(--ups-text); padding: 15px;
@@ -419,7 +554,6 @@
         .lead-modal-close { background: none; border: none; color: #fff; font-size: 1.5em; cursor: pointer; }
         .lead-form { padding: 25px; display: flex; flex-direction: column; gap: 15px; text-align: start; }
         .form-group { display: flex; flex-direction: column; gap: 5px; }
-        .form-group label { font-weight: 700; color: var(--secondary-color); font-size: 0.95em; }
         .form-group input, .form-group select, .form-group textarea { padding: 12px 15px; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit; font-size: 1em; outline: none; transition: border-color 0.2s; text-align: start; }
         .form-actions-column { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
         .btn-gmail, .btn-outlook { color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: 800; font-size: 1em; font-family: inherit; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; }
@@ -458,6 +592,11 @@
             .visa-option-card.print-active .visa-price-total { background: transparent !important; border: 2px solid #00BCD4 !important; border-radius: 12px; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
             .visa-option-card.print-active .visa-price-total strong { font-size: 1.6em; color: #0097a7 !important; }
 
+            .visa-option-card.print-active .visa-docs { background: transparent !important; border: 1px solid #ccc !important; border-radius: 8px; padding: 12px 16px; margin-top: 20px; }
+            .visa-option-card.print-active .visa-docs-title { color: #000 !important; font-size: 1.05em; }
+            .visa-option-card.print-active .visa-docs-list li { color: #000 !important; font-size: 0.9em; }
+            .visa-option-card.print-active .visa-docs-list li::before { background-color: #0097a7 !important; }
+
             .ups-note.print-active-note { display: flex !important; background: transparent !important; border: 1px solid #ccc !important; border-radius: 8px; padding: 10px 15px; margin-top: 25px; font-size: 0.85em !important; }
             .ups-note:not(.print-active-note) { display: none !important; }
 
@@ -478,28 +617,6 @@
     </style>
 </head>
 <body>
-
-<header>
-    <div class="logo-container" id="logo-container">
-        <img src="ויזה%20לוגו%20סופי%20(14).jpg" alt="AMS VISA" class="logo" id="headerLogo" onerror="this.onerror=null; this.style.display='none'; document.getElementById('logoTextFallback').style.display='inline-block';">
-        <span id="logoTextFallback" class="logo-text-fallback" style="display: none;">AMS VISA</span>
-    </div>
-
-    <!-- כפתורי שליטה -->
-    <div class="header-controls">
-        <!-- בחירת שפה -->
-        <div class="lang-switcher">
-            <button class="lang-btn active" id="btn-he" onclick="setLanguage('he')">עברית</button>
-            <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">English</button>
-        </div>
-        <!-- מצב כהה/בהיר -->
-        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="מצב כהה / בהיר">
-            <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-        </button>
-    </div>
-</header>
 
 <div class="hero">
     <div class="hero-subtitle">
@@ -569,13 +686,13 @@
 
 <!-- אזור יצירת קשר עם תוספת משפטית בתחתית -->
 <section class="contact-section">
-    <h2>אנחנו כאן לכל שאלה</h2>
-    <p>צוות מחלקת הויזות זמין לליווי, בדיקת דרישות כניסה וטיפול בבקשות.</p>
+    <h2 data-i18n="contactTitle">אנחנו כאן לכל שאלה</h2>
+    <p data-i18n="contactDesc">צוות מחלקת הויזות זמין לליווי, בדיקת דרישות כניסה וטיפול בבקשות.</p>
     <div class="contact-grid">
         <a href="tel:+97249700900" class="contact-card">
             <div class="contact-icon-wrapper">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72(12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                 </svg>
             </div>
             <div class="contact-label" data-i18n="contactPhone">מוקד טלפוני</div>
@@ -604,7 +721,7 @@
     
     <!-- הערות משפטיות בתחתית העמוד הראשי -->
     <div class="legal-footer">
-        <p class="legal-text" data-i18n="legalDisclaimer">* האגרות, זמני הטיפול ותנאי הזכאות נתונים להחלטתן הבלעדית של הרשויות / השגרירויות ועשויים להשתנות בכל עת ללא הודעה מוקדמת. זמני הטיפול הינם משוערים ומתייחסים לימי עבודה בלבד, מרגע קליטת הבקשה בשגרירות. המחירים בדולרים הינם מוערכים ועשויים להשתנות מעט בהתאם לשערי החליפין ביום ההגשה.</p>
+        <p class="legal-text" data-i18n="legalDisclaimer">* האגרות, זמני הטיפול, רשימת המסמכים ותנאי הזכאות נתונים להחלטתן הבלעדית של הרשויות / השגרירויות ועשויים להשתנות בכל עת ללא הודעה מוקדמת. רשימת המסמכים הינה כללית בלבד ועשויות להתווסף דרישות פרטניות בהתאם לנסיבות הבקשה. זמני הטיפול הינם משוערים ומתייחסים לימי עבודה בלבד, מרגע קליטת הבקשה בשגרירות. המחירים בדולרים הינם מוערכים ועשויים להשתנות מעט בהתאם לשערי החליפין ביום ההגשה.</p>
         <div class="update-badge" data-i18n="lastUpdated">מחירון זה מעודכן לחודש יוני 2026</div>
     </div>
 </section>
@@ -732,12 +849,13 @@
             "lblGovFee": "אגרת רשויות",
             "lblServiceFee": "דמי שירות, הכנה והגשה",
             "lblTotalFor": "עלות כוללת (לאדם):",
+            "lblDocs": "מסמכים ודרישות נדרשים",
             "btnCopy": "העתק ללוח",
             "btnPrint": "הדפס כ-PDF",
             "btnTransferLead": "העבר פרטי לקוח למחלקה",
             "upsTitle": "שירות שילוח מסמכים (UPS):",
             "upsDesc": "במידה ונדרש לשלוח אלינו דרכון פיזי, אנו מציעים שירות איסוף ושילוח מסמכים מאובטח בתוספת של USD 25.00 בלבד (בכפוף ללוחות הזמנים של חברת השילוח).",
-            "legalDisclaimer": "* האגרות, זמני הטיפול ותנאי הזכאות נתונים להחלטתן הבלעדית של הרשויות / השגרירויות ועשויים להשתנות בכל עת ללא הודעה מוקדמת. זמני הטיפול הינם משוערים ומתייחסים לימי עבודה בלבד, מרגע קליטת הבקשה בשגרירות. המחירים בדולרים הינם מוערכים ועשויים להשתנות מעט בהתאם לשערי החליפין ביום ההגשה.",
+            "legalDisclaimer": "* האגרות, זמני הטיפול, רשימת המסמכים ותנאי הזכאות נתונים להחלטתן הבלעדית של הרשויות / השגרירויות ועשויים להשתנות בכל עת ללא הודעה מוקדמת. רשימת המסמכים הינה כללית בלבד ועשויות להתווסף דרישות פרטניות בהתאם לנסיבות הבקשה. זמני הטיפול הינם משוערים ומתייחסים לימי עבודה בלבד, מרגע קליטת הבקשה בשגרירות. המחירים בדולרים הינם מוערכים ועשויים להשתנות מעט בהתאם לשערי החליפין ביום ההגשה.",
             "lastUpdated": "מחירון זה מעודכן לחודש יוני 2026",
             "footerThanks": "נשמח לעמוד לרשותכם בכל שאלה,",
             "footerTeam": "צוות מחלקת הויזות - אמסלם טורס",
@@ -761,7 +879,12 @@
 {notes}
 
 תודה רבה,
-הסוכן המטפל: {agent}`
+הסוכן המטפל: {agent}`,
+            "optProcessType": "סוג תהליך",
+            "tagElectronic": "ויזה דיגיטלית (E-Visa)",
+            "tagPhysical": "הגשה פיזית בשגרירות",
+            "tagPermit": "אישור כניסה מראש",
+            "btnReqs": "דרישות מסמכים"
         },
         "en": {
             "heroSubtitle": "Visa Services by Amsalem Tours",
@@ -808,12 +931,13 @@
             "lblGovFee": "Government Fee",
             "lblServiceFee": "Service, Preparation & Submission",
             "lblTotalFor": "Total Amount (Per Person):",
+            "lblDocs": "Required Documents",
             "btnCopy": "Copy Details",
             "btnPrint": "Print PDF",
             "btnTransferLead": "Send Details to Dept",
             "upsTitle": "Document Shipping Service (UPS):",
             "upsDesc": "If a physical passport submission is required, we offer a secure document pickup and delivery service for an additional USD 25.00 (subject to the shipping company's schedule).",
-            "legalDisclaimer": "* Fees, processing times, and eligibility are at the sole discretion of the authorities/embassies and may change without prior notice. Processing times are estimated in business days from application submission. Prices in USD are approximate and may vary slightly based on exchange rates.",
+            "legalDisclaimer": "* Fees, processing times, document lists, and eligibility are at the sole discretion of the authorities/embassies and may change without prior notice. The document list is general only; additional case-specific requirements may apply. Processing times are estimated in business days from application submission. Prices in USD are approximate and may vary slightly based on exchange rates.",
             "lastUpdated": "Pricing updated for June 2026",
             "footerThanks": "We are happy to assist with any questions,",
             "footerTeam": "Visa Department Team - Amsalem Tours",
@@ -837,7 +961,12 @@ Destination: {country}
 {notes}
 
 Thank you,
-Handling Agent: {agent}`
+Handling Agent: {agent}`,
+            "optProcessType": "Process Type",
+            "tagElectronic": "Digital Visa (E-Visa)",
+            "tagPhysical": "Physical Submission",
+            "tagPermit": "Entry Permit",
+            "btnReqs": "Document Reqs"
         }
     };
 
@@ -877,139 +1006,246 @@ Handling Agent: {agent}`
         }
     }
 
-    // מאגר נתוני הויזות
+    // מאגר נתוני הויזות המעודכן ל-24 מדינות ויעדים מובילים לישראלים
     const visaData = {
         "US": { 
             name: { he: "ארה״ב", en: "USA" }, flag: "fi-us", 
             options: [
-                { type: { he: "אישור כניסה אלקטרוני ESTA, תיירות / עסקים", en: "ESTA Electronic Authorization, Tourist/Business" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "שנתיים או עד פקיעת הדרכון", en: "2 years or until passport expiry" }, fee: "USD 40.00", service: "USD 35.00", total: "USD 75.00" },
-                { type: { he: "ויזת B1/B2 לארה״ב, תיירות / עסקים", en: "US B1/B2 Visa, Tourist/Business" }, time: { he: "בכפוף לזמינות תורים; לרוב 7-14 ימי עבודה לאחר הראיון", en: "Subject to appointment availability; 7-14 days post-interview" }, validity: { he: "עד 10 שנים", en: "Up to 10 years" }, fee: "USD 205.00", service: "USD 85.00", total: "USD 290.00" }
+                { type: { he: "אישור כניסה אלקטרוני ESTA, תיירות / עסקים", en: "ESTA Electronic Authorization, Tourist/Business" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "שנתיים או עד פקיעת הדרכון", en: "2 years or until passport expiry" }, fee: "USD 40.00", service: "USD 35.00", total: "USD 75.00", tag: "electronic",
+                  docs: { he: ["דרכון ביומטרי (אלקטרוני עם שבב) בתוקף חצי שנה לפחות", "כתובת דוא״ל פעילה", "אמצעי תשלום (כרטיס אשראי/דביט)", "פרטי תעסוקה והיסטוריית עבודה (5 שנים אחרונות)", "פרטי חשבונות רשתות חברתיות (5 שנים אחרונות)", "מומלץ לשאת אישורי טיסה/מלון והוכחת אמצעים"], en: ["Valid biometric (e-passport with chip) valid 6+ months", "Active email address", "Payment method (credit/debit card)", "Employment details & 5-year work history", "Social media account details (past 5 years)", "Recommended: flight/hotel bookings & proof of funds"] } },
+                { type: { he: "ויזת B1/B2 לארה״ב, תיירות / עסקים", en: "US B1/B2 Visa, Tourist/Business" }, time: { he: "בכפוף לזמינות תורים; לרוב 7-14 ימי עבודה לאחר הראיון", en: "Subject to appointment availability; 7-14 days post-interview" }, validity: { he: "עד 10 שנים", en: "Up to 10 years" }, fee: "USD 205.00", service: "USD 85.00", total: "USD 290.00", tag: "physical",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות מעבר למועד הנסיעה", "מילוי טופס DS-160 מקוון ודף האישור", "תמונת פספורט עדכנית (רקע לבן, 5x5 ס״מ)", "אישור תשלום אגרת השגרירות", "זימון לראיון בשגרירות", "הוכחת קשרים לישראל (תלוש שכר / אישור מעסיק / נכסים)"], en: ["Passport valid 6+ months beyond travel", "Completed online DS-160 form & confirmation page", "Recent passport photo (white background, 5x5cm)", "Embassy fee payment confirmation", "Embassy interview appointment", "Proof of ties to Israel (payslip / employer letter / assets)"] } }
             ]
         },
         "CA": { 
             name: { he: "קנדה", en: "Canada" }, flag: "fi-ca", options: [
-                { type: { he: "אישור כניסה אלקטרוני eTA", en: "eTA Electronic Authorization" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "עד 5 שנים או עד פקיעת הדרכון", en: "Up to 5 years or until passport expiry" }, fee: "USD 8.00", service: "USD 35.00", total: "USD 43.00" }
+                { type: { he: "אישור כניסה אלקטרוני eTA", en: "eTA Electronic Authorization" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "עד 5 שנים או עד פקיעת הדרכון", en: "Up to 5 years or until passport expiry" }, fee: "USD 8.00", service: "USD 35.00", total: "USD 43.00", tag: "electronic",
+                  docs: { he: ["דרכון ביומטרי חכם בתוקף לחצי שנה לפחות", "כתובת דוא\"ל מעודכנת", "כרטיס אשראי לתשלום", "מענה על שאלות רקע (בריאות, עבר פלילי, היסטוריית נסיעות)"], en: ["Biometric passport valid for at least 6 months", "Valid email address", "Credit card for payment", "Background questions (health, criminal & travel history)"] } }
             ]
         },
         "GB": { 
             name: { he: "בריטניה", en: "United Kingdom" }, flag: "fi-gb", options: [
-                { type: { he: "אישור כניסה אלקטרוני ETA", en: "ETA Electronic Authorization" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "שנתיים או עד פקיעת הדרכון", en: "2 years or until passport expiry" }, fee: "USD 29.00", service: "USD 35.00", total: "USD 64.00" }
+                { type: { he: "אישור כניסה אלקטרוני ETA", en: "ETA Electronic Authorization" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "שנתיים או עד פקיעת הדרכון", en: "2 years or until passport expiry" }, fee: "USD 29.00", service: "USD 35.00", total: "USD 64.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף (מומלץ תוקף של שנתיים+)", "תמונת פנים / סלפי דרך האפליקציה", "אמצעי תשלום (כרטיס אשראי/דביט)", "מענה על שאלות (כתובת, תעסוקה, עבר פלילי, אזרחויות)"], en: ["Valid passport (2+ years recommended)", "Face photo / selfie via the app", "Payment method (credit/debit card)", "Questions on address, job, criminal history, nationalities"] } }
             ]
         },
         "AU": { 
             name: { he: "אוסטרליה", en: "Australia" }, flag: "fi-au", options: [
-                { type: { he: "ויזת תיירות אלקטרונית eVisa 600", en: "eVisa 600 Tourist" }, time: { he: "עד 30 ימי עבודה", en: "Up to 30 business days" }, validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, fee: "USD 200.00", service: "USD 65.00", total: "USD 265.00" },
-                { type: { he: "ויזת עסקים אלקטרונית eVisa 600", en: "eVisa 600 Business" }, time: { he: "עד 14-25 ימי עבודה", en: "Up to 14-25 business days" }, validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, fee: "USD 200.00", service: "USD 65.00", total: "USD 265.00" }
+                { type: { he: "ויזת תיירות אלקטרונית eVisa 600", en: "eVisa 600 Tourist" }, time: { he: "עד 30 ימי עבודה", en: "Up to 30 business days" }, validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, fee: "USD 200.00", service: "USD 65.00", total: "USD 265.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף (מומלץ 6 חודשים+) + צילום עמוד הפרטים", "תמונת פספורט עדכנית (רקע לבן)", "הוכחת אמצעים כלכליים (דפי חשבון בנק)", "אישורי טיסה ושהייה (מלון)", "ביטוח נסיעות (מומלץ)"], en: ["Valid passport (6+ months recommended) + bio-page copy", "Recent passport photo (white background)", "Proof of financial means (bank statements)", "Flight & accommodation bookings", "Travel insurance (recommended)"] } },
+                { type: { he: "ויזת עסקים אלקטרונית eVisa 600", en: "eVisa 600 Business" }, time: { he: "עד 14-25 ימי עבודה", en: "Up to 14-25 business days" }, validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, fee: "USD 200.00", service: "USD 65.00", total: "USD 265.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף (מומלץ 6 חם+) + צילום עמוד הפרטים", "תמונת פספורט עדכנית (רקע לבן)", "מכתב מהמעסיק / הזמנה עסקית", "הוכחת אמצעים כלכליים", "אישורי טיסה ושהייה"], en: ["Valid passport (6+ months recommended) + bio-page copy", "Recent passport photo (white background)", "Employer letter / business invitation", "Proof of financial means", "Flight & accommodation bookings"] } }
             ]
         },
         "NZ": { 
             name: { he: "ניו זילנד", en: "New Zealand" }, flag: "fi-nz", options: [
-                { type: { he: "אישור כניסה אלקטרוני NZeTA", en: "NZeTA Electronic Authorization" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "שנתיים", en: "2 years" }, fee: "USD 85.00", service: "USD 65.00", total: "USD 150.00" }
+                { type: { he: "אישור כניסה אלקטרוני NZeTA", en: "NZeTA Electronic Authorization" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "שנתיים", en: "2 years" }, fee: "USD 85.00", service: "USD 65.00", total: "USD 150.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף (3 חודשים+ מעבר ליציאה, עמוד ריק)", "צילום / סריקת עמוד הפרטים בדרכון", "תמונת פנים / סלפי", "כתובת דוא״ל פעילה", "כרטיס טיסה הלוך-חזור", "כולל היטל המבקרים IVL והצהרת בריאות/אופי"], en: ["Valid passport (3+ months beyond departure, blank page)", "Scan/photo of passport bio page", "Face photo / selfie", "Active email address", "Return/onward ticket", "Includes IVL visitor levy + health/character declaration"] } }
             ]
         },
         "AE": { 
             name: { he: "דובאי", en: "UAE / Dubai" }, flag: "fi-ae", options: [
-                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, fee: "USD 150.00", service: "USD 45.00", total: "USD 195.00" }
+                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, fee: "USD 150.00", service: "USD 45.00", total: "USD 195.00", tag: "electronic",
+                  docs: { he: ["צילום צבעוני של עמוד הפרטים בדרכון (תוקף 6 חודשים+)", "תמונת פספורט צבעונית עדכנית (רקע לבן, 43x55 מ״מ)", "אישורי טיסה ומלון", "כתובת דוא״ל פעילה"], en: ["Color copy of passport bio page (valid 6+ months)", "Recent color passport photo (white background, 43x55mm)", "Flight & hotel confirmations", "Active email address"] } }
             ]
         },
         "IN": { 
             name: { he: "הודו", en: "India" }, flag: "fi-in", options: [
-                { type: { he: "ויזת תיירות אלקטרונית, כניסות מרובות (שנה)", en: "e-Tourist Visa, Multiple Entries (1 Year)" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "שנה אחת", en: "1 year" }, fee: "USD 50.00", service: "USD 45.00", total: "USD 95.00" },
-                { type: { he: "ויזת עסקים אלקטרונית, כניסות מרובות", en: "e-Business Visa, Multiple Entries" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "שנה אחת", en: "1 year" }, fee: "USD 130.00", service: "USD 65.00", total: "USD 195.00" }
+                { type: { he: "ויזת תיירות אלקטרונית, כניסות מרובות (שנה)", en: "e-Tourist Visa, Multiple Entries (1 Year)" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "שנה אחת", en: "1 year" }, fee: "USD 50.00", service: "USD 45.00", total: "USD 95.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם 2 עמודים ריקים", "סריקה צבעונית של עמוד הפרטים בדרכון (PDF)", "תמונת פספורט דיגיטלית ריבועית (רקע לבן, JPEG)", "כתובת דוא״ל פעילה"], en: ["Passport valid 6+ months with 2 blank pages", "Color scan of passport bio page (PDF)", "Square digital photo (white background, JPEG)", "Active email address"] } },
+                { type: { he: "ויזת עסקים אלקטרונית, כניסות מרובות", en: "e-Business Visa, Multiple Entries" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "שנה אחת", en: "1 year" }, fee: "USD 130.00", service: "USD 65.00", total: "USD 195.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם 2 עמודים ריקים", "סריקה צבעונית של עמוד הפרטים בדרכון (PDF)", "תמונת פספורט דיגיטלית ריבועית (רקע לבן)", "מכתב הזמנה מחברה בהודו או כרטיס ביקור (באנגלית)", "פרטי החברה המזמינה"], en: ["Passport valid 6+ months with 2 blank pages", "Color scan of passport bio page (PDF)", "Square digital photo (white background)", "Invitation letter from Indian company or business card (in English)", "Inviting company details"] } }
             ]
         },
         "CN": { 
             name: { he: "סין", en: "China" }, flag: "fi-cn", options: [
-                { type: { he: "ויזת תיירות / עסקים - נוהל רגיל", en: "Tourist/Business Visa - Regular" }, time: { he: "5 ימי עבודה", en: "5 business days" }, validity: { he: "לפי החלטת הקונסוליה", en: "Per consulate decision" }, fee: "USD 90.00", service: "USD 65.00", total: "USD 155.00" },
-                { type: { he: "ויזת תיירות / עסקים - נוהל דחוף", en: "Tourist/Business Visa - Urgent" }, time: { he: "3 ימי עבודה", en: "3 business days" }, validity: { he: "לפי החלטת הקונסוליה", en: "Per consulate decision" }, fee: "USD 165.00", service: "USD 65.00", total: "USD 230.00" }
+                { type: { he: "ויזת תיירות / עסקים - נוהל רגיל", en: "Tourist/Business Visa - Regular" }, time: { he: "5 ימי עבודה", en: "5 business days" }, validity: { he: "לפי החלטת הקונסוליה", en: "Per consulate decision" }, fee: "USD 90.00", service: "USD 65.00", total: "USD 155.00", tag: "physical",
+                  docs: { he: ["דרכון מקורי בתוקף 6 חודשים לפחות עם 2 עמודים ריקים + צילום עמוד הפרטים", "טופס בקשה מקוון מלא (COVA)", "תמונת פספורט עדכנית (רקע לבן, 48x33 מ״מ)", "אישור הזמנת טיסות הלוך-חזור ומלון", "לעסקים: מכתב הזמנה מחברה בסין (על נייר מכתבים רשמי)"], en: ["Original passport valid 6+ months with 2 blank pages + bio-page copy", "Completed online application form (COVA)", "Recent passport photo (white background, 48x33mm)", "Round-trip flight & hotel booking confirmation", "For business: invitation letter from a Chinese company (official letterhead)"] } },
+                { type: { he: "ויזת תיירות / עסקים - נוהל דחוף", en: "Tourist/Business Visa - Urgent" }, time: { he: "3 ימי עבודה", en: "3 business days" }, validity: { he: "לפי החלטת הקונסוליה", en: "Per consulate decision" }, fee: "USD 165.00", service: "USD 65.00", total: "USD 230.00", tag: "physical",
+                  docs: { he: ["דרכון מקורי בתוקף 6 חודשים לפחות עם 2 עמודים ריקים + צילום עמוד הפרטים", "טופס בקשה מקוון מלא (COVA)", "תמונת פספורט עדכנית (רקע לבן, 48x33 מ״מ)", "אישור הזמנת טיסות הלוך-חזור ומלון", "לעסקים: מכתב הזמנה מחברה בסין (על נייר מכתבים רשמי)"], en: ["Original passport valid 6+ months with 2 blank pages + bio-page copy", "Completed online application form (COVA)", "Recent passport photo (white background, 48x33mm)", "Round-trip flight & hotel booking confirmation", "For business: invitation letter from a Chinese company (official letterhead)"] } },
+                { type: { he: "מילוי טופס בקשה רשמי לויזה", en: "Official Visa Application Form Filling" }, time: { he: "בהתאם להשלמת פרטי הנוסע", en: "Subject to passenger details completion" }, validity: { he: "לא רלוונטי", en: "Not applicable" }, fee: "USD 0.00", service: "USD 50.00", total: "USD 50.00", tag: "permit",
+                  docs: { he: ["צילום ברור של עמוד הפרטים בדרכון", "שאלון פרטים אישיים מלא", "פרטי קשר מלאים של הנוסע"], en: ["Clear scan of passport bio-page", "Completed personal details questionnaire", "Passenger's full contact details"] } }
             ]
         },
         "TH": { 
             name: { he: "תאילנד", en: "Thailand" }, flag: "fi-th", options: [
-                { type: { he: "כרטיס הגעה דיגיטלי", en: "Digital Arrival Card" }, time: { he: "מיידי", en: "Immediate" }, validity: { he: "כניסה אחת", en: "Single entry" }, fee: "USD 0.00", service: "USD 25.00", total: "USD 25.00" }
+                { type: { he: "כרטיס הגעה דיגיטלי (TDAC)", en: "Digital Arrival Card (TDAC)" }, time: { he: "מיידי", en: "Immediate" }, validity: { he: "60 ימים", en: "60 days" }, fee: "USD 0.00", service: "USD 25.00", total: "USD 25.00", tag: "permit",
+                  docs: { he: ["דרכון בתוקף חצי שנה לפחות", "כתובת שהייה בתאילנד (שם וכתובת מלון)", "פרטי טיסה", "כתובת דוא״ל (לקבלת קוד QR)", "הצהרת בריאות — יש למלא תוך 72 שעות לפני ההגעה, באנגלית"], en: ["Valid passport 6+ months", "Accommodation address in Thailand (hotel name & address)", "Flight details", "Email address (for the QR code)", "Health declaration — complete within 72h before arrival, in English"] } }
             ]
         },
         "IL": { 
             name: { he: "ישראל", en: "Israel" }, flag: "fi-il", options: [
-                { type: { he: "אישור כניסה לישראל, תיירות / עסקים, כניסות מרובות", en: "Israel Entry Permit, Tourist/Business, Multiple Entries" }, time: { he: "עד 2-3 ימי עבודה", en: "Up to 2-3 business days" }, validity: { he: "עד שנתיים או עד פקיעת הדרכון", en: "Up to 2 years or until passport expiry" }, fee: "USD 10.00", service: "USD 25.00", total: "USD 35.00" }
+                { type: { he: "אישור כניסה אלקטרוני ETA-IL, תיירות / עסקים, כניסות מרובות", en: "ETA-IL Electronic Authorization, Tourist/Business, Multiple Entries" }, time: { he: "עד 2-3 ימי עבודה (לרוב מיידי)", en: "Up to 2-3 business days (often immediate)" }, validity: { he: "עד שנתיים או עד פקיעת הדרכון", en: "Up to 2 years or until passport expiry" }, fee: "USD 10.00", service: "USD 25.00", total: "USD 35.00", tag: "permit",
+                  docs: { he: ["דרכון ממדינה פטורת-ויזה (ביומטרי או רגיל) בתוקף חצי שנה לפחות", "כתובת דוא״ל פעילה", "אמצעי תשלום (Visa / Mastercard)", "מומלץ להגיש 72 שעות לפני הנסיעה"], en: ["Passport from a visa-exempt country (biometric or regular), valid 6+ months", "Active email address", "Payment method (Visa / Mastercard)", "Recommended to apply 72h before travel"] } }
             ]
         },
         "VN": { 
             name: { he: "וייטנאם", en: "Vietnam" }, flag: "fi-vn", options: [
-                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3-6 ימי עבודה", en: "Up to 3-6 business days" }, validity: { he: "עד 90 ימים", en: "Up to 90 days" }, fee: "USD 55.00", service: "USD 35.00", total: "USD 90.00" },
-                { type: { he: "ויזת תיירות / עסקים, כניסות מרובות", en: "Tourist/Business Visa, Multiple Entries" }, time: { he: "עד 3-6 ימי עבודה", en: "Up to 3-6 business days" }, validity: { he: "עד 90 ימים", en: "Up to 90 days" }, fee: "USD 80.00", service: "USD 45.00", total: "USD 125.00" }
+                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3-6 ימי עבודה", en: "Up to 3-6 business days" }, validity: { he: "עד 90 ימים", en: "Up to 90 days" }, fee: "USD 55.00", service: "USD 35.00", total: "USD 90.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם עמוד ריק", "סריקת עמוד הפרטים בדרכון (JPG)", "תמונת פספורט (4x6 ס״מ, רקע לבן, ללא משקפיים)", "נקודת כניסה ויציאה מבוקשת", "כתובת שהייה בוייטנאם (מלון)"], en: ["Passport valid 6+ months with a blank page", "Scan of passport bio page (JPG)", "Portrait photo (4x6cm, white background, no glasses)", "Intended port of entry & exit", "Accommodation address in Vietnam (hotel)"] } },
+                { type: { he: "ויזת תיירות / עסקים, כניסות מרובות", en: "Tourist/Business Visa, Multiple Entries" }, time: { he: "עד 3-6 ימי עבודה", en: "Up to 3-6 business days" }, validity: { he: "עד 90 ימים", en: "Up to 90 days" }, fee: "USD 80.00", service: "USD 45.00", total: "USD 125.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם עמוד ריק", "סריקת עמוד הפרטים בדרכון (JPG)", "תמונת פספורט (4x6 ס״מ, רקע לבן, ללא משקפיים)", "נקודת כניסה ויציאה מבוקשת", "כתובת שהייה בוייטנאם (מלון)"], en: ["Passport valid 6+ months with a blank page", "Scan of passport bio page (JPG)", "Portrait photo (4x6cm, white background, no glasses)", "Intended port of entry & exit", "Accommodation address in Vietnam (hotel)"] } }
             ]
         },
         "MA": { 
             name: { he: "מרוקו", en: "Morocco" }, flag: "fi-ma", options: [
-                { type: { he: "ויזת תיירות / עסקים, כניסה אחת - נוהל רגיל", en: "Tourist/Business Visa, Single Entry - Regular" }, time: { he: "עד 3-6 ימי עבודה", en: "Up to 3-6 business days" }, validity: { he: "180 ימים", en: "180 days" }, fee: "USD 90.00", service: "USD 45.00", total: "USD 135.00" },
-                { type: { he: "ויזת תיירות / עסקים, כניסה אחת - נוהל מהיר", en: "Tourist/Business Visa, Single Entry - Express" }, time: { he: "עד 24-72 שעות", en: "Up to 24-72 hours" }, validity: { he: "180 ימים", en: "180 days" }, fee: "USD 125.00", service: "USD 65.00", total: "USD 190.00" }
+                { type: { he: "ויזת תיירות / עסקים, כניסה אחת - נוהל רגיל", en: "Tourist/Business Visa, Single Entry - Regular" }, time: { he: "עד 3-6 ימי עבודה", en: "Up to 3-6 business days" }, validity: { he: "180 ימים", en: "180 days" }, fee: "USD 90.00", service: "USD 45.00", total: "USD 135.00", tag: "electronic",
+                  docs: { he: ["דרכון רגיל בתוקף 90 ימים+ עם עמוד ריק אחד", "סריקת עמוד הפרטים בדרכון", "תמונת פספורט צבעונית עדכנית (רקע בהיר, 35x45 מ״מ, ללא משקפיים/כובע)", "כרטיס טיסה הלוך-חזור והוכחת לינה", "כתובת דוא״ל פעילה"], en: ["Ordinary passport valid 90+ days with one blank page", "Scan of passport bio page", "Recent color photo (light background, 35x45mm, no glasses/hat)", "Return ticket & proof of accommodation", "Active email address"] } },
+                { type: { he: "ויזת תיירות / עסקים, כניסה אחת - נוהל מהיר", en: "Tourist/Business Visa, Single Entry - Express" }, time: { he: "עד 24-72 שעות", en: "Up to 24-72 hours" }, validity: { he: "180 ימים", en: "180 days" }, fee: "USD 125.00", service: "USD 65.00", total: "USD 190.00", tag: "electronic",
+                  docs: { he: ["דרכון רגיל בתוקף 90 ימים+ עם עמוד ריק אחד", "סריקת עמוד הפרטים בדרכון", "תמונת פספורט צבעונית עדכנית (רקע בהיר, 35x45 מ״מ, ללא משקפיים/כובע)", "כרטיס טיסה הלוך-חזור והוכחת לינה", "כתובת דוא״ל פעילה"], en: ["Ordinary passport valid 90+ days with one blank page", "Scan of passport bio page", "Recent color photo (light background, 35x45mm, no glasses/hat)", "Return ticket & proof of accommodation", "Active email address"] } }
             ]
         },
         "ET": { 
             name: { he: "אתיופיה", en: "Ethiopia" }, flag: "fi-et", options: [
-                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 85.00", service: "USD 65.00", total: "USD 150.00" },
-                { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 52.00", service: "USD 65.00", total: "USD 117.00" }
+                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 85.00", service: "USD 65.00", total: "USD 150.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות + סריקת עמוד הפרטים", "תמונת פספורט עדכנית (רקע לבן, JPEG)", "כרטיס טיסה הלוך-חזור", "אישור הזמנת מלון", "אישור חיסון קדחת צהובה (אם מגיעים מאזור נגוע)"], en: ["Passport valid 6+ months + bio-page scan", "Recent passport photo (white background, JPEG)", "Return/onward ticket", "Hotel booking confirmation", "Yellow fever certificate (if from an endemic area)"] } },
+                { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 52.00", service: "USD 65.00", total: "USD 117.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות + סריקת עמוד הפרטים", "תמונת פספורט עדכנית (רקע לבן)", "מכתב הזמנה מהחברה המזמינה באתיופיה", "רישיון העסק של החברה המזמינה", "כרטיס טיסה הלוך-חזור"], en: ["Passport valid 6+ months + bio-page scan", "Recent passport photo (white background)", "Invitation letter from inviting company in Ethiopia", "Business license of the inviting company", "Return/onward ticket"] } }
             ]
         },
         "KE": { 
             name: { he: "קניה", en: "Kenya" }, flag: "fi-ke", options: [
-                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 33.00", service: "USD 45.00", total: "USD 78.00" },
-                { type: { he: "ויזת תיירות / עסקים, כניסות מרובות", en: "Tourist/Business Visa, Multiple Entries" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "שנה אחת", en: "1 year" }, fee: "USD 330.00", service: "USD 65.00", total: "USD 395.00" }
+                { type: { he: "אישור כניסה אלקטרוני (eTA), כניסה אחת", en: "Electronic Travel Authorization (eTA), Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "כניסה תוך 90 ימים", en: "Entry within 90 days" }, fee: "USD 33.00", service: "USD 45.00", total: "USD 78.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם עמוד ריק + סריקת עמוד הפרטים", "תמונה עדכנית / סלפי (רקע לבן)", "מסלול טיסה (פרטי טיסת הגעה)", "הוכחת לינה (הזמנת מלון או מכתב מארח)", "כרטיס טיסה הלוך-חזור", "אישור חיסון קדחת צהובה (אם רלוונטי)"], en: ["Passport valid 6+ months with blank page + bio-page scan", "Recent photo / selfie (white background)", "Flight itinerary (arrival flight details)", "Proof of accommodation (hotel booking or host letter)", "Return/onward ticket", "Yellow fever certificate (if applicable)"] } },
+                { type: { he: "אישור כניסה אלקטרוני (eTA), כניסות מרובות", en: "Electronic Travel Authorization (eTA), Multiple Entries" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "שנה אחת", en: "1 year" }, fee: "USD 330.00", service: "USD 65.00", total: "USD 395.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם עמוד ריק + סריקת עמוד הפרטים", "תמונה עדכנית / סלפי (רקע לבן)", "מסלול טיסה (פרטי טיסת הגעה)", "הוכחת לינה (הזמנת מלון או מכתב מארח)", "כרטיס טיסה הלוך-חזור", "אישור חיסון קדחת צהובה (אם רלוונטי)"], en: ["Passport valid 6+ months with blank page + bio-page scan", "Recent photo / selfie (white background)", "Flight itinerary (arrival flight details)", "Proof of accommodation (hotel booking or host letter)", "Return/onward ticket", "Yellow fever certificate (if applicable)"] } }
             ]
         },
         "TZ": { 
             name: { he: "טנזניה", en: "Tanzania" }, flag: "fi-tz", options: [
-                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 10 ימים", en: "Up to 10 days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 55.00", service: "USD 45.00", total: "USD 100.00" },
-                { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, time: { he: "עד 10 ימים", en: "Up to 10 days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 270.00", service: "USD 65.00", total: "USD 335.00" }
+                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 10 ימים", en: "Up to 10 days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 55.00", service: "USD 45.00", total: "USD 100.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות + סריקת עמוד הפרטים", "תמונת פספורט / סלפי (רקע לבן)", "כרטיס טיסה הלוך-חזור", "אישור הזמנת מלון", "לזנזיבר: ביטוח נסיעות חובה (נרכש בנפרד)"], en: ["Passport valid 6+ months + bio-page scan", "Passport photo / selfie (white background)", "Return/onward flight ticket", "Hotel booking confirmation", "For Zanzibar: mandatory travel insurance (purchased separately)"] } },
+                { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, time: { he: "עד 10 ימים", en: "Up to 10 days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 270.00", service: "USD 65.00", total: "USD 335.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות + סריקת עמוד הפרטים", "תמונת פספורט / סלפי (רקע לבן)", "מכתב הזמנה מהחברה בטנזניה + פרטי המארח", "כרטיס טיסה הלוך-חזור", "אישור הזמנת מלון"], en: ["Passport valid 6+ months + bio-page scan", "Passport photo / selfie (white background)", "Invitation letter from Tanzanian company + host details", "Return/onward flight ticket", "Hotel booking confirmation"] } }
             ]
         },
         "MG": { 
             name: { he: "מדגסקר", en: "Madagascar" }, flag: "fi-mg", options: [
-                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "15 ימים", en: "15 days" }, fee: "USD 15.00", service: "USD 25.00", total: "USD 40.00" }
+                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "15 ימים", en: "15 days" }, fee: "USD 15.00", service: "USD 25.00", total: "USD 40.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם 2 עמודים ריקים", "סריקת עמוד הפרטים בדרכון", "תמונת פספורט דיגיטלית עדכנית (רקע בהיר)", "כרטיס טיסה הלוך-חזור", "אישור הזמנת מלון"], en: ["Passport valid 6+ months with 2 blank pages", "Scan of passport bio page", "Recent digital passport photo (light background)", "Return/onward ticket", "Hotel booking confirmation"] } }
             ]
         },
         "SC": { 
             name: { he: "סיישל", en: "Seychelles" }, flag: "fi-sc", options: [
-                { type: { he: "אישור כניסה לתיירות / עסקים, כניסה אחת", en: "Travel Authorization Tourist/Business, Single Entry" }, time: { he: "עד 24-72 שעות", en: "Up to 24-72 hours" }, validity: { he: "30 ימים", en: "30 days" }, fee: "USD 20.00", service: "USD 25.00", total: "USD 45.00" }
+                { type: { he: "אישור כניסה לתיירות / עסקים (Travel Authorization)", en: "Travel Authorization, Tourist/Business" }, time: { he: "עד 24-72 שעות", en: "Up to 24-72 hours" }, validity: { he: "30 ימים", en: "30 days" }, fee: "USD 20.00", service: "USD 25.00", total: "USD 45.00", tag: "permit",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות + סריקת הדרכון", "תמונה דיגיטלית / סלפי (רקע בהיר)", "כרטיס טיסה הלוך-חזור", "אישור הזמנת מלון / לינה", "ביטוח נסיעות רפואי (מומלץ/לעיתים נדרש)"], en: ["Passport valid 6+ months + passport scan", "Digital photo / selfie (plain background)", "Return/onward flight ticket", "Hotel / accommodation confirmation", "Travel medical insurance (recommended / sometimes required)"] } }
             ]
         },
         "AM": { 
             name: { he: "ארמניה", en: "Armenia" }, flag: "fi-am", options: [
-                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "21 ימים", en: "21 days" }, fee: "USD 10.00", service: "USD 25.00", total: "USD 35.00" },
-                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "120 ימים", en: "120 days" }, fee: "USD 15.00", service: "USD 25.00", total: "USD 40.00" }
+                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3ימי עבודה", en: "Up to 3 business days" }, validity: { he: "21 ימים", en: "21 days" }, fee: "USD 10.00", service: "USD 25.00", total: "USD 35.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף + סריקת עמוד הפרטים", "תמונת פספורט עדכנית (רקע לבן, 3.5x4.5 ס״מ, ללא משקפיים)", "כתובת שהייה בארמניה ופרטי תעסוקה", "כתובת דוא״ל פעילה"], en: ["Valid passport + bio-page scan", "Recent passport photo (white background, 3.5x4.5cm, no glasses)", "Accommodation address in Armenia & employment details", "Active email address"] } },
+                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "120 ימים", en: "120 days" }, fee: "USD 15.00", service: "USD 25.00", total: "USD 40.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף + סריקת עמוד הפרטים", "תמונת פספורט עדכנית (רקע לבן, 3.5x4.5 ס״מ, ללא משקפיים)", "כתובת שהייה בארמניה ופרטי תעסוקה", "כתובת דוא״ל פעילה"], en: ["Valid passport + bio-page scan", "Recent passport photo (white background, 3.5x4.5cm, no glasses)", "Accommodation address in Armenia & employment details", "Active email address"] } }
             ]
         },
         "AZ": { 
             name: { he: "אזרבייג׳ן", en: "Azerbaijan" }, flag: "fi-az", options: [
-                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 35.00", service: "USD 45.00", total: "USD 80.00" }
+                { type: { he: "ויזת תיירות / עסקים אלקטרונית (ASAN), כניסה אחת", en: "Electronic (ASAN) Tourist/Business Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "כניסה תוך 90 ימים (שהייה 30 יום)", en: "Entry within 90 days (30-day stay)" }, fee: "USD 35.00", service: "USD 45.00", total: "USD 80.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף (3-6 חודשים+) עם עמוד ריק + צילום עמוד הפרטים", "כתובת דוא״ל פעילה", "אמצעי תשלום (כרטיס אשראי/דביט)", "לעיתים: תמונת פספורט ואישור לינה"], en: ["Valid passport (3-6+ months) with blank page + bio-page copy", "Active email address", "Payment method (credit/debit card)", "Sometimes: passport photo & proof of accommodation"] } }
             ]
         },
         "KR": { 
             name: { he: "דרום קוריאה", en: "South Korea" }, flag: "fi-kr", options: [
-                { type: { he: "אישור כניסה אלקטרוני K-ETA, תיירות / עסקים, כניסות מרובות", en: "K-ETA Electronic Authorization, Tourist/Business, Multiple Entries" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "3 שנים", en: "3 years" }, fee: "USD 8.00", service: "USD 25.00", total: "USD 33.00" }
+                { type: { he: "אישור כניסה אלקטרוני K-ETA, תיירות / עסקים, כניסות מרובות", en: "K-ETA Electronic Authorization, Tourist/Business, Multiple Entries" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "3 שנים", en: "3 years" }, fee: "USD 8.00", service: "USD 25.00", total: "USD 33.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף (מומלץ 6 חודשים+)", "תמונת פנים דיגיטלית (לא נדרש באפליקציה הסלולרית)", "כתובת דוא״ל פעילה", "כתובת שהייה בקוריאה", "מומלץ להגיש 72 שעות לפני הנסיעה"], en: ["Valid passport (6+ months recommended)", "Digital face photo (not required via mobile app)", "Active email address", "Accommodation address in Korea", "Recommended to apply 72h before travel"] } }
             ]
         },
         "LK": { 
             name: { he: "סרי לנקה", en: "Sri Lanka" }, flag: "fi-lk", options: [
-                { type: { he: "ויזת תיירות / עסקים, שתי כניסות", en: "Tourist/Business Visa, Double Entry" }, time: { he: "עד 24-72 שעות", en: "Up to 24-72 hours" }, validity: { he: "30 ימים", en: "30 days" }, fee: "USD 60.00", service: "USD 45.00", total: "USD 105.00" }
+                { type: { he: "אישור כניסה אלקטרוני (ETA), שתי כניסות", en: "Electronic Travel Authorization (ETA), Double Entry" }, time: { he: "עד 24-72 שעות", en: "Up to 24-72 hours" }, validity: { he: "30 ימים", en: "30 days" }, fee: "USD 60.00", service: "USD 45.00", total: "USD 105.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות", "כרטיס טיסה הלוך-חזור מאושר", "כתובת דוא״ל פעילה", "הוכחת אמצעים כלכליים לשהייה"], en: ["Passport valid 6+ months", "Confirmed return/onward ticket", "Active email address", "Proof of sufficient funds for the stay"] } }
             ]
         },
         "KH": { 
             name: { he: "קמבודיה", en: "Cambodia" }, flag: "fi-kh", options: [
-                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עסקים", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 40.00", service: "USD 35.00", total: "USD 75.00" },
-                { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: "USD 50.00", service: "USD 35.00", total: "USD 85.00" }
+                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עסקים", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 40.00", service: "USD 35.00", total: "USD 75.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם 2 עמודים ריקים", "סריקת עמוד הפרטים בדרכון (JPEG/PNG)", "תמונת פספורט דיגיטלית (רקע לבן, ללא הבעה)", "כרטיס טיסה הלוך-חזור", "כתובת דוא״ל פעילה (יש לשאת 2 עותקים מודפסים של האשרה)"], en: ["Passport valid 6+ months with 2 blank pages", "Scan of passport bio page (JPEG/PNG)", "Digital passport photo (white background, neutral)", "Return/onward ticket", "Active email (carry 2 printed copies of the e-Visa)"] } },
+                { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 50.00", service: "USD 35.00", total: "USD 85.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם 2 עמודים ריקים", "סריקת עמוד הפרטים בדרכון (JPEG/PNG)", "תמונת פספורט דיגיטלית (רקע לבן)", "מכתב / הזמנה מחברה בקמבודיה", "כרטיס טיסה הלוך-חזור"], en: ["Passport valid 6+ months with 2 blank pages", "Scan of passport bio page (JPEG/PNG)", "Digital passport photo (white background)", "Company letter / invitation in Cambodia", "Return/onward ticket"] } }
             ]
         },
         "LA": { 
             name: { he: "לאוס", en: "Laos" }, flag: "fi-la", options: [
-                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "60 ימים", en: "60 days" }, fee: "USD 60.00", service: "USD 45.00", total: "USD 105.00" }
+                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "60 ימים", en: "60 days" }, fee: "USD 60.00", service: "USD 45.00", total: "USD 105.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם עמוד ריק", "סריקת עמוד הפרטים בדרכון", "תמונת פספורט (4x6 ס״מ, רקע לבן)", "כרטיס טיסה הלוך-חזור והוכחת אמצעים", "כתובת דוא״ל פעילה"], en: ["Passport valid 6+ months with a blank page", "Scan of passport bio page", "Passport photo (4x6cm, white background)", "Return/onward ticket & proof of funds", "Active email address"] } }
             ]
         },
         "MM": { 
             name: { he: "מיאנמר", en: "Myanmar" }, flag: "fi-mm", options: [
-                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 55.00", service: "USD 35.00", total: "USD 90.00" },
-                { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: { he: "90 ימים", en: "90 days" }, fee: "USD 75.00", service: "USD 45.00", total: "USD 120.00" }
+                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "90 ימים (שהייה עד 28 יום)", en: "90 days (stay up to 28 days)" }, fee: "USD 55.00", service: "USD 35.00", total: "USD 90.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם עמוד ריק", "סריקת עמוד הפרטים בדרכון", "תמונת פספורט צבעונית עדכנית (רקע לבן)", "כרטיס טיסה הלוך-חזור והוכחת לינה", "כתובת דוא״ל פעילה (יש להדפיס את אישור האשרה)"], en: ["Passport valid 6+ months with a blank page", "Scan of passport bio page", "Recent color passport photo (white background)", "Return/onward ticket & proof of accommodation", "Active email (print the e-Visa approval letter)"] } },
+                { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: { he: "90 ימים (שהייה עד 70 יום)", en: "90 days (stay up to 70 days)" }, fee: "USD 75.00", service: "USD 45.00", total: "USD 120.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם עמוד ריק", "סריקת עמוד הפרטים בדרכון", "תמונת פספורט צבעונית עדכנית (רקע לבן)", "מכתב הזמנה מחברה במיאנמר + תעודת רישום החברה", "כרטיס טיסה הלוך-חזור"], en: ["Passport valid 6+ months with a blank page", "Scan of passport bio page", "Recent color passport photo (white background)", "Invitation letter from a registered Myanmar host company", "Return/onward ticket"] } }
+            ]
+        },
+        "PH": { 
+            name: { he: "פיליפינים", en: "Philippines" }, flag: "fi-ph", options: [
+                { type: { he: "אישור רישום אלקטרוני חובה eTravel", en: "eTravel Registration" }, time: { he: "עד 24 שעות", en: "Up to 24 hours" }, validity: { he: "כניסה אחת", en: "Single Entry" }, fee: "USD 0.00", service: "USD 25.00", total: "USD 25.00", tag: "permit",
+                  docs: { he: ["דרכון בתוקף לפחות חצי שנה מיום הכניסה", "אישור רישום חובה הנעשה עד 72 שעות לפני ההמראה", "כרטיס טיסה חזור חובה"], en: ["Passport valid for 6+ months", "Mandatory registration completed within 72 hours of departure", "Onward/Return flight ticket is strictly mandatory"] } }
+            ]
+        },
+        "SG": { 
+            name: { he: "סינגפור", en: "Singapore" }, flag: "fi-sg", options: [
+                { type: { he: "אישור והצהרת בריאות אלקטרונית SG Arrival Card", en: "SG Arrival Card Registration" }, time: { he: "עד 24 שעות", en: "Up to 24 hours" }, validity: { he: "כניסה אחת", en: "Single Entry" }, fee: "USD 0.00", service: "USD 25.00", total: "USD 25.00", tag: "permit",
+                  docs: { he: ["דרכון בתוקף לפחות חצי שנה מיום הכניסה", "הגשה והצהרה הנעשית בטווח של 3 ימים לפני הכניסה לסינגפור", "אישור הזמנת מלון / כתובת לינה מדויקת"], en: ["Passport valid for 6+ months", "Submission must be done within 3 days prior to arrival", "Hotel reservation or full accommodation address"] } }
+            ]
+        },
+        "BH": {
+            name: { he: "בחריין", en: "Bahrain" }, flag: "fi-bh",
+            options: [
+                { type: { he: "אשרת תיירות / עסקים אלקטרונית eVisa", en: "Tourist/Business eVisa" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: { he: "30 ימים", en: "30 days" }, fee: "USD 25.00", service: "USD 45.00", total: "USD 70.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף לפחות חצי שנה מיום הכניסה", "צילום ברור של עמוד הפרטים בדרכון", "צילום כרטיס טיסה חזור", "הוכחת הזמנת מלון / מקום שהייה"], en: ["Passport valid for at least 6 months", "Clear scan of passport bio-page", "Confirmed return flight ticket", "Hotel booking or accommodation proof"] } }
+            ]
+        },
+        "NG": {
+            name: { he: "ניגריה", en: "Nigeria" }, flag: "fi-ng",
+            options: [
+                { 
+                    type: { he: "אשרת תיירות אלקטרונית eVisa", en: "Electronic Tourist eVisa" }, 
+                    time: { he: "24-72 שעות", en: "24-72 hours" }, 
+                    validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, 
+                    fee: "USD 660.00", 
+                    service: "USD 100.00", 
+                    total: "USD 760.00", 
+                    tag: "electronic",
+                    docs: { 
+                        he: ["צילום עמוד הפרטים בדרכון בתוקף חצי שנה לפחות", "תמונת פספורט עדכנית צבעונית", "כרטיס טיסה חזור מאושר", "שובר הזמנת מלון / אישור לינה"], 
+                        en: ["Passport bio-page copy valid for at least 6 months", "Recent color passport photo", "Confirmed return flight ticket", "Hotel booking / accommodation voucher"] 
+                    } 
+                },
+                { 
+                    type: { he: "אשרת כניסה אחת (חד-פעמית) - פיזית בדרכון", en: "Single Entry Visa - Physical in Passport" }, 
+                    time: { he: "כ-10 ימי עסקים", en: "Approx. 10 business days" }, 
+                    validity: { he: "בהתאם לאישור השגרירות", en: "Subject to embassy approval" }, 
+                    fee: "USD 525.00", 
+                    service: "USD 100.00", 
+                    total: "USD 625.00", 
+                    tag: "physical",
+                    docs: { 
+                        he: ["דרכון מקורי בתוקף לפחות חצי שנה עם 2 עמודים ריקים לפחות", "תמונת פספורט עדכנית צבעונית", "מכתב הזמנה רשמי מניגריה", "מכתב שיגור מהחברה השולחת בישראל (באנגלית)", "אישור רישום של החברה המארחת בניגריה (CAC Certificate)", "אישור חיסון קדחת צהובה בתוקף (חובה)", "כרטיס טיסה ושובר מלון"], 
+                        en: ["Original passport valid for 6+ months with 2 blank pages", "Recent color passport photo", "Official invitation letter from Nigeria", "Employer dispatch letter from Israeli company (in English)", "Host company registration certificate in Nigeria (CAC)", "Mandatory valid Yellow Fever vaccination certificate", "Flight ticket and hotel voucher"] 
+                    } 
+                },
+                { 
+                    type: { he: "אשרת כניסות מרובות (Multi) ל-3 חודשים - פיזית בדרכון", en: "Multiple Entry Visa (3 Months) - Physical in Passport" }, 
+                    time: { he: "כ-10 ימי עסקים", en: "Approx. 10 business days" }, 
+                    validity: { he: "3 חודשים", en: "3 months" }, 
+                    fee: "USD 660.00", 
+                    service: "USD 100.00", 
+                    total: "USD 760.00", 
+                    tag: "physical",
+                    docs: { 
+                        he: ["דרכון מקורי בתוקף לפחות חצי שנה עם 2 עמודים ריקים לפחות", "תמונת פספורט עדכנית צבעונית", "מכתב הזמנה רשמי מניגריה המבקש אשרה מרובת כניסות", "מכתב שיגור מהחברה השולחת בישראל (באנגלית)", "אישור רישום של החברה המארחת בניגריה (CAC Certificate)", "אישור חיסון קדחת צהובה בתוקף (חובה)", "כרטיס טיסה ושובר מלון"], 
+                        en: ["Original passport valid for 6+ months with 2 blank pages", "Recent color passport photo", "Official invitation letter from Nigeria requesting multiple entries", "Employer dispatch letter from Israeli company (in English)", "Host company registration certificate in Nigeria (CAC)", "Mandatory valid Yellow Fever vaccination certificate", "Flight ticket and hotel voucher"] 
+                    } 
+                }
+            ]
+        },
+        "CU": { 
+            name: { he: "קובה", en: "Cuba" }, flag: "fi-cu", options: [
+                { type: { he: "אשרת תיירות אלקטרונית eVisa לקובה", en: "Cuba Tourist eVisa" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "90 ימים (שהות עד 90 ימים)", en: "90 days (Max 90 days stay)" }, fee: "USD 85.00", service: "USD 55.00", total: "USD 140.00", tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות מיום הכניסה", "צילום ברור וצבעוני של עמוד הפרטים בדרכון", "אישור כרטיס טיסה הלוך-חזור", "פרטי לינה / הזמנת מלון בקובה", "כתובת דוא״ל פעילה לקבלת הויזה האלקטרונית"], en: ["Passport valid for at least 6 months", "Clear color scan of passport bio-page", "Confirmed round-trip flight ticket", "Hotel booking or accommodation address in Cuba", "Active email address to receive the eVisa"] } }
             ]
         }
     };
@@ -1043,14 +1279,17 @@ Handling Agent: {agent}`
             card.innerHTML = `<h3>${countryName}</h3><span class="fi ${country.flag}"></span>`;
             listContainer.appendChild(card);
 
-            // תצוגת טבלה נקייה ואינטראקטיבית
+            // תצוגת טבלה נקייה ואינטראקטיבית עם שילוב תגיות התהליך
             country.options.forEach((opt, index) => {
                 const tr = document.createElement('tr');
                 tr.dataset.name = countryName;
                 tr.onclick = () => { openCountry(code); };
                 tr.innerHTML = `
                     <td class="country-td"><span class="fi ${country.flag}"></span>${countryName}</td>
-                    <td style="font-weight: 600; color: var(--secondary-color);">${opt.type[currentLang]}</td>
+                    <td style="font-weight: 600; color: var(--secondary-color); line-height: 1.6;">
+                        ${opt.type[currentLang]}<br>
+                        <span class="process-tag process-tag-${opt.tag}" style="margin-top: 5px;">${t('tag' + opt.tag.charAt(0).toUpperCase() + opt.tag.slice(1))}</span>
+                    </td>
                     <td><span class="table-badge">${opt.time[currentLang]}</span></td>
                     <td><span class="table-badge">${opt.validity[currentLang]}</span></td>
                     <td class="price-td">${opt.fee}</td>
@@ -1097,6 +1336,59 @@ Handling Agent: {agent}`
     function getPriceNum(str) { return parseFloat(str.replace(/[^\d.-]/g, '')) || 0; }
     function formatPriceStr(num) { return num === 0 ? "USD 0.00" : "USD " + num.toFixed(2); }
 
+    // פונקציית עזר לפתיחה וסגירה של אקורדיון הדרישות
+    function toggleReqs(index) {
+        const reqsDiv = document.getElementById(`reqs-${index}`);
+        if (!reqsDiv) return;
+        
+        const btn = document.querySelector(`#visaCard-${index} .btn-toggle-docs`);
+        
+        if (reqsDiv.style.display === 'none' || reqsDiv.style.display === '') {
+            reqsDiv.style.display = 'block';
+            // כפיית חישוב מחדש של הדפדפן להפעלת האנימציה
+            reqsDiv.offsetHeight;
+            reqsDiv.classList.add('active');
+            if (btn) btn.classList.add('active');
+        } else {
+            reqsDiv.classList.remove('active');
+            if (btn) btn.classList.remove('active');
+            setTimeout(() => {
+                if (!reqsDiv.classList.contains('active')) {
+                    reqsDiv.style.display = 'none';
+                }
+            }, 250);
+        }
+    }
+
+    // בניית רשימת המסמכים והדרישות בעיצוב הצ'קליסט התכול היוקרתי (נקי ללא סימן וי בצד שמאל)
+    function buildDocsHtml(opt, index) {
+        if (!opt.docs || !opt.docs[currentLang] || !opt.docs[currentLang].length) return '';
+        
+        const items = opt.docs[currentLang].map(d => `
+            <li>
+                <span>${d}</span>
+            </li>
+        `).join('');
+        
+        return `
+            <div class="visa-docs" id="reqs-${index}">
+                <h4 class="visa-docs-title">
+                    <span data-i18n="lblDocs">${t('lblDocs')}</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#00BCD4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                </h4>
+                <ul class="visa-docs-list">
+                    ${items}
+                </ul>
+            </div>
+        `;
+    }
+
     function openCountry(code) {
         const country = visaData[code];
         const countryName = country.name[currentLang];
@@ -1109,7 +1401,7 @@ Handling Agent: {agent}`
         let htmlContent = `
             <div class="print-document-container">
                 <div class="print-header-wrapper print-only-element">
-                    <img src="ויזה%20לוגו%20סופי%20(14).jpg" alt="AMS VISA Logo" class="print-main-logo">
+                    <img src="ויזה%20לוגו%20סופי%20(14).jpg" alt="AMS VISA" class="print-main-logo">
                     <div class="print-title-container">
                         <h1>${t('printQuoteTitle')} <span class="fi ${country.flag} print-flag"></span> ${countryName}</h1>
                         <p id="printPaxSubtitle">${t('printSinglePax')}</p>
@@ -1120,7 +1412,10 @@ Handling Agent: {agent}`
         country.options.forEach((opt, index) => {
             htmlContent += `
                 <div class="visa-option-card" id="visaCard-${index}">
-                    <h3 class="visa-title">${opt.type[currentLang]}</h3>
+                    <h3 class="visa-title" style="line-height: 1.4; margin-bottom: 8px;">${opt.type[currentLang]}</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span class="process-tag process-tag-${opt.tag}">${t('tag' + opt.tag.charAt(0).toUpperCase() + opt.tag.slice(1))}</span>
+                    </div>
 
                     <div class="visa-details-grid">
                         <div class="detail-item"><span>${t('lblProcessingTime')}</span><strong>${opt.time[currentLang]}</strong></div>
@@ -1134,7 +1429,13 @@ Handling Agent: {agent}`
                         <strong>${opt.total}</strong>
                     </div>
 
+                    ${buildDocsHtml(opt, index)}
+
                     <div class="card-action-bar">
+                        <button class="action-btn btn-toggle-docs" onclick="toggleReqs(${index})">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; color: var(--primary-color);"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                            <span>${t('btnReqs')}</span>
+                        </button>
                         <button class="action-btn" onclick="printVisaDetails(${index})">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
                             ${t('btnPrint')}
@@ -1280,11 +1581,19 @@ Handling Agent: {agent}`
         let txt = `*${t('printQuoteTitle')} ${country.name[currentLang]}*\n`;
         txt += `===================\n\n`;
         txt += `*${opt.type[currentLang]}*\n`;
+        txt += `${t('optProcessType')}: ${t('tag' + opt.tag.charAt(0).toUpperCase() + opt.tag.slice(1))}\n`;
         txt += `${t('lblProcessingTime')}: ${opt.time[currentLang]}\n`;
         txt += `${t('lblValidity')}: ${opt.validity[currentLang]}\n`;
         txt += `${t('lblGovFee')}: ${opt.fee} | ${t('lblServiceFee')}: ${opt.service}\n`;
         
         txt += `*${t('lblTotalFor')} ${opt.total}*\n`;
+
+        // הוספת רשימת המסמכים והדרישות
+        if (opt.docs && opt.docs[currentLang] && opt.docs[currentLang].length) {
+            txt += `\n*${t('lblDocs')}:*\n`;
+            opt.docs[currentLang].forEach(d => { txt += `• ${d}\n`; });
+        }
+
         txt += `-------------------\n\n`;
         
         if (['US', 'CN'].includes(code)) txt += `*${t('upsTitle')}* ${t('upsDesc')}\n\n`;
