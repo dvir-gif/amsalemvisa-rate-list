@@ -32,23 +32,48 @@
             --ups-text: #b78103;
         }
 
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Heebo', sans-serif;
             background-color: var(--bg-color);
+            background-image: radial-gradient(1100px 480px at 50% -8%, rgba(0, 188, 212, 0.06), transparent 60%);
+            background-repeat: no-repeat;
             color: var(--text-color);
             margin: 0;
             padding: 0;
             overflow-x: hidden;
             position: relative;
             transition: background-color 0.3s ease, color 0.3s ease;
+            /* רינדור טקסט חד ונקי בכל הדפדפנים */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            font-feature-settings: "kern" 1, "liga" 1;
+        }
+
+        /* בחירת טקסט בגוון המותג */
+        ::selection { background: rgba(0, 188, 212, 0.22); color: inherit; }
+
+        /* טבעת פוקוס נגישה וחדה למקלדת בלבד (ללא הסחה בלחיצת עכבר) */
+        :focus-visible {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+        *:focus:not(:focus-visible) { outline: none; }
+
+        /* כיבוד העדפת תנועה מופחתת */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
         }
 
         /* --- תמיכה במצב כהה (Dark Mode) --- */
         body.dark-mode {
             --primary-dark: #22d3ee;
             --secondary-color: #e2e8f0;
-            --bg-color: #0f172a;
-            --text-color: #f8fafc;
+            --bg-color: #0f172a;            --text-color: #f8fafc;
             --border-color: #334155;
             --panel-bg: #1e293b;
             --calc-bg: #0f172a;
@@ -59,6 +84,8 @@
             --ups-border: #92400e;
             --ups-text: #fde68a;
         }
+
+        body.dark-mode { background-image: radial-gradient(1100px 480px at 50% -8%, rgba(34, 211, 238, 0.10), transparent 60%); }
 
         body.dark-mode .hero-desc, body.dark-mode .tab-btn, body.dark-mode .detail-item span { color: #94a3b8; }
         body.dark-mode .feature-item { background: #1e293b; color: #f1f5f9; }
@@ -97,7 +124,7 @@
         body.dark-mode .process-tag-electronic {
             background-color: rgba(52, 211, 153, 0.15);
             color: #34d399;
-            border-color: rgba(52, 211_153, 0.3);
+            border-color: rgba(52, 211, 153, 0.3);
         }
         /* אפור ניטרלי, נקי ומינימליסטי */
         .process-tag-physical {
@@ -282,10 +309,10 @@
         }
         .country-card {
             background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 12px;
-            padding: 20px 25px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center;
-            justify-content: center; gap: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            padding: 20px 25px; cursor: pointer; transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease; display: flex; align-items: center;
+            justify-content: center; gap: 15px; box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 2px 8px rgba(15,23,42,0.03);
         }
-        .country-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.06); border-color: var(--primary-color); }
+        .country-card:hover { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(15,23,42,0.04), 0 12px 28px rgba(0,151,167,0.12); border-color: var(--primary-color); }
         .country-card .fi { font-size: 2em; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
         .country-card h3 { margin: 0; color: var(--secondary-color); font-size: 1.3em; font-weight: 800; }
 
@@ -308,14 +335,15 @@
         
         .transparent-table td { padding: 16px; border-bottom: 1px solid var(--border-color); vertical-align: middle; font-size: 0.95em; text-align: start; }
         .transparent-table tbody tr { transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; }
-        .transparent-table tbody tr:hover { background-color: rgba(0, 188, 212, 0.05) !important; transform: scale(0.999); }
+        .transparent-table tbody tr:hover { background-color: rgba(0, 188, 212, 0.07) !important; }
+        .transparent-table tbody tr:hover .country-td { color: var(--primary-dark); }
         .transparent-table tbody tr:nth-child(even) { background-color: rgba(241, 245, 249, 0.4); }
         body.dark-mode .transparent-table tbody tr:nth-child(even) { background-color: rgba(15, 23, 42, 0.15); }
         
         .transparent-table .country-td { font-weight: 800; color: var(--secondary-color); white-space: nowrap; }
         .transparent-table .fi { font-size: 1.4em; border-radius: 3px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); vertical-align: middle; margin-inline-end: 8px; }
-        .transparent-table .price-td { font-weight: 700; color: #64748b; font-family: 'Heebo', sans-serif; }
-        .transparent-table .total-td { background-color: var(--accent-tint); font-weight: 900; color: var(--primary-dark); font-size: 1.05em; border-inline-start: 2px solid var(--accent-tint-border); }
+        .transparent-table .price-td { font-weight: 700; color: #64748b; font-family: 'Heebo', sans-serif; font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+        .transparent-table .total-td { background-color: var(--accent-tint); font-weight: 900; color: var(--primary-dark); font-size: 1.05em; border-inline-start: 2px solid var(--accent-tint-border); font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
 
         /* תגיות מעוצבות אחידות של טבלה */
         .table-badge {
@@ -352,6 +380,13 @@
         .close-btn { background: none; border: none; color: #fff; font-size: 2em; cursor: pointer; transition: opacity 0.2s; line-height: 1; }
         .close-btn:hover { opacity: 0.7; }
         .panel-content { padding: 30px; overflow-y: auto; flex-grow: 1; }
+
+        /* פס גלילה דק ומעוצב לפאנל ולטבלה */
+        .panel-content, .table-wrapper { scrollbar-width: thin; scrollbar-color: var(--primary-color) transparent; }
+        .panel-content::-webkit-scrollbar, .table-wrapper::-webkit-scrollbar { width: 8px; height: 8px; }
+        .panel-content::-webkit-scrollbar-track, .table-wrapper::-webkit-scrollbar-track { background: transparent; }
+        .panel-content::-webkit-scrollbar-thumb, .table-wrapper::-webkit-scrollbar-thumb { background: rgba(0, 188, 212, 0.45); border-radius: 10px; }
+        .panel-content::-webkit-scrollbar-thumb:hover, .table-wrapper::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
 
         /* כפתורי פעולה בתוך כל כרטיסיה */
         .card-action-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border-color); }
@@ -399,7 +434,7 @@
             background: var(--accent-tint); padding: 12px 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-top: 12px; border: 1px solid var(--accent-tint-border);
         }
         .visa-price-total span { color: var(--primary-dark); font-weight: 700; font-size: 0.95em; }
-        .visa-price-total strong { font-size: 1.35em; font-weight: 900; color: var(--secondary-color); }
+        .visa-price-total strong { font-size: 1.35em; font-weight: 900; color: var(--secondary-color); font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
 
         /* --- אקורדיון חלק לדרישות מסמכים (עיצוב פרימיום נקי ללא וי בצד שמאל) --- */
         .visa-docs {
@@ -538,7 +573,7 @@
         }
         .contact-icon-wrapper svg { width: 32px; height: 32px; }
         .contact-label { font-size: 1.1em; color: #94a3b8; margin-bottom: 10px; font-weight: 500; }
-        .contact-value { font-size: 1.4em; font-weight: 800; color: #ffffff; direction: ltr; }
+        .contact-value { font-size: 1.4em; font-weight: 800; color: #ffffff; direction: ltr; font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
 
         /* אזור הערות משפטיות בתחתית העמוד הראשי - קומפקטי וממורכז */
         .legal-footer {
@@ -623,7 +658,7 @@
             .visa-option-card.print-active .visa-docs { display: block !important; opacity: 1 !important; transform: none !important; background: transparent !important; border: 1px solid #ccc !important; border-radius: 8px; padding: 12px 16px; margin-top: 20px; }
             .visa-option-card.print-active .visa-docs-title { color: #000 !important; font-size: 1.05em; }
             .visa-option-card.print-active .visa-docs-list li { color: #000 !important; font-size: 0.9em; }
-            .visa-option-card.print-active .visa-docs-list li::before { background-color: #0097a7 !important; }
+            .visa-option-card.print-active .visa-docs-list li::before { color: #0097a7 !important; }
 
             .ups-note.print-active-note { display: flex !important; background: transparent !important; border: 1px solid #ccc !important; border-radius: 8px; padding: 10px 15px; margin-top: 25px; font-size: 0.85em !important; }
             .ups-note:not(.print-active-note) { display: none !important; }
@@ -772,7 +807,7 @@
     
     <!-- הערות משפטיות בתחתית העמוד הראשי -->
     <div class="legal-footer">
-        <p class="legal-text" data-i18n="legalDisclaimer">* האגרות, זמני הטיפול, רשימת המסמכים ותנאי הזכאות נתונים להחלטתן הבלעדית של הרשויות והשגרירויות ועשויים להשתנות בכל עת ללא הודעה מוקדמת. רשימת המסמכים כללית בלבד, וייתכן שיתווספו דרישות פרטניות בהתאם לנסיבות הבקשה. זמני הטיפול משוערים ומתייחסים לימי עבודה בלבד, החל ממועד קליטת הבקשה בשגרירות. המחירים הנקובים בדולר הם הערכה בלבד ועשויים להשתנות במעט בהתאם לשער החליפין ביום ההגשה.</p>
+        <p class="legal-text" data-i18n="legalDisclaimer">* האגרות, זמני הטיפול, רשימת המסמכים ותנאי הזכאות נתונים להחלטתן הבלעדית של הרשויות והשגרירויות ועשויים להשתנות בכל עת וללא הודעה מוקדמת. רשימת המסמכים כללית בלבד, וייתכן שיתווספו דרישות פרטניות בהתאם לנסיבות הבקשה. זמני הטיפול משוערים ומתייחסים לימי עבודה בלבד, החל ממועד קליטת הבקשה בשגרירות. המחירים הנקובים בדולר הם הערכה בלבד ועשויים להשתנות במעט בהתאם לשער החליפין ביום ההגשה.</p>
         <div class="update-badge" data-i18n="lastUpdated">מחירון זה מעודכן לחודש יוני 2026</div>
     </div>
 </section>
@@ -908,7 +943,7 @@
             "btnTransferLead": "העבר פרטי לקוח למחלקה",
             "upsTitle": "שירות שילוח מסמכים (UPS):",
             "upsDesc": "אם נדרש לשלוח אלינו דרכון פיזי, אנו מציעים שירות איסוף ושילוח מסמכים מאובטח בתוספת של USD 25.00 בלבד (בכפוף ללוחות הזמנים של חברת השילוח).",
-            "legalDisclaimer": "* האגרות, זמני הטיפול, רשימת המסמכים ותנאי הזכאות נתונים להחלטתן הבלעדית של הרשויות והשגרירויות ועשויים להשתנות בכל עת ללא הודעה מוקדמת. רשימת המסמכים כללית בלבד, וייתכן שיתווספו דרישות פרטניות בהתאם לנסיבות הבקשה. זמני הטיפול משוערים ומתייחסים לימי עבודה בלבד, החל ממועד קליטת הבקשה בשגרירות. המחירים הנקובים בדולר הם הערכה בלבד ועשויים להשתנות במעט בהתאם לשער החליפין ביום ההגשה.",
+            "legalDisclaimer": "* האגרות, זמני הטיפול, רשימת המסמכים ותנאי הזכאות נתונים להחלטתן הבלעדית של הרשויות והשגרירויות ועשויים להשתנות בכל עת וללא הודעה מוקדמת. רשימת המסמכים כללית בלבד, וייתכן שיתווספו דרישות פרטניות בהתאם לנסיבות הבקשה. זמני הטיפול משוערים ומתייחסים לימי עבודה בלבד, החל ממועד קליטת הבקשה בשגרירות. המחירים הנקובים בדולר הם הערכה בלבד ועשויים להשתנות במעט בהתאם לשער החליפין ביום ההגשה.",
             "lastUpdated": "מחירון זה מעודכן לחודש יוני 2026",
             "footerThanks": "נשמח לעמוד לרשותכם בכל שאלה,",
             "footerTeam": "צוות מחלקת הויזות - אמסלם טורס",
@@ -982,7 +1017,7 @@
             "printSinglePax": "Prices displayed are for a single passenger",
             "lblProcessingTime": "Est. Processing Time",
             "lblValidity": "Visa Validity",
-            "lblGovFee": "Government Fee",
+            "lblGovFee": "Official Fee",
             "lblServiceFee": "Service, Preparation & Submission",
             "lblTotalFor": "Total Amount (Per Person):",
             "lblDocs": "Required Documents",
@@ -1105,7 +1140,7 @@ Handling Agent: {agent}`,
                 { type: { he: "ויזת תיירות אלקטרונית eVisa 600", en: "eVisa 600 Tourist" }, time: { he: "עד 30 ימי עבודה", en: "Up to 30 business days" }, validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, feeUsd: 200, serviceUsd: 65, tag: "electronic",
                   docs: { he: ["דרכון בתוקף (מומלץ 6 חודשים+) + צילום עמוד הפרטים", "תמונת פספורט עדכנית (רקע לבן)", "הוכחת אמצעים כלכליים (דפי חשבון בנק)", "אישורי טיסה ושהייה (מלון)", "ביטוח נסיעות (מומלץ)"], en: ["Valid passport (6+ months recommended) + bio-page copy", "Recent passport photo (white background)", "Proof of financial means (bank statements)", "Flight & accommodation bookings", "Travel insurance (recommended)"] } },
                 { type: { he: "ויזת עסקים אלקטרונית eVisa 600", en: "eVisa 600 Business" }, time: { he: "עד 14-25 ימי עבודה", en: "Up to 14-25 business days" }, validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, feeUsd: 200, serviceUsd: 65, tag: "electronic",
-                  docs: { he: ["דרכון בתוקף (מומלץ 6 חם+) + צילום עמוד הפרטים", "תמונת פספורט עדכנית (רקע לבן)", "מכתב מהמעסיק / הזמנה עסקית", "הוכחת אמצעים כלכליים", "אישורי טיסה ושהייה"], en: ["Valid passport (6+ months recommended) + bio-page copy", "Recent passport photo (white background)", "Employer letter / business invitation", "Proof of financial means", "Flight & accommodation bookings"] } }
+                  docs: { he: ["דרכון בתוקף (מומלץ 6 חודשים+) + צילום עמוד הפרטים", "תמונת פספורט עדכנית (רקע לבן)", "מכתב מהמעסיק / הזמנה עסקית", "הוכחת אמצעים כלכליים", "אישורי טיסה ושהייה"], en: ["Valid passport (6+ months recommended) + bio-page copy", "Recent passport photo (white background)", "Employer letter / business invitation", "Proof of financial means", "Flight & accommodation bookings"] } }
             ]
         },
         "NZ": { 
@@ -1219,7 +1254,7 @@ Handling Agent: {agent}`,
         "KR": { 
             name: { he: "דרום קוריאה", en: "South Korea" }, flag: "fi-kr", options: [
                 { type: { he: "אישור כניסה אלקטרוני K-ETA, תיירות / עסקים, כניסות מרובות", en: "K-ETA Electronic Authorization, Tourist/Business, Multiple Entries" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "3 שנים", en: "3 years" }, feeUsd: 8, serviceUsd: 25, tag: "electronic",
-                  docs: { he: ["דרכון בתוקף (מומלץ 6 חודשים+)", "תמונת פנים דיגיטלית (לא נדרשת באפליקציה הסלולרית)", "כתובת שהייה בקוריאה", "מומלץ להגיש 72 שעות לפני הנסיעה"], en: ["Valid passport (6+ months recommended)", "Digital face photo (not required via mobile app)", "Accommodation address in Korea", "Recommended to apply 72h before travel"] } }
+                  docs: { he: ["דרכון בתוקף (מומלץ 6 חודשים+)", "תמונת פנים דיגיטלית (לא נדרשת באפליקציה הסלולרית)", "מומלץ להגיש 72 שעות לפני הנסיעה"], en: ["Valid passport (6+ months recommended)", "Digital face photo (not required via mobile app)", "Recommended to apply 72h before travel"] } }
             ]
         },
         "LK": { 
@@ -1259,7 +1294,7 @@ Handling Agent: {agent}`,
             name: { he: "ניגריה", en: "Nigeria" }, flag: "fi-ng",
             options: [
                 { 
-                    type: { he: "אשרת תיירות אלקטרונית eVisa", en: "Electronic Tourist eVisa" }, 
+                    type: { he: "ויזת תיירות אלקטרונית eVisa", en: "Electronic Tourist eVisa" }, 
                     time: { he: "24-72 שעות", en: "24-72 hours" }, 
                     validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, 
                     feeUsd: 660, 
@@ -1284,7 +1319,7 @@ Handling Agent: {agent}`,
                 },
                 { 
                     type: { he: "ויזת כניסות מרובות (Multi) ל-3 חודשים - פיזית בדרכון", en: "Multiple Entry Visa (3 Months) - Physical in Passport" }, 
-                    time: { he: "כ-10 ימי עסקים", en: "Approx. 10 business days" }, 
+                    time: { he: "כ-10 ימי עבודה", en: "Approx. 10 business days" }, 
                     validity: { he: "3 חודשים", en: "3 months" }, 
                     feeUsd: 660, 
                     serviceUsd: 100, 
@@ -1298,7 +1333,7 @@ Handling Agent: {agent}`,
         },
         "CU": { 
             name: { he: "קובה", en: "Cuba" }, flag: "fi-cu", options: [
-                { type: { he: "ויזת תיירות אלקטרונית eVisa לקובה", en: "Cuba Tourist eVisa" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "90 ימים (שהות עד 90 ימים)", en: "90 days (Max 90 days stay)" }, feeUsd: 85, serviceUsd: 55, tag: "electronic",
+                { type: { he: "ויזת תיירות אלקטרונית eVisa לקובה", en: "Cuba Tourist eVisa" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "90 ימים (שהייה עד 90 ימים)", en: "90 days (Max 90 days stay)" }, feeUsd: 85, serviceUsd: 55, tag: "electronic",
                   docs: { he: ["דרכון בתוקף 6 חודשים לפחות מיום הכניסה", "צילום ברור וצבעוני של עמוד הפרטים בדרכון", "אישור כרטיס טיסה הלוך-חזור", "פרטי לינה / הזמנת מלון בקובה"], en: ["Passport valid for at least 6 months", "Clear color scan of passport bio-page", "Confirmed round-trip flight ticket", "Hotel booking or accommodation address in Cuba"] } }
             ]
         }
