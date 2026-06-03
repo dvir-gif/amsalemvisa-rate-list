@@ -97,7 +97,7 @@
         body.dark-mode .process-tag-electronic {
             background-color: rgba(52, 211, 153, 0.15);
             color: #34d399;
-            border-color: rgba(52, 211, 153, 0.3);
+            border-color: rgba(52, 211_153, 0.3);
         }
         /* אפור ניטרלי, נקי ומינימליסטי */
         .process-tag-physical {
@@ -1076,8 +1076,8 @@ Handling Agent: {agent}`,
         }
     }
 
-    // מאגר נתוני הויזות ללא דרום אפריקה, רוסיה ואירופה. 
-    // דרישות המסמכים נוקו מדרישת דוא״ל ומאמצעי תשלום לבקשת הלקוח.
+    // מאגר נתוני הויזות. מחירים מספריים (feeUsd / serviceUsd); הסה"כ מחושב אוטומטית.
+    // דגל ups:true ברמת המדינה מציג את הערת שילוח המסמכים.
     const visaData = {
         "US": { 
             name: { he: "ארה״ב", en: "USA" }, flag: "fi-us", ups: true,
@@ -1115,7 +1115,7 @@ Handling Agent: {agent}`,
             ]
         },
         "AE": { 
-            name: { he: "דובאי", en: "UAE / Dubai" }, flag: "fi-ae", options: [
+            name: { he: "איחוד האמירויות", en: "UAE" }, flag: "fi-ae", options: [
                 { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, feeUsd: 150, serviceUsd: 45, tag: "electronic",
                   docs: { he: ["צילום צבעוני של עמוד הפרטים בדרכון (תוקף 6 חודשים+)", "תמונת פספורט צבעונית עדכנית (רקע לבן, 43x55 מ״מ)", "אישורי טיסה ומלון"], en: ["Clear color scan of passport bio page (valid 6+ months)", "Recent color passport photo (white background, 43x55mm)", "Flight & hotel confirmations"] } }
             ]
@@ -1219,7 +1219,7 @@ Handling Agent: {agent}`,
         "KR": { 
             name: { he: "דרום קוריאה", en: "South Korea" }, flag: "fi-kr", options: [
                 { type: { he: "אישור כניסה אלקטרוני K-ETA, תיירות / עסקים, כניסות מרובות", en: "K-ETA Electronic Authorization, Tourist/Business, Multiple Entries" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "3 שנים", en: "3 years" }, feeUsd: 8, serviceUsd: 25, tag: "electronic",
-                  docs: { he: ["דרכון בתוקף (מומלץ 6 חודשים+)", "תמונת פנים דיגיטלית (לא נדרש באפליקציה הסלולרית)", "כתובת שהייה בקוריאה", "מומלץ להגיש 72 שעות לפני הנסיעה"], en: ["Valid passport (6+ months recommended)", "Digital face photo (not required via mobile app)", "Accommodation address in Korea", "Recommended to apply 72h before travel"] } }
+                  docs: { he: ["דרכון בתוקף (מומלץ 6 חודשים+)", "תמונת פנים דיגיטלית (לא נדרש באפליקציה הסלולרית)", "מומלץ להגיש 72 שעות לפני הנסיעה"], en: ["Valid passport (6+ months recommended)", "Digital face photo (not required via mobile app)", "Recommended to apply 72h before travel"] } }
             ]
         },
         "LK": { 
