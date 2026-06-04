@@ -524,7 +524,7 @@
         }
         .ups-note-icon { font-size: 1.6em; flex-shrink: 0; }
 
-        /* --- אזור יצירת קשר (כרטיסיות גדולות כמו בהתחלה) --- */
+        /* --- אזור יצירת קשר --- */
         .contact-section { 
             background-color: var(--dark-section-bg); 
             color: #ffffff; 
@@ -696,7 +696,7 @@
         </div>
         <!-- מצב כהה/בהיר -->
         <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="מצב כהה / בהיר" aria-label="החלפת מצב תצוגה בהיר/כהה">
-            <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="20" height="20">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
         </button>
@@ -712,15 +712,15 @@
     
     <div class="hero-features">
         <div class="feature-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
             <span data-i18n="feat1">שירות מקצועי ואמין</span>
         </div>
         <div class="feature-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
             <span data-i18n="feat2">עלויות וזמנים במקום אחד</span>
         </div>
         <div class="feature-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
             <span data-i18n="feat3">טיפול מהיר</span>
         </div>
     </div>
@@ -737,11 +737,11 @@
     <!-- כפתורי מעבר התצוגה (טאבים) -->
     <div class="tabs-container">
         <button class="tab-btn active" id="tabCardsBtn" onclick="switchView('cards')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
             <span data-i18n="tabCards">כרטיסי מדינות</span>
         </button>
         <button class="tab-btn" id="tabTableBtn" onclick="switchView('table')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="6" x2="20" y2="6"></line><line x1="9" y1="12" x2="20" y2="12"></line><line x1="9" y1="18" x2="20" y2="18"></line><line x1="5" y1="6" x2="5.01" y2="6"></line><line x1="5" y1="12" x2="5.01" y2="12"></line><line x1="5" y1="18" x2="5.01" y2="18"></line></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="9" y1="6" x2="20" y2="6"></line><line x1="9" y1="12" x2="20" y2="12"></line><line x1="9" y1="18" x2="20" y2="18"></line><line x1="5" y1="6" x2="5.01" y2="6"></line><line x1="5" y1="12" x2="5.01" y2="12"></line><line x1="5" y1="18" x2="5.01" y2="18"></line></svg>
             <span data-i18n="tabTable">מחירון מלא ושקוף</span>
         </button>
     </div>
@@ -760,7 +760,7 @@
                     <th data-i18n="thType">סוג אשרה / אישור כניסה</th>
                     <th class="sortable" data-sort="time" onclick="sortTable('time')"><span data-i18n="thTime">זמן טיפול</span><span class="sort-arrow"></span></th>
                     <th data-i18n="thValidity">תוקף האשרה</th>
-                    <th data-i18n="thGovFee">אגרה רשמית</th>
+                    <th data-i18n="thGovFee">אגרת רשויות</th>
                     <th data-i18n="thServiceFee">דמי שירות, הכנה והגשה</th>
                     <th class="sortable" data-sort="total" onclick="sortTable('total')"><span data-i18n="thTotal">סה"כ לאדם</span><span class="sort-arrow"></span></th>
                 </tr>
@@ -777,7 +777,7 @@
     <div class="contact-grid">
         <a href="tel:+97249700900" class="contact-card">
             <div class="contact-icon-wrapper">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="32" height="32">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                 </svg>
             </div>
@@ -786,7 +786,7 @@
         </a>
         <a href="https://wa.me/97246700998" target="_blank" rel="noopener" class="contact-card">
             <div class="contact-icon-wrapper">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="32" height="32">
                     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
                 </svg>
             </div>
@@ -795,7 +795,7 @@
         </a>
         <a href="mailto:visa.dept@amsalem.com" class="contact-card">
             <div class="contact-icon-wrapper">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="32" height="32">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                     <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
@@ -807,14 +807,14 @@
     
     <!-- הערות משפטיות בתחתית העמוד הראשי -->
     <div class="legal-footer">
-        <p class="legal-text" data-i18n="legalDisclaimer">* האגרות, זמני הטיפול, רשימת המסמכים ותנאי הזכאות נתונים להחלטתן הבלעדית של הרשויות והשגרירויות ועשויים להשתנות בכל עת וללא הודעה מוקדמת. רשימת המסמכים כללית בלבד, וייתכן שיתווספו דרישות פרטניות בהתאם לנסיבות הבקשה. זמני הטיפול משוערים ומתייחסים לימי עבודה בלבד, החל ממועד קליטת הבקשה בשגרירות. המחירים הנקובים בדולר הם הערכה בלבד ועשויים להשתנות במעט בהתאם לשער החליפין ביום ההגשה.</p>
+        <p class="legal-text" data-i18n="legalDisclaimer">* האגרות, זמני הטיפול, רשימת המסמכים ותנאי הזכאות נתונים להחלטתן הבלעדית של הרשויות והשגרירויות ועשויים להשתנות בכל עת ללא הודעה מוקדמת. רשימת המסמכים כללית בלבד, וייתכן שיתווספו דרישות פרטניות בהתאם לנסיבות הבקשה. זמני הטיפול משוערים ומתייחסים לימי עבודה בלבד, החל ממועד קליטת הבקשה בשגרירות. המחירים הנקובים בדולר הם הערכה בלבד ועשויים להשתנות במעט בהתאם לשער החליפין ביום ההגשה.</p>
         <div class="update-badge" data-i18n="lastUpdated">מחירון זה מעודכן לחודש יוני 2026</div>
     </div>
 </section>
 
 <!-- כפתור צף להעברת ליד -->
 <button class="fab-transfer" onclick="openLeadModal()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="22" height="22">
         <line x1="22" y1="2" x2="11" y2="13"></line>
         <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
     </svg>
@@ -830,7 +830,7 @@
         </div>
         <form class="lead-form" id="leadForm">
             <!-- שדה מלכודת לבוטים: בני אדם לא רואים ולא ממלאים -->
-            <input type="text" id="company_website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <input type="text" id="lead_honeypot_check" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="form-group">
                 <label for="agentName" data-i18n="lblAgentName">שם הסוכן המטפל:</label>
                 <input type="text" id="agentName" data-i18n-placeholder="plcAgentName" placeholder="הכנס את שמך" required>
@@ -906,7 +906,7 @@
             "thType": "סוג אשרה / אישור כניסה",
             "thTime": "זמן טיפול",
             "thValidity": "תוקף האשרה",
-            "thGovFee": "אגרה רשמית",
+            "thGovFee": "אגרת רשויות",
             "thServiceFee": "דמי שירות, הכנה והגשה",
             "thTotal": "סה\"כ לאדם",
             "contactTitle": "אנחנו כאן לכל שאלה",
@@ -934,7 +934,7 @@
             "printSinglePax": "המחירים המוצגים מתייחסים לנוסע יחיד",
             "lblProcessingTime": "זמן טיפול משוער",
             "lblValidity": "תוקף האשרה",
-            "lblGovFee": "אגרה רשמית",
+            "lblGovFee": "אגרת רשויות",
             "lblServiceFee": "דמי שירות, הכנה והגשה",
             "lblTotalFor": "עלות כוללת (לאדם):",
             "lblDocs": "מסמכים ודרישות נדרשים",
@@ -942,8 +942,8 @@
             "btnPrint": "הדפס כ-PDF",
             "btnTransferLead": "העבר פרטי לקוח למחלקה",
             "upsTitle": "שירות שילוח מסמכים (UPS):",
-            "upsDesc": "אם נדרש לשלוח אלינו דרכון פיזי, אנו מציעים שירות איסוף ושילוח מסמכים מאובטח בתוספת של USD 25.00 בלבד (בכפוף ללוחות הזמנים של חברת השילוח).",
-            "legalDisclaimer": "* האגרות, זמני הטיפול, רשימת המסמכים ותנאי הזכאות נתונים להחלטתן הבלעדית של הרשויות והשגרירויות ועשויים להשתנות בכל עת וללא הודעה מוקדמת. רשימת המסמכים כללית בלבד, וייתכן שיתווספו דרישות פרטניות בהתאם לנסיבות הבקשה. זמני הטיפול משוערים ומתייחסים לימי עבודה בלבד, החל ממועד קליטת הבקשה בשגרירות. המחירים הנקובים בדולר הם הערכה בלבד ועשויים להשתנות במעט בהתאם לשער החליפין ביום ההגשה.",
+            "upsDesc": "במידה ונדרש לשלוח אלינו דרכון פיזי, אנו מציעים שירות איסוף ושילוח מסמכים מאובטח בתוספת של USD 25.00 בלבד (בכפוף ללוחות הזמנים של חברת השילוח).",
+            "legalDisclaimer": "* האגרות, זמני הטיפול, רשימת המסמכים ותנאי הזכאות נתונים להחלטתן הבלעדית של הרשויות והשגרירויות ועשויים להשתנות בכל עת ללא הודעה מוקדמת. רשימת המסמכים כללית בלבד, וייתכן שיתווספו דרישות פרטניות בהתאם לנסיבות הבקשה. זמני הטיפול משוערים ומתייחסים לימי עבודה בלבד, החל ממועד קליטת הבקשה בשגרירות. המחירים הנקובים בדולר הם הערכה בלבד ועשויים להשתנות במעט בהתאם לשער החליפין ביום ההגשה.",
             "lastUpdated": "מחירון זה מעודכן לחודש יוני 2026",
             "footerThanks": "נשמח לעמוד לרשותכם בכל שאלה,",
             "footerTeam": "צוות מחלקת הויזות - אמסלם טורס",
@@ -1120,7 +1120,7 @@ Handling Agent: {agent}`,
                 { type: { he: "אישור כניסה אלקטרוני ESTA, תיירות / עסקים", en: "ESTA Electronic Authorization, Tourist/Business" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "שנתיים או עד פקיעת הדרכון", en: "2 years or until passport expiry" }, feeUsd: 40, serviceUsd: 35, tag: "electronic",
                   docs: { he: ["דרכון ביומטרי (אלקטרוני עם שבב) בתוקף חצי שנה לפחות", "פרטי תעסוקה והיסטוריית עבודה (5 שנים אחרונות)", "פרטי חשבונות רשתות חברתיות (5 שנים אחרונות)", "מומלץ לשאת אישורי טיסה/מלון והוכחת אמצעים"], en: ["Valid biometric (e-passport with chip) valid 6+ months", "Employment details & 5-year work history", "Social media account details (past 5 years)", "Recommended: flight/hotel bookings & proof of funds"] } },
                 { type: { he: "ויזת B1/B2 לארה״ב, תיירות / עסקים", en: "US B1/B2 Visa, Tourist/Business" }, time: { he: "בכפוף לזמינות תורים; לרוב 7-14 ימי עבודה לאחר הראיון", en: "Subject to appointment availability; 7-14 days post-interview" }, validity: { he: "עד 10 שנים", en: "Up to 10 years" }, feeUsd: 205, serviceUsd: 85, tag: "physical",
-                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות מעבר למועד הנסיעה", "מילוי טופס DS-160 מקוון ודף האישור", "תמונת פספורט עדכנית (רקע לבן, 5x5 ס״מ)", "אישור תשלום אגרת השגרירות", "זימון לראיון בשגרירות", "הוכחת קשרים לישראל (תלוש שכר / אישור מעסיק / נכסים)"], en: ["Passport valid 6+ months beyond travel", "Completed online DS-160 form & confirmation page", "Recent passport photo (white background, 5x5cm)", "Embassy fee payment confirmation", "Embassy interview appointment", "Proof of ties to Israel (payslip / employer letter / assets)"] } }
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות מעבר למועד הנסיעה", "מילוי טופס DS-160 מקוון ודף האישור", "תמונת פוסטר עדכנית (רקע לבן, 5x5 ס״מ)", "אישור תשלום אגרת השגרירות", "זימון לראיון בשגרירות", "הוכחת קשרים לישראל (תלוש שכר / אישור מעסיק / נכסים)"], en: ["Passport valid 6+ months beyond travel", "Completed online DS-160 form & confirmation page", "Recent passport photo (white background, 5x5cm)", "Embassy fee payment confirmation", "Embassy interview appointment", "Proof of ties to Israel (payslip / employer letter / assets)"] } }
             ]
         },
         "CA": { 
@@ -1140,7 +1140,7 @@ Handling Agent: {agent}`,
                 { type: { he: "ויזת תיירות אלקטרונית eVisa 600", en: "eVisa 600 Tourist" }, time: { he: "עד 30 ימי עבודה", en: "Up to 30 business days" }, validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, feeUsd: 200, serviceUsd: 65, tag: "electronic",
                   docs: { he: ["דרכון בתוקף (מומלץ 6 חודשים+) + צילום עמוד הפרטים", "תמונת פספורט עדכנית (רקע לבן)", "הוכחת אמצעים כלכליים (דפי חשבון בנק)", "אישורי טיסה ושהייה (מלון)", "ביטוח נסיעות (מומלץ)"], en: ["Valid passport (6+ months recommended) + bio-page copy", "Recent passport photo (white background)", "Proof of financial means (bank statements)", "Flight & accommodation bookings", "Travel insurance (recommended)"] } },
                 { type: { he: "ויזת עסקים אלקטרונית eVisa 600", en: "eVisa 600 Business" }, time: { he: "עד 14-25 ימי עבודה", en: "Up to 14-25 business days" }, validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, feeUsd: 200, serviceUsd: 65, tag: "electronic",
-                  docs: { he: ["דרכון בתוקף (מומלץ 6 חודשים+) + צילום עמוד הפרטים", "תמונת פספורט עדכנית (רקע לבן)", "מכתב מהמעסיק / הזמנה עסקית", "הוכחת אמצעים כלכליים", "אישורי טיסה ושהייה"], en: ["Valid passport (6+ months recommended) + bio-page copy", "Recent passport photo (white background)", "Employer letter / business invitation", "Proof of financial means", "Flight & accommodation bookings"] } }
+                  docs: { he: ["דרכון בתוקף (מומלץ 6 חם+) + צילום עמוד הפרטים", "תמונת פספורט עדכנית (רקע לבן)", "מכתב מהמעסיק / הזמנה עסקית", "הוכחת אמצעים כלכליים", "אישורי טיסה ושהייה"], en: ["Valid passport (6+ months recommended) + bio-page copy", "Recent passport photo (white background)", "Employer letter / business invitation", "Proof of financial means", "Flight & accommodation bookings"] } }
             ]
         },
         "NZ": { 
@@ -1187,10 +1187,18 @@ Handling Agent: {agent}`,
         },
         "VN": { 
             name: { he: "וייטנאם", en: "Vietnam" }, flag: "fi-vn", options: [
-                { type: { he: "ויזת תיירות / עסקים, כניסה אחת", en: "Tourist/Business Visa, Single Entry" }, time: { he: "עד 3-6 ימי עבודה", en: "Up to 3-6 business days" }, validity: { he: "עד 90 ימים", en: "Up to 90 days" }, feeUsd: 55, serviceUsd: 35, tag: "electronic",
-                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם עמוד ריק", "סריקת עמוד הפרטים בדרכון (JPG)", "תמונת פספורט (4x6 ס״מ, רקע לבן, ללא משקפיים)", "נקודת כניסה ויציאה מבוקשת", "כתובת שהייה בוייטנאם (מלון)"], en: ["Passport valid 6+ months with a blank page", "Scan of passport bio page (JPG)", "Portrait photo (4x6cm, white background, no glasses)", "Intended port of entry & exit", "Accommodation address in Vietnam (hotel)"] } },
-                { type: { he: "ויזת תיירות / עסקים, כניסות מרובות", en: "Tourist/Business Visa, Multiple Entries" }, time: { he: "עד 3-6 ימי עבודה", en: "Up to 3-6 business days" }, validity: { he: "עד 90 ימים", en: "Up to 90 days" }, feeUsd: 80, serviceUsd: 45, tag: "electronic",
-                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם עמוד ריק", "סריקת עמוד הפרטים בדרכון (JPG)", "תמונת פספורט (4x6 ס״מ, רקע לבן, ללא משקפיים)", "נקודת כניסה ויציאה מבוקשת", "כתובת שהייה בוייטנאם (מלון)"], en: ["Passport valid 6+ months with a blank page", "Scan of passport bio page (JPG)", "Portrait photo (4x6cm, white background, no glasses)", "Intended port of entry & exit", "Accommodation address in Vietnam (hotel)"] } }
+                { type: { he: "אשרת תיירות אלקטרונית (eVisa) - נוהל רגיל", en: "eVisa Tourist - Regular" }, time: { he: "7-8 ימי עסקים", en: "7-8 business days" }, validity: { he: "עד 90 ימים", en: "Up to 90 days" }, feeUsd: 45, serviceUsd: 35, tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם עמוד ריק", "סריקת עמוד הפרטים בדרכון (JPG)", "תמונת פספורט (4x6 ס״מ, רקע לבן, ללא משקפיים)", "נקודת כניסה ויציאה מבוקשת", "פרטי לינה / מלון בוייטנאם"], en: ["Passport valid 6+ months with a blank page", "Scan of passport bio page (JPG)", "Portrait photo (4x6cm, white background, no glasses)", "Intended port of entry & exit", "Hotel / accommodation details in Vietnam"] } },
+                { type: { he: "אשרת תיירות אלקטרונית (eVisa) - נוהל מהיר", en: "eVisa Tourist - Fast" }, time: { he: "6 ימי עסקים", en: "6 business days" }, validity: { he: "עד 90 ימים", en: "Up to 90 days" }, feeUsd: 50, serviceUsd: 35, tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם עמוד ריק", "סריקת עמוד הפרטים בדרכון (JPG)", "תמונת פספורט (4x6 ס״מ, רקע לבן, ללא משקפיים)", "נקודת כניסה ויציאה מבוקשת", "פרטי לינה / מלון בוייטנאם"], en: ["Passport valid 6+ months with a blank page", "Scan of passport bio page (JPG)", "Portrait photo (4x6cm, white background, no glasses)", "Intended port of entry & exit", "Hotel / accommodation details in Vietnam"] } },
+                { type: { he: "אשרת תיירות אלקטרונית (eVisa) - נוהל מהיר מועדף", en: "eVisa Tourist - Express Fast" }, time: { he: "4-5 ימי עסקים", en: "4-5 business days" }, validity: { he: "עד 90 ימים", en: "Up to 90 days" }, feeUsd: 55, serviceUsd: 40, tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם עמוד ריק", "סריקת עמוד הפרטים בדרכון (JPG)", "תמונת פספורט (4x6 ס״מ, רקע לבן, ללא משקפיים)", "נקודת כניסה ויציאה מבוקשת", "פרטי לינה / מלון בוייטנאם"], en: ["Passport valid 6+ months with a blank page", "Scan of passport bio page (JPG)", "Portrait photo (4x6cm, white background, no glasses)", "Intended port of entry & exit", "Hotel / accommodation details in Vietnam"] } },
+                { type: { he: "אשרת תיירות אלקטרונית (eVisa) - נוהל דחוף", en: "eVisa Tourist - Urgent" }, time: { he: "3 ימי עסקים", en: "3 business days" }, validity: { he: "עד 90 ימים", en: "Up to 90 days" }, feeUsd: 60, serviceUsd: 45, tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם עמוד ריק", "סריקת עמוד הפרטים בדרכון (JPG)", "תמונת פספורט (4x6 ס״מ, רקע לבן, ללא משקפיים)", "נקודת כניסה ויציאה מבוקשת", "פרטי לינה / מלון בוייטנאם"], en: ["Passport valid 6+ months with a blank page", "Scan of passport bio page (JPG)", "Portrait photo (4x6cm, white background, no glasses)", "Intended port of entry & exit", "Hotel / accommodation details in Vietnam"] } },
+                { type: { he: "אשרת תיירות אלקטרונית (eVisa) - נוהל בהול", en: "eVisa Tourist - Super Urgent" }, time: { he: "יומיים (2 ימי עסקים)", en: "2 business days" }, validity: { he: "עד 90 ימים", en: "Up to 90 days" }, feeUsd: 65, serviceUsd: 55, tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם עמוד ריק", "סריקת עמוד הפרטים בדרכון (JPG)", "תמונת פספורט (4x6 ס״מ, רקע לבן, ללא משקפיים)", "נקודת כניסה ויציאה מבוקשת", "פרטי לינה / מלון בוייטנאם"], en: ["Passport valid 6+ months with a blank page", "Scan of passport bio page (JPG)", "Portrait photo (4x6cm, white background, no glasses)", "Intended port of entry & exit", "Hotel / accommodation details in Vietnam"] } },
+                { type: { he: "אשרת תיירות אלקטרונית (eVisa) - נוהל אקספרס בהול", en: "eVisa Tourist - Express VIP" }, time: { he: "יום עסקים אחד (24 שעות)", en: "1 business day (24 hours)" }, validity: { he: "עד 90 ימים", en: "Up to 90 days" }, feeUsd: 75, serviceUsd: 65, tag: "electronic",
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם עמוד ריק", "סריקת עמוד הפרטים בדרכון (JPG)", "תמונת פספורט (4x6 ס״מ, רקע לבן, ללא משקפיים)", "נקודת כניסה ויציאה מבוקשת", "פרטי לינה / מלון בוייטנאם"], en: ["Passport valid 6+ months with a blank page", "Scan of passport bio page (JPG)", "Portrait photo (4x6cm, white background, no glasses)", "Intended port of entry & exit", "Hotel / accommodation details in Vietnam"] } }
             ]
         },
         "MA": { 
@@ -1234,7 +1242,7 @@ Handling Agent: {agent}`,
         "SC": { 
             name: { he: "סיישל", en: "Seychelles" }, flag: "fi-sc", options: [
                 { type: { he: "אישור כניסה לתיירות / עסקים (Travel Authorization)", en: "Travel Authorization, Tourist/Business" }, time: { he: "עד 24-72 שעות", en: "Up to 24-72 hours" }, validity: { he: "30 ימים", en: "30 days" }, feeUsd: 20, serviceUsd: 25, tag: "permit",
-                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות + סריקת הדרכון", "תמונה דיגיטלית / סלפי (רקע בהיר)", "כרטיס טיסה הלוך-חזור", "אישור הזמנת מלון / לינה", "ביטוח נסיעות רפואי (מומלץ/לעיתים נדרש)"], en: ["Passport valid 6+ months + passport scan", "Digital photo / selfie (plain background)", "Return/onward flight ticket", "Hotel / accommodation confirmation", "Travel medical insurance (recommended / sometimes required)"] } }
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות + סריקת הדרכון", "תמונה דיגיטלית / סלפי (רקע בהיר)", "כרטיס טיסה הלוך-חזור", "אישור הזמנת מלון / לינה", "بيטוח נסיעות רפואי (מומלץ/לעיתים נדרש)"], en: ["Passport valid 6+ months + passport scan", "Digital photo / selfie (plain background)", "Return/onward flight ticket", "Hotel / accommodation confirmation", "Travel medical insurance (recommended / sometimes required)"] } }
             ]
         },
         "AM": { 
@@ -1294,7 +1302,7 @@ Handling Agent: {agent}`,
             name: { he: "ניגריה", en: "Nigeria" }, flag: "fi-ng",
             options: [
                 { 
-                    type: { he: "ויזת תיירות אלקטרונית eVisa", en: "Electronic Tourist eVisa" }, 
+                    type: { he: "אשרת תיירות אלקטרונית eVisa", en: "Electronic Tourist eVisa" }, 
                     time: { he: "24-72 שעות", en: "24-72 hours" }, 
                     validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, 
                     feeUsd: 660, 
@@ -1319,7 +1327,7 @@ Handling Agent: {agent}`,
                 },
                 { 
                     type: { he: "ויזת כניסות מרובות (Multi) ל-3 חודשים - פיזית בדרכון", en: "Multiple Entry Visa (3 Months) - Physical in Passport" }, 
-                    time: { he: "כ-10 ימי עבודה", en: "Approx. 10 business days" }, 
+                    time: { he: "כ-10 ימי עסקים", en: "Approx. 10 business days" }, 
                     validity: { he: "3 חודשים", en: "3 months" }, 
                     feeUsd: 660, 
                     serviceUsd: 100, 
@@ -1333,8 +1341,35 @@ Handling Agent: {agent}`,
         },
         "CU": { 
             name: { he: "קובה", en: "Cuba" }, flag: "fi-cu", options: [
-                { type: { he: "ויזת תיירות אלקטרונית eVisa לקובה", en: "Cuba Tourist eVisa" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "90 ימים (שהייה עד 90 ימים)", en: "90 days (Max 90 days stay)" }, feeUsd: 85, serviceUsd: 55, tag: "electronic",
+                { type: { he: "ויזת תיירות אלקטרונית eVisa לקובה", en: "Cuba Tourist eVisa" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "90 ימים (שהות עד 90 ימים)", en: "90 days (Max 90 days stay)" }, feeUsd: 85, serviceUsd: 55, tag: "electronic",
                   docs: { he: ["דרכון בתוקף 6 חודשים לפחות מיום הכניסה", "צילום ברור וצבעוני של עמוד הפרטים בדרכון", "אישור כרטיס טיסה הלוך-חזור", "פרטי לינה / הזמנת מלון בקובה"], en: ["Passport valid for at least 6 months", "Clear color scan of passport bio-page", "Confirmed round-trip flight ticket", "Hotel booking or accommodation address in Cuba"] } }
+            ]
+        },
+        "ID": {
+            name: { he: "אינדונזיה", en: "Indonesia" }, flag: "fi-id",
+            options: [
+                {
+                    type: { he: "אשרת תיירות / עסקים אלקטרונית eVisa", en: "Tourist / Business eVisa" },
+                    time: { he: "3-4 שבועות", en: "3-4 weeks" },
+                    validity: { he: "עד 60 ימים", en: "Up to 60 days" },
+                    feeUsd: 1350, // <--- UPDATED FROM 1500 TO 1350
+                    serviceUsd: 150,
+                    tag: "electronic",
+                    docs: {
+                        he: [
+                            "צילום דרכון בתוקף של מעל שנה (לא ניתן להגיש עם דרכון זמני)",
+                            "תמונת פנים על רקע לבן (ללא חיוך וללא משקפיים, ניתן לצלם בנייד)",
+                            "קורות חיים באנגלית",
+                            "כרטיס טיסה הלוך וחזור"
+                        ],
+                        en: [
+                            "Passport copy valid for over 1 year (temporary passports not accepted)",
+                            "Portrait photo on a white background (no smiling, no glasses, mobile photo accepted)",
+                            "Curriculum Vitae (CV) in English",
+                            "Round-trip flight ticket"
+                        ]
+                    }
+                }
             ]
         }
     };
@@ -1523,7 +1558,7 @@ Handling Agent: {agent}`,
             <div class="visa-docs" id="reqs-${index}">
                 <h4 class="visa-docs-title">
                     <span>${t('lblDocs')}</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#00BCD4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#00BCD4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="22" height="22">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                         <polyline points="14 2 14 8 20 8"></polyline>
                         <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -1582,19 +1617,19 @@ Handling Agent: {agent}`,
 
                     <div class="card-action-bar">
                         <button class="action-btn btn-toggle-docs" aria-expanded="false" aria-controls="reqs-${index}" onclick="toggleReqs(${index})">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; color: var(--primary-color);" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; color: var(--primary-color);" aria-hidden="true" width="18" height="18"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                             <span>${t('btnReqs')}</span>
                         </button>
                         <button class="action-btn" onclick="printVisaDetails(${index})">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
                             ${t('btnPrint')}
                         </button>
                         <button class="action-btn action-btn-lead" onclick="openLeadModalWithData('${code}', ${index})">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                             ${t('btnTransferLead')}
                         </button>
                         <button class="action-btn" onclick="copyVisaDetails('${code}', ${index})">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                             ${t('btnCopy')}
                         </button>
                     </div>
@@ -1721,6 +1756,7 @@ Handling Agent: {agent}`,
         openLeadModal(); 
     }
 
+    // סגירת טופס לידים וניקוי
     function closeLeadModal() {
         document.getElementById('leadModalOverlay').style.display = 'none';
         document.getElementById('leadForm').reset();
@@ -1732,7 +1768,7 @@ Handling Agent: {agent}`,
 
     function submitLead(mailType) {
         // בדיקת מלכודת בוטים: אם השדה הנסתר מולא — מדובר בבוט, מתעלמים בשקט
-        const honeypot = document.getElementById('company_website');
+        const honeypot = document.getElementById('lead_honeypot_check');
         if (honeypot && honeypot.value.trim() !== '') { closeLeadModal(); return; }
 
         const form = document.getElementById('leadForm');
