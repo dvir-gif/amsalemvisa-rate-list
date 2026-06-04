@@ -73,7 +73,8 @@
         body.dark-mode {
             --primary-dark: #22d3ee;
             --secondary-color: #e2e8f0;
-            --bg-color: #0f172a;            --text-color: #f8fafc;
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
             --border-color: #334155;
             --panel-bg: #1e293b;
             --calc-bg: #0f172a;
@@ -277,7 +278,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.02); transition: transform 0.2s ease; gap: 8px;
         }
         .feature-item:hover { transform: translateY(-2px); border-color: var(--primary-color); }
-        .feature-item svg { width: 20px; height: 20px; color: var(--primary-color); stroke-width: 2.5; }
+        .feature-item svg { width: 20px; height: 20px; color: var(--primary-color); stroke-width: 2.5; flex-shrink: 0; }
 
         /* --- אזור חיפוש וטאבים --- */
         .controls-section { display: flex; flex-direction: column; align-items: center; max-width: 1200px; margin: 0 auto 30px auto; padding: 0 20px; gap: 25px; }
@@ -434,7 +435,7 @@
             background: var(--accent-tint); padding: 12px 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-top: 12px; border: 1px solid var(--accent-tint-border);
         }
         .visa-price-total span { color: var(--primary-dark); font-weight: 700; font-size: 0.95em; }
-        .visa-price-total strong { font-size: 1.35em; font-weight: 900; color: var(--secondary-color); font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+        .visa-price-total strong { font-size: 1.35em; font-weight: 900; color: var(--secondary-color); }
 
         /* --- אקורדיון חלק לדרישות מסמכים (עיצוב פרימיום נקי ללא וי בצד שמאל) --- */
         .visa-docs {
@@ -608,6 +609,7 @@
         }
         .fab-transfer:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0, 188, 212, 0.5); }
         .fab-transfer svg { width: 22px; height: 22px; }
+        
         .lead-modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(5px); z-index: 3000; display: none; align-items: center; justify-content: center; padding: 20px; }
         .lead-modal { background: var(--panel-bg); border-radius: 20px; width: 100%; max-width: 500px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); overflow: hidden; animation: modalFadeIn 0.3s ease; }
         @keyframes modalFadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -616,6 +618,7 @@
         .lead-modal-close { background: none; border: none; color: #fff; font-size: 1.5em; cursor: pointer; line-height: 1; }
         .lead-form { padding: 25px; display: flex; flex-direction: column; gap: 15px; text-align: start; }
         .form-group { display: flex; flex-direction: column; gap: 5px; }
+        .form-group label { font-weight: 700; color: var(--text-color); font-size: 0.95em; }
         .form-group input, .form-group select, .form-group textarea { padding: 12px 15px; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit; font-size: 1em; outline: none; transition: border-color 0.2s; text-align: start; }
         .form-actions-column { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
         .btn-gmail, .btn-outlook { color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: 800; font-size: 1em; font-family: inherit; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; }
@@ -712,15 +715,15 @@
     
     <div class="hero-features">
         <div class="feature-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
             <span data-i18n="feat1">שירות מקצועי ואמין</span>
         </div>
         <div class="feature-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20" stroke-width="2.5"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
             <span data-i18n="feat2">עלויות וזמנים במקום אחד</span>
         </div>
         <div class="feature-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
             <span data-i18n="feat3">טיפול מהיר</span>
         </div>
     </div>
@@ -853,6 +856,11 @@
                     <option value="" disabled selected data-i18n="plcDestCountry">בחר מדינה...</option>
                 </select>
             </div>
+            <!-- שדה תאריך טיסה מתוכנן ייעודי -->
+            <div class="form-group">
+                <label for="flightDate" data-i18n="lblFlightDate">תאריך טיסה מתוכנן:</label>
+                <input type="date" id="flightDate" required>
+            </div>
             <div class="form-group">
                 <label for="leadNotes" data-i18n="lblNotes">הערות / בקשות מיוחדות:</label>
                 <textarea id="leadNotes" rows="3" data-i18n-placeholder="plcNotes" placeholder="תאריך טיסה משוער, דחיפות, או כל מידע רלוונטי אחר..."></textarea>
@@ -888,7 +896,7 @@
 </div>
 
 <script>
-    /* --- מערכת תרגום (i18n) --- */
+    /* --- STREAMING_CHUNK: Initializing localization systems... --- */
     let currentLang = 'he';
 
     const translations = {
@@ -925,6 +933,7 @@
             "plcClientEmail": "כתובת אימייל ליצירת קשר",
             "lblDestCountry": "מדינת יעד לויזה:",
             "plcDestCountry": "בחר מדינה...",
+            "lblFlightDate": "תאריך טיסה מתוכנן:",
             "lblNotes": "הערות / בקשות מיוחדות:",
             "plcNotes": "תאריך טיסה משוער, דחיפות, או כל מידע רלוונטי אחר...",
             "btnGmail": "שלח באמצעות Gmail",
@@ -962,6 +971,7 @@
 שם הלקוח/חברה: {client}
 טלפון הלקוח: {phone}
 דוא״ל הלקוח: {email}
+תאריך טיסה מתוכנן: {flightDate}
 מדינת יעד מבוקשת: {country}
 
 --- הערות נוספות ---
@@ -1008,6 +1018,7 @@
             "plcClientEmail": "Email address for contact",
             "lblDestCountry": "Destination Country:",
             "plcDestCountry": "Select country...",
+            "lblFlightDate": "Planned Flight Date:",
             "lblNotes": "Notes / Special Requests:",
             "plcNotes": "Estimated flight date, urgency, or any other relevant information...",
             "btnGmail": "Send via Gmail",
@@ -1045,6 +1056,7 @@ Lead Reference: {trackingId}
 Client/Company: {client}
 Phone: {phone}
 Email: {email}
+Planned Flight Date: {flightDate}
 Destination: {country}
 
 --- Additional Notes ---
@@ -1111,8 +1123,9 @@ Handling Agent: {agent}`,
         }
     }
 
-    // מאגר נתוני הויזות. מחירים מספריים (feeUsd / serviceUsd); הסה"כ מחושב אוטומטית.
-    // דגל ups:true ברמת המדינה מציג את הערת שילוח המסמכים.
+    /* --- STREAMING_CHUNK: Setting up the core database variables... --- */
+    // מאגר נתוני הויזות המקיף ללא דרום אפריקה, רוסיה ואירופה. 
+    // דרישות המסמכים נוקו מדרישת דוא״ל ומאמצעי תשלום לבקשת הלקוח.
     const visaData = {
         "US": { 
             name: { he: "ארה״ב", en: "USA" }, flag: "fi-us", ups: true,
@@ -1120,7 +1133,7 @@ Handling Agent: {agent}`,
                 { type: { he: "אישור כניסה אלקטרוני ESTA, תיירות / עסקים", en: "ESTA Electronic Authorization, Tourist/Business" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "שנתיים או עד פקיעת הדרכון", en: "2 years or until passport expiry" }, feeUsd: 40, serviceUsd: 35, tag: "electronic",
                   docs: { he: ["דרכון ביומטרי (אלקטרוני עם שבב) בתוקף חצי שנה לפחות", "פרטי תעסוקה והיסטוריית עבודה (5 שנים אחרונות)", "פרטי חשבונות רשתות חברתיות (5 שנים אחרונות)", "מומלץ לשאת אישורי טיסה/מלון והוכחת אמצעים"], en: ["Valid biometric (e-passport with chip) valid 6+ months", "Employment details & 5-year work history", "Social media account details (past 5 years)", "Recommended: flight/hotel bookings & proof of funds"] } },
                 { type: { he: "ויזת B1/B2 לארה״ב, תיירות / עסקים", en: "US B1/B2 Visa, Tourist/Business" }, time: { he: "בכפוף לזמינות תורים; לרוב 7-14 ימי עבודה לאחר הראיון", en: "Subject to appointment availability; 7-14 days post-interview" }, validity: { he: "עד 10 שנים", en: "Up to 10 years" }, feeUsd: 205, serviceUsd: 85, tag: "physical",
-                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות מעבר למועד הנסיעה", "מילוי טופס DS-160 מקוון ודף האישור", "תמונת פוסטר עדכנית (רקע לבן, 5x5 ס״מ)", "אישור תשלום אגרת השגרירות", "זימון לראיון בשגרירות", "הוכחת קשרים לישראל (תלוש שכר / אישור מעסיק / נכסים)"], en: ["Passport valid 6+ months beyond travel", "Completed online DS-160 form & confirmation page", "Recent passport photo (white background, 5x5cm)", "Embassy fee payment confirmation", "Embassy interview appointment", "Proof of ties to Israel (payslip / employer letter / assets)"] } }
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות מעבר למועד הנסיעה", "מילוי טופס DS-160 מקוון ודף האישור", "תמונת פספורט עדכנית (רקע לבן, 5x5 ס״מ)", "אישור תשלום אגרת השגרירות", "זימון לראיון בשגרירות", "הוכחת קשרים לישראל (תלוש שכר / אישור מעסיק / נכסים)"], en: ["Passport valid 6+ months beyond travel", "Completed online DS-160 form & confirmation page", "Recent passport photo (white background, 5x5cm)", "Embassy fee payment confirmation", "Embassy interview appointment", "Proof of ties to Israel (payslip / employer letter / assets)"] } }
             ]
         },
         "CA": { 
@@ -1242,7 +1255,7 @@ Handling Agent: {agent}`,
         "SC": { 
             name: { he: "סיישל", en: "Seychelles" }, flag: "fi-sc", options: [
                 { type: { he: "אישור כניסה לתיירות / עסקים (Travel Authorization)", en: "Travel Authorization, Tourist/Business" }, time: { he: "עד 24-72 שעות", en: "Up to 24-72 hours" }, validity: { he: "30 ימים", en: "30 days" }, feeUsd: 20, serviceUsd: 25, tag: "permit",
-                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות + סריקת הדרכון", "תמונה דיגיטלית / סלפי (רקע בהיר)", "כרטיס טיסה הלוך-חזור", "אישור הזמנת מלון / לינה", "بيטוח נסיעות רפואי (מומלץ/לעיתים נדרש)"], en: ["Passport valid 6+ months + passport scan", "Digital photo / selfie (plain background)", "Return/onward flight ticket", "Hotel / accommodation confirmation", "Travel medical insurance (recommended / sometimes required)"] } }
+                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות + סריקת הדרכון", "תמונה דיגיטלית / סלפי (רקע בהיר)", "כרטיס טיסה הלוך-חזור", "אישור הזמנת מלון / לינה", "ביטוח נסיעות רפואי (מומלץ/לעיתים נדרש)"], en: ["Passport valid 6+ months + passport scan", "Digital photo / selfie (plain background)", "Return/onward flight ticket", "Hotel / accommodation confirmation", "Travel medical insurance (recommended / sometimes required)"] } }
             ]
         },
         "AM": { 
@@ -1294,7 +1307,7 @@ Handling Agent: {agent}`,
         "BH": {
             name: { he: "בחריין", en: "Bahrain" }, flag: "fi-bh",
             options: [
-                { type: { he: "ויזת תיירות / עסקים אלקטרונית eVisa", en: "Tourist/Business eVisa" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: { he: "30 ימים", en: "30 days" }, feeUsd: 25, serviceUsd: 45, tag: "electronic",
+                { type: { he: "אשרת תיירות / עסקים אלקטרונית eVisa", en: "Tourist/Business eVisa" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: { he: "30 ימים", en: "30 days" }, feeUsd: 25, serviceUsd: 45, tag: "electronic",
                   docs: { he: ["דרכון בתוקף לפחות חצי שנה מיום הכניסה", "צילום ברור של עמוד הפרטים בדרכון", "צילום כרטיס טיסה חזור", "הוכחת הזמנת מלון / מקום שהייה"], en: ["Passport valid for at least 6 months", "Clear scan of passport bio-page", "Confirmed return flight ticket", "Hotel booking or accommodation proof"] } }
             ]
         },
@@ -1314,8 +1327,8 @@ Handling Agent: {agent}`,
                     } 
                 },
                 { 
-                    type: { he: "ויזת כניסה אחת (חד-פעמית) - פיזית בדרכון", en: "Single Entry Visa - Physical in Passport" }, 
-                    time: { he: "כ-10 ימי עבודה", en: "Approx. 10 business days" }, 
+                    type: { he: "אשרת כניסה אחת (חד-פעמית) - פיזית בדרכון", en: "Single Entry Visa - Physical in Passport" }, 
+                    time: { he: "כ-10 ימי עסקים", en: "Approx. 10 business days" }, 
                     validity: { he: "בהתאם לאישור השגרירות", en: "Subject to embassy approval" }, 
                     feeUsd: 525, 
                     serviceUsd: 100, 
@@ -1326,7 +1339,7 @@ Handling Agent: {agent}`,
                     } 
                 },
                 { 
-                    type: { he: "ויזת כניסות מרובות (Multi) ל-3 חודשים - פיזית בדרכון", en: "Multiple Entry Visa (3 Months) - Physical in Passport" }, 
+                    type: { he: "אשרת כניסות מרובות (Multi) ל-3 חודשים - פיזית בדרכון", en: "Multiple Entry Visa (3 Months) - Physical in Passport" }, 
                     time: { he: "כ-10 ימי עסקים", en: "Approx. 10 business days" }, 
                     validity: { he: "3 חודשים", en: "3 months" }, 
                     feeUsd: 660, 
@@ -1341,8 +1354,15 @@ Handling Agent: {agent}`,
         },
         "CU": { 
             name: { he: "קובה", en: "Cuba" }, flag: "fi-cu", options: [
-                { type: { he: "ויזת תיירות אלקטרונית eVisa לקובה", en: "Cuba Tourist eVisa" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "90 ימים (שהות עד 90 ימים)", en: "90 days (Max 90 days stay)" }, feeUsd: 85, serviceUsd: 55, tag: "electronic",
+                { type: { he: "אשרת תיירות אלקטרונית eVisa לקובה", en: "Cuba Tourist eVisa" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "90 ימים (שהות עד 90 ימים)", en: "90 days (Max 90 days stay)" }, feeUsd: 85, serviceUsd: 55, tag: "electronic",
                   docs: { he: ["דרכון בתוקף 6 חודשים לפחות מיום הכניסה", "צילום ברור וצבעוני של עמוד הפרטים בדרכון", "אישור כרטיס טיסה הלוך-חזור", "פרטי לינה / הזמנת מלון בקובה"], en: ["Passport valid for at least 6 months", "Clear color scan of passport bio-page", "Confirmed round-trip flight ticket", "Hotel booking or accommodation address in Cuba"] } }
+            ]
+        },
+        "UG": {
+            name: { he: "אוגנדה", en: "Uganda" }, flag: "fi-ug",
+            options: [
+                { type: { he: "אשרת תיירות אלקטרונית eVisa", en: "Electronic Tourist eVisa" }, time: { he: "3–5 ימי עסקים", en: "3-5 business days" }, validity: { he: "90 ימים", en: "90 days" }, feeUsd: 50, serviceUsd: 40, tag: "electronic",
+                  docs: { he: ["צילום צבעוני של עמוד הפרטים בדרכון (בתוקף לחצי שנה לפחות)", "תמונת פספורט דיגיטלית עדכנית (רקע בהיר, פנים גלויות)", "פנקס חיסון קדחת צהובה בתוקף (חובה!)", "כרטיס טיסה הלוך וחזור ואישור שהייה/מלון"], en: ["Color scan of passport bio page (valid 6+ months)", "Recent digital passport photo (plain background, face clearly visible)", "Valid Yellow Fever vaccination certificate (mandatory)", "Return/onward flight ticket & accommodation confirmation"] } }
             ]
         },
         "ID": {
@@ -1352,7 +1372,7 @@ Handling Agent: {agent}`,
                     type: { he: "אשרת תיירות / עסקים אלקטרונית eVisa", en: "Tourist / Business eVisa" },
                     time: { he: "3-4 שבועות", en: "3-4 weeks" },
                     validity: { he: "עד 60 ימים", en: "Up to 60 days" },
-                    feeUsd: 1350, // <--- UPDATED FROM 1500 TO 1350
+                    feeUsd: 1350, 
                     serviceUsd: 150,
                     tag: "electronic",
                     docs: {
@@ -1377,6 +1397,7 @@ Handling Agent: {agent}`,
     let currentView = 'cards'; 
     let sortState = { key: null, dir: 1 }; // dir: 1 עולה, -1 יורד
 
+    /* --- STREAMING_CHUNK: Managing state variables and dynamic list render... --- */
     function initApp() {
         const listContainer = document.getElementById('listContainer');
         const tableBody = document.getElementById('tableBody');
@@ -1431,6 +1452,7 @@ Handling Agent: {agent}`,
         return maxNum; // ימים
     }
 
+    /* --- STREAMING_CHUNK: Formatting grid tables and views... --- */
     function renderTableRows(rows) {
         const tableBody = document.getElementById('tableBody');
         tableBody.innerHTML = '';
@@ -1484,18 +1506,6 @@ Handling Agent: {agent}`,
         });
     }
 
-    // השלמת דרישות בסיסיות לכל מדינה (למקרה של קצוות)
-    Object.keys(visaData).forEach(code => {
-        visaData[code].options.forEach(opt => {
-            if (!opt.docs) {
-                opt.docs = {
-                    he: ["צילום דרכון ברור בתוקף לחצי שנה לפחות", "תמונת פספורט עדכנית", "כרטיסי טיסה ומלון (לרוב נדרש)", "לנסיעת עסקים: מכתב הזמנה ומכתב מעסיק"],
-                    en: ["Clear copy of passport valid for at least 6 months", "Recent passport photo", "Flight and hotel itineraries (usually required)", "For business: invitation letter and employer dispatch letter"]
-                };
-            }
-        });
-    });
-
     if (document.readyState === "loading") { 
         document.addEventListener("DOMContentLoaded", () => {
             if (localStorage.getItem('theme') === 'dark') {
@@ -1521,6 +1531,7 @@ Handling Agent: {agent}`,
         handleSearch();
     }
 
+    /* --- STREAMING_CHUNK: Initializing accordion and details drawer... --- */
     // פונקציית עזר לפתיחה וסגירה של אקורדיון הדרישות
     function toggleReqs(index) {
         const reqsDiv = document.getElementById(`reqs-${index}`);
@@ -1573,6 +1584,7 @@ Handling Agent: {agent}`,
         `;
     }
 
+    /* --- STREAMING_CHUNK: Opening detailed country profile... --- */
     function openCountry(code) {
         const country = visaData[code];
         const countryName = country.name[currentLang];
@@ -1686,6 +1698,7 @@ Handling Agent: {agent}`,
         }
     }
 
+    /* --- STREAMING_CHUNK: Setting search delay and form dialogs... --- */
     // השהיית חיפוש (debounce) למניעת סינון על כל הקלדה
     let searchTimer;
     function onSearchInput() {
@@ -1766,6 +1779,7 @@ Handling Agent: {agent}`,
     }
     document.getElementById('leadModalOverlay').addEventListener('click', function(e) { if (e.target === this) closeLeadModal(); });
 
+    /* --- STREAMING_CHUNK: Processing data submissions and integrations... --- */
     function submitLead(mailType) {
         // בדיקת מלכודת בוטים: אם השדה הנסתר מולא — מדובר בבוט, מתעלמים בשקט
         const honeypot = document.getElementById('lead_honeypot_check');
@@ -1779,7 +1793,17 @@ Handling Agent: {agent}`,
         const phone = document.getElementById('clientPhone').value;
         const email = document.getElementById('clientEmail').value;
         const country = document.getElementById('destCountry').value;
+        const flightDate = document.getElementById('flightDate').value || (currentLang === 'he' ? 'לא צוין' : 'Not specified');
         const notes = document.getElementById('leadNotes').value || (currentLang === 'he' ? 'אין הערות נוספות' : 'No additional notes');
+
+        // המרה לפורמט תצוגה ישראלי DD/MM/YYYY לנוחות מקסימלית של מחלקת הויזות
+        let formattedFlightDate = flightDate;
+        if (flightDate && flightDate !== 'לא צוין' && flightDate !== 'Not specified') {
+            const parts = flightDate.split('-');
+            if (parts.length === 3) {
+                formattedFlightDate = `${parts[2]}/${parts[1]}/${parts[0]}`;
+            }
+        }
 
         // שמירת שם הסוכן להבא ב-Local Storage
         localStorage.setItem('savedAgentName', agent);
@@ -1798,6 +1822,7 @@ Handling Agent: {agent}`,
                 phone: phone,
                 email: email,
                 country: country,
+                flightDate: formattedFlightDate, // העברת שדה התאריך לשרת
                 notes: notes,
                 timestamp: new Date().toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' }) // זמן מדויק לישראל
             };
@@ -1812,7 +1837,7 @@ Handling Agent: {agent}`,
         }
         // --------------------------------------------------------
 
-        const tplData = { country, client, phone, email, notes, agent, trackingId };
+        const tplData = { country, client, phone, email, notes, agent, trackingId, flightDate: formattedFlightDate };
         const rawSubject = fillTemplate(t('emailSubject'), tplData);
         const rawBody = fillTemplate(t('emailBody'), tplData);
 
@@ -1889,3 +1914,4 @@ Handling Agent: {agent}`,
 
 </body>
 </html>
+```
