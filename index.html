@@ -612,7 +612,7 @@
             .print-flag { font-size: 0.9em; border-radius: 4px; border: 1px solid #ccc; }
             
             .visa-option-card.print-active { border: none !important; background: transparent !important; box-shadow: none !important; margin: 0 !important; padding: 0 !important; }
-            .visa-option-card.print-active::before { none !important; }
+            .visa-option-card.print-active::before { display: none !important; }
             .visa-option-card.print-active .visa-title { font-size: 1.4em; border-bottom: 1px solid #ccc; padding-bottom: 10px; margin-bottom: 15px; }
             .visa-option-card.print-active .visa-details-grid { display: flex !important; flex-direction: column !important; gap: 12px; margin-bottom: 20px; }
             .visa-option-card.print-active .detail-item { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px dashed #ccc; padding-bottom: 5px; }
@@ -620,10 +620,8 @@
             .visa-option-card.print-active .visa-price-total { background: transparent !important; border: 2px solid #00BCD4 !important; border-radius: 12px; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
             .visa-option-card.print-active .visa-price-total strong { font-size: 1.6em; color: #0097a7 !important; }
 
-            .visa-option-card.print-active .visa-docs { display: block !important; opacity: 1 !important; transform: none !important; background: transparent !important; border: 1px solid #ccc !important; border-radius: 8px; padding: 12px 16px; margin-top: 20px; }
-            .visa-option-card.print-active .visa-docs-title { color: #000 !important; font-size: 1.05em; }
-            .visa-option-card.print-active .visa-docs-list li { color: #000 !important; font-size: 0.9em; }
-            .visa-option-card.print-active .visa-docs-list li::before { color: #0097a7 !important; }
+            /* מסתיר לחלוטין את דרישות המסמכים בעת הפקת ה-PDF או ההדפסה */
+            .visa-docs, .visa-option-card.print-active .visa-docs { display: none !important; }
 
             .ups-note.print-active-note { display: flex !important; background: transparent !important; border: 1px solid #ccc !important; border-radius: 8px; padding: 10px 15px; margin-top: 25px; font-size: 0.85em !important; }
             .ups-note:not(.print-active-note) { display: none !important; }
