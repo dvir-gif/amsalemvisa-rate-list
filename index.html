@@ -26,10 +26,6 @@
             --calc-border: #e2e8f0;
             --accent-tint: #e0f7fa; 
             --accent-tint-border: #b2ebf2;
-            
-            --ups-bg: #fff8e1; 
-            --ups-border: #ffe082;
-            --ups-text: #b78103;
         }
 
         html { scroll-behavior: smooth; }
@@ -80,9 +76,6 @@
             --calc-border: #334155;
             --accent-tint: rgba(0, 188, 212, 0.15); 
             --accent-tint-border: rgba(0, 188, 212, 0.3);
-            --ups-bg: #332a0b;
-            --ups-border: #92400e;
-            --ups-text: #fde68a;
         }
 
         body.dark-mode { background-image: radial-gradient(1100px 480px at 50% -8%, rgba(34, 211, 238, 0.10), transparent 60%); }
@@ -552,12 +545,6 @@
             border-color: rgba(51, 65, 85, 0.4) !important;
         }
 
-        .ups-note {
-            background: var(--ups-bg); border: 1px dashed var(--ups-border); color: var(--ups-text); padding: 15px;
-            border-radius: 12px; margin-top: 20px; font-size: 0.95em; line-height: 1.5; display: flex; align-items: center; gap: 12px;
-        }
-        .ups-note-icon { font-size: 1.6em; flex-shrink: 0; }
-
         /* --- אזור יצירת קשר --- */
         .contact-section { 
             background-color: var(--dark-section-bg); 
@@ -691,9 +678,6 @@
             /* מציג את רשימת המסמכים בהדפסה גם אם האקורדיון סגור על המסך */
             /* הוסר לחלוטין הצגת הדרישות במסמך ההדפסה של הלקוח כדי לשמור עליו נקי */
             .visa-option-card.print-active .visa-docs { display: none !important; }
-
-            .ups-note.print-active-note { display: flex !important; background: transparent !important; border: 1px solid #ccc !important; border-radius: 8px; padding: 10px 15px; margin-top: 25px; font-size: 0.85em !important; }
-            .ups-note:not(.print-active-note) { display: none !important; }
 
             .print-footer { display: block !important; margin-top: 35px; text-align: center; border-top: 1px solid #ccc; padding-top: 15px; line-height: 1.4; font-size: 0.9em; }
         }
@@ -1726,14 +1710,6 @@ Handling Agent: {agent}`,
             `;
         });
 
-        if (country.ups) {
-            htmlContent += `
-                <div class="ups-note" id="upsNote">
-                    <span class="ups-note-icon">📦</span><div><strong>${t('upsTitle')}</strong> ${t('upsDesc')}</div>
-                </div>
-            `;
-        }
-
         htmlContent += `
                 <div class="print-footer print-only-element">
                     <div style="font-size: 0.85em; color: #666; margin-bottom: 10px;">${t('legalDisclaimer')}</div>
@@ -1993,10 +1969,6 @@ Handling Agent: {agent}`,
         }
 
         txt += `-------------------\n\n`;
-        
-        if (country.ups) txt += `*${t('upsTitle')}* ${t('upsDesc')}\n\n`;
-        
-        txt += `${t('footerThanks')}\n${t('footerTeam')}`;
         return txt;
     }
     
@@ -2042,13 +2014,10 @@ Handling Agent: {agent}`,
 
         const allCards = document.querySelectorAll('.visa-option-card');
         allCards.forEach((card, i) => card.classList.toggle('print-active', i === index));
-        const upsNote = document.getElementById('upsNote');
-        if(upsNote) upsNote.classList.add('print-active-note');
         
         window.print();
         
         allCards.forEach(card => card.classList.remove('print-active'));
-        if(upsNote) upsNote.classList.remove('print-active-note');
     }
 
     function showToast(msg) {
