@@ -21,7 +21,7 @@
             --dark-card-bg: #22252a; 
             --dark-section-bg: #181a1e; 
             
-            /* פלטת צבעים בהירה, נקייה ומקצועית */
+            /* פלטת צבעים אחידה, נקייה ומקצועית */
             --calc-bg: #f1f5f9; 
             --calc-border: #e2e8f0;
             --accent-tint: #e0f7fa; 
@@ -45,14 +45,17 @@
             overflow-x: hidden;
             position: relative;
             transition: background-color 0.3s ease, color 0.3s ease;
+            /* רינדור טקסט חד ונקי בכל הדפדפנים */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
             font-feature-settings: "kern" 1, "liga" 1;
         }
 
+        /* בחירת טקסט בגוון המותג */
         ::selection { background: rgba(0, 188, 212, 0.22); color: inherit; }
 
+        /* טבעת פוקוס נגישה וחדה למקלדת בלבד (ללא הסחה בלחיצת עכבר) */
         :focus-visible {
             outline: 2px solid var(--primary-color);
             outline-offset: 2px;
@@ -60,17 +63,17 @@
         }
         *:focus:not(:focus-visible) { outline: none; }
 
+        /* כיבוד העדפת תנועה מופחתת */
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
         }
 
-        /* --- תמיכה במצב כהה --- */
+        /* --- תמיכה במצב כהה (Dark Mode) --- */
         body.dark-mode {
             --primary-dark: #22d3ee;
             --secondary-color: #e2e8f0;
-            --bg-color: #0f172a;
-            --text-color: #f8fafc;
+            --bg-color: #0f172a;            --text-color: #f8fafc;
             --border-color: #334155;
             --panel-bg: #1e293b;
             --calc-bg: #0f172a;
@@ -101,7 +104,7 @@
         body.dark-mode .visa-docs { background: #1e293b !important; border-color: #334155 !important; }
         body.dark-mode .lead-form input, body.dark-mode .lead-form select, body.dark-mode .lead-form textarea { background: #0f172a; color: #f1f5f9; border-color: #334155; }
 
-        /* --- תגיות סוגי תהליכים נקיות --- */
+        /* --- תגיות סוגי תהליכים (עיצוב נקי ויוקרתי ללא צבעים זרים) --- */
         .process-tag {
             display: inline-flex;
             align-items: center;
@@ -112,6 +115,7 @@
             font-weight: 800;
             border: 1px solid transparent;
         }
+        /* ירוק מנטה עדין ונקי */
         .process-tag-electronic {
             background-color: #e6f4ea;
             color: #137333;
@@ -122,6 +126,7 @@
             color: #34d399;
             border-color: rgba(52, 211, 153, 0.3);
         }
+        /* אפור ניטרלי, נקי ומינימליסטי */
         .process-tag-physical {
             background-color: #f1f5f9;
             color: #475569;
@@ -132,6 +137,7 @@
             color: #94a3b8;
             border-color: rgba(148, 163, 184, 0.3);
         }
+        /* תכלת-טורקיז רך המתכתב עם המותג */
         .process-tag-permit {
             background-color: #e0f7fa;
             color: #006064;
@@ -143,7 +149,7 @@
             border-color: rgba(0, 188, 212, 0.3);
         }
 
-        /* --- הדר (לוגו) --- */
+        /* --- הדר (לוגו ושינוי שפה) --- */
         header {
             background-color: var(--panel-bg);
             padding: 15px 40px;
@@ -163,6 +169,7 @@
             letter-spacing: 0.5px;
         }
 
+        /* כפתורי שליטה (שפה) */
         .header-controls {
             position: absolute;
             inset-inline-start: 40px; 
@@ -218,7 +225,28 @@
             box-shadow: 0 4px 12px rgba(0, 188, 212, 0.35);
         }
 
-        /* --- אזור כותרת --- */
+        /* תווית נגישות מוסתרת ויזואלית */
+        .sr-only {
+            position: absolute;
+            width: 1px; height: 1px;
+            padding: 0; margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* שדה מלכודת לבוטים (Honeypot) */
+        .hp-field {
+            position: absolute;
+            left: -9999px;
+            top: -9999px;
+            width: 1px; height: 1px;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        /* --- אזור כותרת (Hero) --- */
         .hero {
             text-align: center;
             padding: 50px 20px 20px 20px;
@@ -246,12 +274,12 @@
         .feature-item {
             display: flex; align-items: center; background-color: #ffffff; border: 1px solid var(--border-color);
             padding: 10px 22px; border-radius: 30px; font-weight: 700; font-size: 1em; color: var(--secondary-color);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02); transition: transform 0.2s ease; gap: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02); transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); gap: 8px;
         }
         .feature-item:hover { transform: translateY(-2px); border-color: var(--primary-color); }
         .feature-item svg { width: 20px; height: 20px; color: var(--primary-color); stroke-width: 2.5; }
 
-        /* --- חיפוש וטאבים --- */
+        /* --- אזור חיפוש וטאבים --- */
         .controls-section { display: flex; flex-direction: column; align-items: center; max-width: 1200px; margin: 0 auto 30px auto; padding: 0 20px; gap: 25px; }
         .search-box { position: relative; width: 100%; max-width: 550px; }
         .search-box input {
@@ -274,7 +302,7 @@
         }
         .tab-btn svg { width: 18px; height: 18px; }
 
-        /* --- כרטיסיות --- */
+        /* --- תצוגת רשימה / כרטיסיות --- */
         .list-container {
             display: grid; max-width: 1200px; margin: 0 auto 50px auto; padding: 0 20px;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px;
@@ -288,12 +316,13 @@
         .country-card .fi { font-size: 2em; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
         .country-card h3 { margin: 0; color: var(--secondary-color); font-size: 1.3em; font-weight: 800; }
 
-        /* --- מחירון מלא (טבלה) --- */
+        /* --- תצוגת מחירון מלא (טבלה משודרגת) --- */
         .table-view-container { max-width: 1200px; margin: 0 auto 50px auto; padding: 0 20px; display: none; }
         .table-wrapper { background: var(--panel-bg); border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid var(--border-color); overflow-x: auto; }
         .transparent-table { width: 100%; border-collapse: collapse; text-align: start; min-width: 950px; }
         .transparent-table th { padding: 16px; font-size: 0.9em; position: sticky; top: 0; z-index: 10; text-align: start; background-color: var(--secondary-color); color: #ffffff; letter-spacing: 0.03em; }
 
+        /* כותרות הניתנות למיון */
         .transparent-table th.sortable { cursor: pointer; user-select: none; white-space: nowrap; }
         .transparent-table th.sortable:hover { color: var(--primary-color); }
         .transparent-table th.sortable .sort-arrow { opacity: 0.4; font-size: 0.85em; margin-inline-start: 4px; }
@@ -316,6 +345,7 @@
         .transparent-table .price-td { font-weight: 700; color: #64748b; font-family: 'Heebo', sans-serif; font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
         .transparent-table .total-td { background-color: var(--accent-tint); font-weight: 900; color: var(--primary-dark); font-size: 1.05em; border-inline-start: 2px solid var(--accent-tint-border); font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
 
+        /* תגיות מעוצבות אחידות של טבלה */
         .table-badge {
             display: inline-flex;
             align-items: center;
@@ -336,7 +366,7 @@
             border-color: #334155;
         }
 
-        /* --- פאנל צדדי --- */
+        /* --- פאנל צדדי (Side Drawer) --- */
         .side-panel-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(4px); z-index: 2000; opacity: 0; visibility: hidden; transition: all 0.3s; }
         .side-panel-overlay.active { opacity: 1; visibility: visible; }
         .side-panel {
@@ -351,6 +381,7 @@
         .close-btn:hover { opacity: 0.7; }
         .panel-content { padding: 30px; overflow-y: auto; flex-grow: 1; }
 
+        /* פס גלילה דק ומעוצב לפאנל ולטבלה */
         .panel-content, .table-wrapper { scrollbar-width: thin; scrollbar-color: var(--primary-color) transparent; }
         .panel-content::-webkit-scrollbar, .table-wrapper::-webkit-scrollbar { width: 8px; height: 8px; }
         .panel-content::-webkit-scrollbar-track, .table-wrapper::-webkit-scrollbar-track { background: transparent; }
@@ -366,6 +397,7 @@
             background: #fff; color: var(--secondary-color);
         }
         
+        /* עיצוב כפתור העברת הליד בטורקיז מותג אחיד ויוקרתי */
         .action-btn-lead { color: var(--primary-dark); border-color: var(--accent-tint-border); background: var(--accent-tint); }
         .action-btn-lead:hover { background: var(--accent-tint-border); border-color: var(--primary-color); transform: translateY(-2px); }
         body.dark-mode .action-btn-lead { background: var(--accent-tint); color: #fff; border-color: var(--accent-tint-border); }
@@ -378,6 +410,7 @@
         }
         .action-btn svg { width: 18px; height: 18px; }
 
+        /* מראה פעיל של כפתור הצגת המסמכים */
         .action-btn.btn-toggle-docs.active {
             background-color: var(--accent-tint) !important;
             border-color: var(--primary-color) !important;
@@ -395,20 +428,55 @@
         .visa-details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
         .detail-item span { display: block; font-size: 0.85em; margin-bottom: 4px; color: #64748b; }
         .detail-item strong { color: var(--secondary-color); font-size: 1em; }
+
+        /* --- בלוק שירותים נלווים משודרג ומעוצב לפאנל הצידי --- */
+        .addons-section {
+            background-color: var(--calc-bg);
+            border: 1px solid var(--calc-border);
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-top: 15px;
+            text-align: start;
+        }
+        body.dark-mode .addons-section {
+            background-color: #0f172a;
+            border-color: #334155;
+        }
+        .addon-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            color: var(--text-color);
+            user-select: none;
+            transition: color 0.2s ease;
+        }
+        .addon-label:last-child {
+            margin-bottom: 0;
+        }
+        .addon-label input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--primary-color);
+            cursor: pointer;
+        }
         
+        /* שורת סיכום תשלום בטורקיז רך ואחיד */
         .visa-price-total {
             background: var(--accent-tint); padding: 12px 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-top: 12px; border: 1px solid var(--accent-tint-border);
         }
         .visa-price-total span { color: var(--primary-dark); font-weight: 700; font-size: 0.95em; }
         .visa-price-total strong { font-size: 1.35em; font-weight: 900; color: var(--secondary-color); font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
 
-        /* --- אקורדיון חלק לדרישות מסמכים (פרימיום נקי ללא וי בצד שמאל) --- */
+        /* --- אקורדיון חלק לדרישות מסמכים (עיצוב פרימיום נקי ללא וי בצד שמאל) --- */
         .visa-docs {
             display: none;
             opacity: 0;
             transform: translateY(-8px);
             transition: opacity 0.25s ease-out, transform 0.25s ease-out;
-            background-color: #f1f8fc !important; 
+            background-color: #f1f8fc !important; /* רקע תכול מעולה ובהיר כמו בתמונה */
             border: 1px solid rgba(0, 188, 212, 0.12) !important;
             border-radius: 12px !important;
             padding: 18px 22px !important;
@@ -449,10 +517,11 @@
         .visa-docs-list li {
             position: relative;
             padding: 12px 0 !important;
-            padding-inline-start: 18px !important; 
+            padding-inline-start: 18px !important; /* רווח קבוע עבור הבולט בצד ימין */
             border-bottom: 1px dashed rgba(0, 188, 212, 0.12) !important;
             text-align: start !important;
         }
+        /* בולט טורקיז עדין ומדויק בתחילת השורה */
         .visa-docs-list li::before {
             content: "•";
             position: absolute;
@@ -493,7 +562,7 @@
         .contact-section { 
             background-color: var(--dark-section-bg); 
             color: #ffffff; 
-            padding: 60px 20px 140px 20px; 
+            padding: 60px 20px 140px 20px; /* מניעת חפיפה עם הכפתור הצף */
             text-align: center; 
             margin-top: 80px; 
             border-top: 1px solid #2d3139; 
@@ -540,6 +609,7 @@
         .contact-label { font-size: 1.1em; color: #94a3b8; margin-bottom: 10px; font-weight: 500; }
         .contact-value { font-size: 1.4em; font-weight: 800; color: #ffffff; direction: ltr; font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
 
+        /* אזור הערות משפטיות בתחתית העמוד הראשי - קומפקטי וממורכז */
         .legal-footer {
             max-width: 900px;
             margin: 50px auto 0 auto;
@@ -572,7 +642,6 @@
         }
         .fab-transfer:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0, 188, 212, 0.5); }
         .fab-transfer svg { width: 22px; height: 22px; }
-        
         .lead-modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(5px); z-index: 3000; display: none; align-items: center; justify-content: center; padding: 20px; }
         .lead-modal { background: var(--panel-bg); border-radius: 20px; width: 100%; max-width: 500px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); overflow: hidden; animation: modalFadeIn 0.3s ease; }
         @keyframes modalFadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -581,7 +650,6 @@
         .lead-modal-close { background: none; border: none; color: #fff; font-size: 1.5em; cursor: pointer; line-height: 1; }
         .lead-form { padding: 25px; display: flex; flex-direction: column; gap: 15px; text-align: start; }
         .form-group { display: flex; flex-direction: column; gap: 5px; }
-        .form-group label { font-weight: 700; color: var(--text-color); font-size: 0.95em; }
         .form-group input, .form-group select, .form-group textarea { padding: 12px 15px; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit; font-size: 1em; outline: none; transition: border-color 0.2s; text-align: start; }
         .form-actions-column { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
         .btn-gmail, .btn-outlook { color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: 800; font-size: 1em; font-family: inherit; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; }
@@ -601,7 +669,7 @@
             #sidePanel, #sidePanel * { visibility: visible; color: #000000 !important; }
             #sidePanel { position: absolute; left: 0; top: 0; width: 100%; box-shadow: none; background: #ffffff !important; overflow: visible; padding: 0; }
             
-            .panel-header, .close-btn, .card-action-bar, .fab-transfer { display: none !important; }
+            .panel-header, .close-btn, .card-action-bar, .fab-transfer, .addons-section { display: none !important; }
             .visa-option-card:not(.print-active) { display: none !important; }
 
             .print-document-container { display: block !important; visibility: visible !important; width: 100%; }
@@ -620,8 +688,9 @@
             .visa-option-card.print-active .visa-price-total { background: transparent !important; border: 2px solid #00BCD4 !important; border-radius: 12px; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
             .visa-option-card.print-active .visa-price-total strong { font-size: 1.6em; color: #0097a7 !important; }
 
-            /* מסתיר לחלוטין את דרישות המסמכים בעת הפקת ה-PDF או ההדפסה */
-            .visa-docs, .visa-option-card.print-active .visa-docs { display: none !important; }
+            /* מציג את רשימת המסמכים בהדפסה גם אם האקורדיון סגור על המסך */
+            /* הוסר לחלוטין הצגת הדרישות במסמך ההדפסה של הלקוח כדי לשמור עליו נקי */
+            .visa-option-card.print-active .visa-docs { display: none !important; }
 
             .ups-note.print-active-note { display: flex !important; background: transparent !important; border: 1px solid #ccc !important; border-radius: 8px; padding: 10px 15px; margin-top: 25px; font-size: 0.85em !important; }
             .ups-note:not(.print-active-note) { display: none !important; }
@@ -675,15 +744,15 @@
     
     <div class="hero-features">
         <div class="feature-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
             <span data-i18n="feat1">שירות מקצועי ואמין</span>
         </div>
         <div class="feature-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20" stroke-width="2.5"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
             <span data-i18n="feat2">עלויות וזמנים במקום אחד</span>
         </div>
         <div class="feature-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
             <span data-i18n="feat3">טיפול מהיר</span>
         </div>
     </div>
@@ -700,11 +769,11 @@
     <!-- כפתורי מעבר התצוגה (טאבים) -->
     <div class="tabs-container">
         <button class="tab-btn active" id="tabCardsBtn" onclick="switchView('cards')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
             <span data-i18n="tabCards">כרטיסי מדינות</span>
         </button>
         <button class="tab-btn" id="tabTableBtn" onclick="switchView('table')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="9" y1="6" x2="20" y2="6"></line><line x1="9" y1="12" x2="20" y2="12"></line><line x1="9" y1="18" x2="20" y2="18"></line><line x1="5" y1="6" x2="5.01" y2="6"></line><line x1="5" y1="12" x2="5.01" y2="12"></line><line x1="5" y1="18" x2="5.01" y2="18"></line></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="6" x2="20" y2="6"></line><line x1="9" y1="12" x2="20" y2="12"></line><line x1="9" y1="18" x2="20" y2="18"></line><line x1="5" y1="6" x2="5.01" y2="6"></line><line x1="5" y1="12" x2="5.01" y2="12"></line><line x1="5" y1="18" x2="5.01" y2="18"></line></svg>
             <span data-i18n="tabTable">מחירון מלא ושקוף</span>
         </button>
     </div>
@@ -740,7 +809,7 @@
     <div class="contact-grid">
         <a href="tel:+97249700900" class="contact-card">
             <div class="contact-icon-wrapper">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="32" height="32">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                 </svg>
             </div>
@@ -749,7 +818,7 @@
         </a>
         <a href="https://wa.me/97246700998" target="_blank" rel="noopener" class="contact-card">
             <div class="contact-icon-wrapper">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="32" height="32">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
                 </svg>
             </div>
@@ -758,7 +827,7 @@
         </a>
         <a href="mailto:visa.dept@amsalem.com" class="contact-card">
             <div class="contact-icon-wrapper">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="32" height="32">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                     <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
@@ -770,14 +839,14 @@
     
     <!-- הערות משפטיות בתחתית העמוד הראשי -->
     <div class="legal-footer">
-        <p class="legal-text" data-i18n="legalDisclaimer">* האגרות, זמני הטיפול, רשימת המסמכים ותנאי הזכאות נתונים להחלטתן הבלעדית של הרשויות והשגרירויות ועשויים להשתנות בכל עת ללא הודעה מוקדמת. רשימת המסמכים כללית בלבד, וייתכן שיתווספו דרישות פרטניות בהתאם לנסיבות הבקשה. זמני הטיפול משוערים ומתייחסים לימי עבודה בלבד, החל ממועד קליטת הבקשה בשגרירות. המחירים הנקובים בדולר הם הערכה בלבד ועשויים להשתנות במעט בהתאם לשער החליפין ביום ההגשה.</p>
+        <p class="legal-text" data-i18n="legalDisclaimer">* האגרות, זמני הטיפול, רשימת המסמכים ותנאי הזכאות נתונים להחלטתן הבלעדית של הרשויות והשגרירויות ועשויים להשתנות בכל עת וללא הודעה מוקדמת. רשימת המסמכים כללית בלבד, וייתכן שיתווספו דרישות פרטניות בהתאם לנסיבות הבקשה. זמני הטיפול משוערים ומתייחסים לימי עבודה בלבד, החל ממועד קליטת הבקשה בשגרירות. המחירים הנקובים בדולר הם הערכה בלבד ועשויים להשתנות במעט בהתאם לשער החליפין ביום ההגשה.</p>
         <div class="update-badge" data-i18n="lastUpdated">מחירון זה מעודכן לחודש יוני 2026</div>
     </div>
 </section>
 
 <!-- כפתור צף להעברת ליד -->
 <button class="fab-transfer" onclick="openLeadModal()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="22" height="22">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <line x1="22" y1="2" x2="11" y2="13"></line>
         <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
     </svg>
@@ -816,10 +885,10 @@
                     <option value="" disabled selected data-i18n="plcDestCountry">בחר מדינה...</option>
                 </select>
             </div>
-            <!-- שדה תאריך טיסה מתוכנן ייעודי -->
+            <!-- שדה תאריך הטיסה המתוכנן המיושר לדרישה 5 -->
             <div class="form-group">
-                <label for="flightDate" data-i18n="lblFlightDate">תאריך טיסה מתוכנן:</label>
-                <input type="date" id="flightDate" required>
+                <label for="plannedFlight" data-i18n="lblPlannedFlight">תאריך טיסה מתוכנן:</label>
+                <input type="date" id="plannedFlight" required>
             </div>
             <div class="form-group">
                 <label for="leadNotes" data-i18n="lblNotes">הערות / בקשות מיוחדות:</label>
@@ -856,7 +925,7 @@
 </div>
 
 <script>
-    /* --- STREAMING_CHUNK: Initializing localization systems... --- */
+    /* --- מערכת תרגום (i18n) --- */
     let currentLang = 'he';
 
     const translations = {
@@ -893,7 +962,7 @@
             "plcClientEmail": "כתובת אימייל ליצירת קשר",
             "lblDestCountry": "מדינת יעד לויזה:",
             "plcDestCountry": "בחר מדינה...",
-            "lblFlightDate": "תאריך טיסה מתוכנן:",
+            "lblPlannedFlight": "תאריך טיסה מתוכנן:",
             "lblNotes": "הערות / בקשות מיוחדות:",
             "plcNotes": "תאריך טיסה משוער, דחיפות, או כל מידע רלוונטי אחר...",
             "btnGmail": "שלח באמצעות Gmail",
@@ -911,7 +980,7 @@
             "btnPrint": "הדפס כ-PDF",
             "btnTransferLead": "העבר פרטי לקוח למחלקה",
             "upsTitle": "שירות שילוח מסמכים (UPS):",
-            "upsDesc": "במידה ונדרש לשלוח אלינו דרכון פיזי, אנו מציעים שירות איסוף ושילוח מסמכים מאובטח בתוספת של USD 25.00 בלבד (בכפוף ללוחות הזמנים של חברת השילוח).",
+            "upsDesc": "אם נדרש לשלוח אלינו דרכון פיזי, אנו מציעים שירות איסוף ושילוח מסמכים מאובטח בתוספת של USD 25.00 לכיוון (בכפוף ללוחות הזמנים של חברת השילוח).",
             "legalDisclaimer": "* האגרות, זמני הטיפול, רשימת המסמכים ותנאי הזכאות נתונים להחלטתן הבלעדית של הרשויות והשגרירויות ועשויים להשתנות בכל עת ללא הודעה מוקדמת. רשימת המסמכים כללית בלבד, וייתכן שיתווספו דרישות פרטניות בהתאם לנסיבות הבקשה. זמני הטיפול משוערים ומתייחסים לימי עבודה בלבד, החל ממועד קליטת הבקשה בשגרירות. המחירים הנקובים בדולר הם הערכה בלבד ועשויים להשתנות במעט בהתאם לשער החליפין ביום ההגשה.",
             "lastUpdated": "מחירון זה מעודכן לחודש יוני 2026",
             "footerThanks": "נשמח לעמוד לרשותכם בכל שאלה,",
@@ -931,8 +1000,8 @@
 שם הלקוח/חברה: {client}
 טלפון הלקוח: {phone}
 דוא״ל הלקוח: {email}
-תאריך טיסה מתוכנן: {flightDate}
 מדינת יעד מבוקשת: {country}
+תאריך טיסה מתוכנן: {plannedFlight}
 
 --- הערות נוספות ---
 {notes}
@@ -978,7 +1047,7 @@
             "plcClientEmail": "Email address for contact",
             "lblDestCountry": "Destination Country:",
             "plcDestCountry": "Select country...",
-            "lblFlightDate": "Planned Flight Date:",
+            "lblPlannedFlight": "Planned Flight Date:",
             "lblNotes": "Notes / Special Requests:",
             "plcNotes": "Estimated flight date, urgency, or any other relevant information...",
             "btnGmail": "Send via Gmail",
@@ -996,7 +1065,7 @@
             "btnPrint": "Print PDF",
             "btnTransferLead": "Send Details to Dept",
             "upsTitle": "Document Shipping Service (UPS):",
-            "upsDesc": "If a physical passport submission is required, we offer a secure document pickup and delivery service for an additional USD 25.00 (subject to the shipping company's schedule).",
+            "upsDesc": "If a physical passport submission is required, we offer a secure document pickup and delivery service for an additional USD 25.00 per direction (subject to the shipping company's schedule).",
             "legalDisclaimer": "* Fees, processing times, document lists, and eligibility are at the sole discretion of the authorities/embassies and may change without prior notice. The document list is general only; additional case-specific requirements may apply. Processing times are estimated in business days from application submission. Prices in USD are approximate and may vary slightly based on exchange rates.",
             "lastUpdated": "Pricing updated for June 2026",
             "footerThanks": "We are happy to assist with any questions,",
@@ -1016,8 +1085,8 @@ Lead Reference: {trackingId}
 Client/Company: {client}
 Phone: {phone}
 Email: {email}
-Planned Flight Date: {flightDate}
 Destination: {country}
+Planned Flight Date: {plannedFlight}
 
 --- Additional Notes ---
 {notes}
@@ -1083,7 +1152,6 @@ Handling Agent: {agent}`,
         }
     }
 
-    /* --- STREAMING_CHUNK: Setting up the core database variables... --- */
     // מאגר נתוני הויזות. מחירים מספריים (feeUsd / serviceUsd); הסה"כ מחושב אוטומטית.
     // דגל ups:true ברמת המדינה מציג את הערת שילוח המסמכים.
     const visaData = {
@@ -1114,8 +1182,8 @@ Handling Agent: {agent}`,
                   docs: { he: ["דרכון בתוקף (מומלץ 6 חודשים+) + צילום עמוד הפרטים", "תמונת פספורט עדכנית (רקע לבן)", "הוכחת אמצעים כלכליים (דפי חשבון בנק)", "אישורי טיסה ושהייה (מלון)", "ביטוח נסיעות (מומלץ)"], en: ["Valid passport (6+ months recommended) + bio-page copy", "Recent passport photo (white background)", "Proof of financial means (bank statements)", "Flight & accommodation bookings", "Travel insurance (recommended)"] } },
                 { type: { he: "ויזת עסקים אלקטרונית eVisa 600", en: "eVisa 600 Business" }, time: { he: "עד 14-25 ימי עבודה", en: "Up to 14-25 business days" }, validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, feeUsd: 200, serviceUsd: 85, tag: "electronic",
                   docs: { he: ["דרכון בתוקף (מומלץ 6 חם+) + צילום עמוד הפרטים", "תמונת פספורט עדכנית (רקע לבן)", "מכתב מהמעסיק / הזמנה עסקית", "הוכחת אמצעים כלכליים", "אישורי טיסה ושהייה"], en: ["Valid passport (6+ months recommended) + bio-page copy", "Recent passport photo (white background)", "Employer letter / business invitation", "Proof of financial means", "Flight & accommodation bookings"] } },
-                { type: { he: "ויזת עבודה זמנית קצרת מועד eVisa 400", en: "eVisa 400 Temporary Work (Short Stay Specialist)" }, time: { he: "עד 15-30 ימי עבודה", en: "Up to 15-30 business days" }, validity: { he: "עד 3 חודשים", en: "Up to 3 months" }, feeUsd: 450, serviceUsd: 120, tag: "electronic",
-                  docs: { he: ["דרכון בתוקף לפחות חצי שנה מיום הכניסה + צילום עמוד הפרטים", "תמונת פספורט עדכנית (רקע לבן)", "מכתב הזמנה רשמי מחברה אוסטרלית מארחת", "מכתב שיגור/מעסיק מהחברה השולחת בישראל (באנגלית)", "קורות חיים מעודכנים באנגלית", "הוכחות לכישורים מיוחדים או תעודות מקצועיות"], en: ["Valid passport (6+ months) + bio-page scan", "Recent passport photo (white background)", "Official invitation letter from the host Australian organisation", "Employer dispatch letter from the sending Israeli company (in English)", "Updated Curriculum Vitae (CV) in English", "Proof of specialized skills or professional certifications"] } }
+                { type: { he: "ויזת עבודה זמנית קצרת מועד eVisa 400", en: "eVisa 400 Temporary Work" }, time: { he: "15-30 ימי עבודה", en: "15-30 business days" }, validity: { he: "עד 3 חודשים", en: "Up to 3 months" }, feeUsd: 450, serviceUsd: 120, tag: "electronic",
+                  docs: { he: ["דרכון בתוקף לפחות חצי שנה מיום הכניסה + צילום עמוד הפרטים", "תמונת פספורט עדכנית (רקע לבן)", "מכתב הזמנה רשמי מחברה אוסטרלית מארחת", "מכתב מעסיק/שיגור מהחברה השולחת בישראל (באנגלית)", "קורות חיים מעודכנים באנגלית", "הוכחות לכישורים מיוחדים או תעודות מקצועיות"], en: ["Passport valid 6+ months from entry + bio-page copy", "Recent passport photo (white background)", "Official invitation letter from Australian host company", "Employer dispatch letter from Israeli company (in English)", "Recent CV/Resume in English", "Proof of qualifications or specialized skills"] } }
             ]
         },
         "NZ": { 
@@ -1208,6 +1276,64 @@ Handling Agent: {agent}`,
                   docs: { he: ["דרכון בתוקף 6 חודשים לפחות + סריקת עמוד הפרטים", "תמונת פספורט / סלפי (רקע לבן)", "מכתב הזמנה מהחברה בטנזניה + פרטי המארח", "כרטיס טיסה הלוך-חזור", "אישור הזמנת מלון"], en: ["Passport valid 6+ months + bio-page scan", "Passport photo / selfie (white background)", "Invitation letter from Tanzanian company + host details", "Return/onward flight ticket", "Hotel booking confirmation"] } }
             ]
         },
+        "UG": {
+            name: { he: "אוגנדה", en: "Uganda" }, flag: "fi-ug", options: [
+                { type: { he: "אשרת תיירות אלקטרונית eVisa, כניסה אחת", en: "e-Tourist Visa, Single Entry" }, time: { he: "3-5 ימי עסקים", en: "3-5 business days" }, validity: { he: "90 ימים", en: "90 days" }, feeUsd: 50, serviceUsd: 40, tag: "electronic",
+                  docs: { he: ["צילום צבעוני של עמוד הפרטים בדרכון (בתוקף לחצי שנה לפחות)", "תמונת פספורט דיגיטלית עדכנית (רקע בהיר)", "פנקס חיסון קדחת צהובה בתוקף (חובה!)", "כרטיס טיסה הלוך וחזור ואישור שהייה/מלון"], en: ["Passport bio-page color copy valid 6+ months", "Recent digital passport photo (plain background)", "Valid Yellow Fever vaccination certificate (strictly mandatory!)", "Confirmed return flight ticket & accommodation confirmation"] } }
+            ]
+        },
+        "ID": {
+            name: { he: "אינדונזיה", en: "Indonesia" }, flag: "fi-id", options: [
+                { type: { he: "אשרת תיירות / עסקים אלקטרונית eVisa", en: "eVisa Tourist / Business" }, time: { he: "3-4 שבועות", en: "3-4 weeks" }, validity: { he: "עד 60 ימים", en: "Up to 60 days" }, feeUsd: 1350, serviceUsd: 150, tag: "electronic",
+                  docs: { he: ["צילום דרכון בתוקף של מעל שנה (לא ניתן להגיש עם דרכון זמני)", "תמונת פנים על רקע לבן (ללא חיוך וללא משקפיים, ניתן לצלם בנייד)", "קורות חיים באנגלית", "כרטיס טיסה הלוך וחזור"], en: ["Clear scan of passport valid for more than 1 year (no temporary passports allowed)", "Recent face photo on plain white background (no smiling, no glasses, mobile photo accepted)", "CV/Resume updated in English", "Confirmed round-trip flight ticket"] } }
+            ]
+        },
+        "BH": {
+            name: { he: "בחריין", en: "Bahrain" }, flag: "fi-bh", options: [
+                { type: { he: "ויזת תיירות / עסקים אלקטרונית eVisa", en: "Tourist/Business eVisa" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: { he: "30 ימים", en: "30 days" }, feeUsd: 25, serviceUsd: 45, tag: "electronic",
+                  docs: { he: ["דרכון בתוקף לפחות חצי שנה מיום הכניסה", "צילום ברור של עמוד הפרטים בדרכון", "צילום כרטיס טיסה חזור", "הוכחת הזמנת מלון / מקום שהייה"], en: ["Passport valid for at least 6 months", "Clear scan of passport bio-page", "Confirmed return flight ticket", "Hotel booking or accommodation proof"] } }
+            ]
+        },
+        "NG": {
+            name: { he: "ניגריה", en: "Nigeria" }, flag: "fi-ng", options: [
+                { 
+                    type: { he: "ויזת תיירות אלקטרונית eVisa", en: "Electronic Tourist eVisa" }, 
+                    time: { he: "24-72 שעות", en: "24-72 hours" }, 
+                    validity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, 
+                    feeUsd: 660, 
+                    serviceUsd: 100, 
+                    tag: "electronic",
+                    docs: { 
+                        he: ["צילום עמוד הפרטים בדרכון בתוקף חצי שנה לפחות", "תמונת פספורט עדכנית צבעונית", "כרטיס טיסה חזור מאושר", "שובר הזמנת מלון / אישור לינה"], 
+                        en: ["Passport bio-page copy valid for at least 6 months", "Recent color passport photo", "Confirmed return flight ticket", "Hotel booking / accommodation voucher"] 
+                    } 
+                },
+                { 
+                    type: { he: "ויזת כניסה אחת (חד-פעמית) - פיזית בדרכון", en: "Single Entry Visa - Physical in Passport" }, 
+                    time: { he: "כ-10 ימי עבודה", en: "Approx. 10 business days" }, 
+                    validity: { he: "בהתאם לאישור השגרירות", en: "Subject to embassy approval" }, 
+                    feeUsd: 525, 
+                    serviceUsd: 100, 
+                    tag: "physical",
+                    docs: { 
+                        he: ["דרכון מקורי בתוקף לפחות חצי שנה עם 2 עמודים ריקים לפחות", "תמונת פספורט עדכנית צבעונית", "מכתב הזמנה רשמי מניגריה", "מכתב שיגור מהחברה השולחת בישראל (באנגלית)", "אישור רישום של החברה המארחת בניגריה (CAC Certificate)", "אישור חיסון קדחת צהובה בתוקף (חובה)", "כרטיס טיסה ושובר מלון"], 
+                        en: ["Original passport valid for 6+ months with 2 blank pages", "Recent color passport photo", "Official invitation letter from Nigeria", "Employer dispatch letter from Israeli company (in English)", "Host company registration certificate in Nigeria (CAC)", "Mandatory valid Yellow Fever vaccination certificate", "Flight ticket and hotel voucher"] 
+                    } 
+                },
+                { 
+                    type: { he: "ויזת כניסות מרובות (Multi) ל-3 חודשים - פיזית בדרכון", en: "Multiple Entry Visa (3 Months) - Physical in Passport" }, 
+                    time: { he: "כ-10 ימי עבודה", en: "Approx. 10 business days" }, 
+                    validity: { he: "3 חודשים", en: "3 months" }, 
+                    feeUsd: 660, 
+                    serviceUsd: 100, 
+                    tag: "physical",
+                    docs: { 
+                        he: ["דרכון מקורי בתוקף לפחות חצי שנה עם 2 עמודים ריקים לפחות", "תמונת פספורט עדכנית צבעונית", "מכתב הזמנה רשמי מניגריה המבקש אשרה מרובת כניסות", "מכתב שיגור מהחברה השולחת בישראל (באנגלית)", "אישור רישום של החברה המארחת בניגריה (CAC Certificate)", "אישור חיסון קדחת צהובה בתוקף (חובה)", "כרטיס טיסה ושובר מלון"], 
+                        en: ["Original passport valid for 6+ months with 2 blank pages", "Recent color passport photo", "Official invitation letter from Nigeria requesting multiple entries", "Employer dispatch letter from Israeli company (in English)", "Host company registration certificate in Nigeria (CAC)", "Mandatory valid Yellow Fever vaccination certificate", "Flight ticket and hotel voucher"] 
+                    } 
+                }
+            ]
+        },
         "MG": { 
             name: { he: "מדגסקר", en: "Madagascar" }, flag: "fi-mg", options: [
                 { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "15 ימים", en: "15 days" }, feeUsd: 15, serviceUsd: 25, tag: "electronic",
@@ -1246,14 +1372,6 @@ Handling Agent: {agent}`,
                   docs: { he: ["דרכון בתוקף 6 חודשים לפחות", "כרטיס טיסה הלוך-חזור מאושר", "הוכחת אמצעים כלכליים לשהייה"], en: ["Passport valid 6+ months", "Confirmed return/onward ticket", "Proof of sufficient funds for the stay"] } }
             ]
         },
-        "MM": { 
-            name: { he: "מיאנמר", en: "Myanmar" }, flag: "fi-mm", options: [
-                { type: { he: "ויזת תיירות, כניסה אחת", en: "Tourist Visa, Single Entry" }, time: { he: "עד 3 ימי עבודה", en: "Up to 3 business days" }, validity: { he: "90 ימים (שהייה עד 28 יום)", en: "90 days (stay up to 28 days)" }, feeUsd: 55, serviceUsd: 35, tag: "electronic",
-                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם עמוד ריק", "סריקת עמוד הפרטים בדרכון", "תמונת פספורט צבעונית עדכנית (רקע לבן)", "כרטיס טיסה הלוך-חזור והוכחת לינה"], en: ["Passport valid 6+ months with a blank page", "Scan of passport bio page", "Recent color passport photo (white background)", "Return/onward ticket & proof of accommodation"] } },
-                { type: { he: "ויזת עסקים, כניסה אחת", en: "Business Visa, Single Entry" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: { he: "90 ימים (שהייה עד 70 יום)", en: "90 days (stay up to 70 days)" }, feeUsd: 75, serviceUsd: 45, tag: "electronic",
-                  docs: { he: ["דרכון בתוקף 6 חודשים לפחות עם עמוד ריק", "סריקת עמוד הפרטים בדרכון", "תמונת פספורט צבעונית עדכנית (רקע לבן)", "מכתב הזמנה מחברה במיאנמר + תעודת רישום החברה", "כרטיס טיסה הלוך-חזור"], en: ["Passport valid 6+ months with a blank page", "Scan of passport bio page", "Recent color passport photo (white background)", "Invitation letter from a registered Myanmar host company", "Return/onward ticket"] } }
-            ]
-        },
         "PH": { 
             name: { he: "פיליפינים", en: "Philippines" }, flag: "fi-ph", options: [
                 { type: { he: "אישור רישום אלקטרוני חובה eTravel", en: "eTravel Registration" }, time: { he: "עד 24 שעות", en: "Up to 24 hours" }, validity: { he: "כניסה אחת", en: "Single Entry" }, feeUsd: 0, serviceUsd: 25, tag: "permit",
@@ -1266,92 +1384,10 @@ Handling Agent: {agent}`,
                   docs: { he: ["דרכון בתוקף לפחות חצי שנה מיום הכניסה", "הגשה והצהרה הנעשית בטווח של 3 ימים לפני הכניסה לסינגפור", "אישור הזמנת מלון / כתובת לינה מדויקת"], en: ["Passport valid for 6+ months", "Submission must be done within 3 days prior to arrival", "Hotel reservation or full accommodation address"] } }
             ]
         },
-        "BH": {
-            name: { he: "בחריין", en: "Bahrain" }, flag: "fi-bh",
-            options: [
-                { type: { he: "אשרת תיירות / עסקים אלקטרונית eVisa", en: "Tourist/Business eVisa" }, time: { he: "עד 3-5 ימי עבודה", en: "Up to 3-5 business days" }, validity: { he: "30 ימים", en: "30 days" }, feeUsd: 25, serviceUsd: 45, tag: "electronic",
-                  docs: { he: ["דרכון בתוקף לפחות חצי שנה מיום הכניסה", "צילום ברור של עמוד הפרטים בדרכון", "צילום כרטיס טיסה חזור", "הוכחת הזמנת מלון / מקום שהייה"], en: ["Passport valid for at least 6 months", "Clear scan of passport bio-page", "Confirmed return flight ticket", "Hotel booking or accommodation proof"] } }
-            ]
-        },
-        "NG": {
-            name: { he: "ניגריה", en: "Nigeria" }, flag: "fi-ng",
-            options: [
-                { 
-                    type: { he: "אשרת תיירות אלקטרונית eVisa", en: "Electronic Tourist eVisa" }, 
-                    time: { he: "24-72 שעות", en: "24-72 hours" }, 
-                    textValidity: { he: "בהתאם לאישור הרשויות", en: "Subject to authority approval" }, 
-                    feeUsd: 660, 
-                    serviceUsd: 100, 
-                    tag: "electronic",
-                    docs: { 
-                        he: ["צילום עמוד הפרטים בדרכון בתוקף חצי שנה לפחות", "תמונת פספורט עדכנית צבעונית", "כרטיס טיסה חזור מאושר", "שובר הזמנת מלון / אישור לינה"], 
-                        en: ["Passport bio-page copy valid for at least 6 months", "Recent color passport photo", "Confirmed return flight ticket", "Hotel booking / accommodation voucher"] 
-                    } 
-                },
-                { 
-                    type: { he: "אשרת כניסה אחת (חד-פעמית) - פיזית בדרכון", en: "Single Entry Visa - Physical in Passport" }, 
-                    time: { he: "כ-10 ימי עסקים", en: "Approx. 10 business days" }, 
-                    textValidity: { he: "בהתאם לאישור השגרירות", en: "Subject to embassy approval" }, 
-                    feeUsd: 525, 
-                    serviceUsd: 100, 
-                    tag: "physical",
-                    docs: { 
-                        he: ["דרכון מקורי בתוקף לפחות חצי שנה עם 2 עמודים ריקים לפחות", "תמונת פספורט עדכנית צבעונית", "מכתב הזמנה רשמי מניגריה", "מכתב שיגור מהחברה השולחת בישראל (באנגלית)", "אישור רישום של החברה המארחת בניגריה (CAC Certificate)", "אישור חיסון קדחת צהובה בתוקף (חובה)", "כרטיס טיסה ושובר מלון"], 
-                        en: ["Original passport valid for 6+ months with 2 blank pages", "Recent color passport photo", "Official invitation letter from Nigeria", "Employer dispatch letter from Israeli company (in English)", "Host company registration certificate in Nigeria (CAC)", "Mandatory valid Yellow Fever vaccination certificate", "Flight ticket and hotel voucher"] 
-                    } 
-                },
-                { 
-                    type: { he: "אשרת כניסות מרובות (Multi) ל-3 חודשים - פיזית בדרכון", en: "Multiple Entry Visa (3 Months) - Physical in Passport" }, 
-                    time: { he: "כ-10 ימי עסקים", en: "Approx. 10 business days" }, 
-                    textValidity: { he: "3 חודשים", en: "3 months" }, 
-                    feeUsd: 660, 
-                    serviceUsd: 100, 
-                    tag: "physical",
-                    docs: { 
-                        he: ["דרכון מקורי בתוקף לפחות חצי שנה עם 2 עמודים ריקים לפחות", "תמונת פספורט עדכנית צבעונית", "מכתב הזמנה רשמי מניגריה המבקש אשרה מרובת כניסות", "מכתב שיגור מהחברה השולחת בישראל (באנגלית)", "אישור רישום של החברה המארחת בניגריה (CAC Certificate)", "אישור חיסון קדחת צהובה בתוקף (חובה)", "כרטיס טיסה ושובר מלון"], 
-                        en: ["Original passport valid for 6+ months with 2 blank pages", "Recent color passport photo", "Official invitation letter from Nigeria requesting multiple entries", "Employer dispatch letter from Israeli company (in English)", "Host company registration certificate in Nigeria (CAC)", "Mandatory valid Yellow Fever vaccination certificate", "Flight ticket and hotel voucher"] 
-                    } 
-                }
-            ]
-        },
         "CU": { 
             name: { he: "קובה", en: "Cuba" }, flag: "fi-cu", options: [
-                { type: { he: "אשרת תיירות אלקטרונית eVisa לקובה", en: "Cuba Tourist eVisa" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "90 ימים (שהות עד 90 ימים)", en: "90 days (Max 90 days stay)" }, feeUsd: 85, serviceUsd: 55, tag: "electronic",
+                { type: { he: "ויזת תיירות אלקטרונית eVisa לקובה", en: "Cuba Tourist eVisa" }, time: { he: "עד 72 שעות", en: "Up to 72 hours" }, validity: { he: "90 ימים (שהות עד 90 ימים)", en: "90 days (Max 90 days stay)" }, feeUsd: 85, serviceUsd: 55, tag: "electronic",
                   docs: { he: ["דרכון בתוקף 6 חודשים לפחות מיום הכניסה", "צילום ברור וצבעוני של עמוד הפרטים בדרכון", "אישור כרטיס טיסה הלוך-חזור", "פרטי לינה / הזמנת מלון בקובה"], en: ["Passport valid for at least 6 months", "Clear color scan of passport bio-page", "Confirmed round-trip flight ticket", "Hotel booking or accommodation address in Cuba"] } }
-            ]
-        },
-        "UG": {
-            name: { he: "אוגנדה", en: "Uganda" }, flag: "fi-ug",
-            options: [
-                { type: { he: "אשרת תיירות אלקטרונית eVisa", en: "Electronic Tourist eVisa" }, time: { he: "3–5 ימי עסקים", en: "3-5 business days" }, validity: { he: "90 ימים", en: "90 days" }, feeUsd: 50, serviceUsd: 40, tag: "electronic",
-                  docs: { he: ["צילום צבעוני של עמוד הפרטים בדרכון (בתוקף לחצי שנה לפחות)", "תמונת פספורט דיגיטלית עדכנית (רקע בהיר, פנים גלויות)", "פנקס חיסון קדחת צהובה בתוקף (חובה!)", "כרטיס טיסה הלוך וחזור ואישור שהייה/מלון"], en: ["Color scan of passport bio page (valid 6+ months)", "Recent digital passport photo (plain background, face clearly visible)", "Valid Yellow Fever vaccination certificate (mandatory)", "Return/onward flight ticket & accommodation confirmation"] } }
-            ]
-        },
-        "ID": {
-            name: { he: "אינדונזיה", en: "Indonesia" }, flag: "fi-id",
-            options: [
-                {
-                    type: { he: "אשרת תיירות / עסקים אלקטרונית eVisa", en: "Tourist / Business eVisa" },
-                    time: { he: "3-4 שבועות", en: "3-4 weeks" },
-                    validity: { he: "עד 60 ימים", en: "Up to 60 days" },
-                    feeUsd: 1350, 
-                    serviceUsd: 150,
-                    tag: "electronic",
-                    docs: {
-                        he: [
-                            "צילום דרכון בתוקף של מעל שנה (לא ניתן להגיש עם דרכון זמני)",
-                            "תמונת פנים על רקע לבן (ללא חיוך וללא משקפיים, ניתן לצלם בנייד)",
-                            "קורות חיים באנגלית",
-                            "כרטיס טיסה הלוך וחזור"
-                        ],
-                        en: [
-                            "Passport copy valid for over 1 year (temporary passports not accepted)",
-                            "Portrait photo on a white background (no smiling, no glasses, mobile photo accepted)",
-                            "Curriculum Vitae (CV) in English",
-                            "Round-trip flight ticket"
-                        ]
-                    }
-                }
             ]
         }
     };
@@ -1359,7 +1395,6 @@ Handling Agent: {agent}`,
     let currentView = 'cards'; 
     let sortState = { key: null, dir: 1 }; // dir: 1 עולה, -1 יורד
 
-    /* --- STREAMING_CHUNK: Managing state variables and dynamic list render... --- */
     function initApp() {
         const listContainer = document.getElementById('listContainer');
         const tableBody = document.getElementById('tableBody');
@@ -1376,6 +1411,7 @@ Handling Agent: {agent}`,
             return nameA.localeCompare(nameB, currentLang);
         });
 
+        // בניית כרטיסים + שורות טבלה. השורות נצברות כדי לאפשר מיון לאחר מכן.
         const rows = [];
         sortedKeys.forEach(code => {
             const country = visaData[code];
@@ -1403,6 +1439,16 @@ Handling Agent: {agent}`,
         renderTableRows(rows);
     }
 
+    // המרת מחרוזת זמן ("עד 72 שעות", "5 ימי עבודה"...) למספר ימים משוער למיון
+    function timeToDays(opt) {
+        const txt = (opt.time.en || opt.time.he || '').toLowerCase();
+        const nums = (txt.match(/\d+/g) || []).map(Number);
+        const maxNum = nums.length ? Math.max(...nums) : 0;
+        if (txt.includes('immediate') || txt.includes('מיידי')) return 0;
+        if (txt.includes('hour') || txt.includes('שע')) return maxNum / 24;
+        return maxNum; // ימים
+    }
+
     function renderTableRows(rows) {
         const tableBody = document.getElementById('tableBody');
         tableBody.innerHTML = '';
@@ -1422,11 +1468,6 @@ Handling Agent: {agent}`,
             const tr = document.createElement('tr');
             tr.dataset.name = countryName;
             tr.onclick = () => { openCountry(code); };
-            const govFeeText = opt.feeUsd !== undefined ? formatUsd(opt.feeUsd) : opt.fee;
-            const serviceFeeText = opt.serviceUsd !== undefined ? formatUsd(opt.serviceUsd) : opt.service;
-            const totalText = opt.feeUsd !== undefined && opt.serviceUsd !== undefined ? formatUsd(optTotal(opt)) : opt.total;
-            const validityText = opt.validity ? opt.validity[currentLang] : (opt.textValidity ? opt.textValidity[currentLang] : '');
-            
             tr.innerHTML = `
                 <td class="country-td"><span class="fi ${country.flag}"></span>${countryName}</td>
                 <td style="font-weight: 600; color: var(--secondary-color); line-height: 1.6;">
@@ -1434,16 +1475,16 @@ Handling Agent: {agent}`,
                     <span class="process-tag process-tag-${opt.tag}" style="margin-top: 5px;">${tagLabel(opt.tag)}</span>
                 </td>
                 <td><span class="table-badge">${opt.time[currentLang]}</span></td>
-                <td><span class="table-badge">${validityText}</span></td>
-                <td class="price-td">${govFeeText}</td>
-                <td class="price-td">${serviceFeeText}</td>
-                <td class="total-td">${totalText}</td>
+                <td><span class="table-badge">${opt.validity[currentLang]}</span></td>
+                <td class="price-td">${formatUsd(opt.feeUsd)}</td>
+                <td class="price-td">${formatUsd(opt.serviceUsd)}</td>
+                <td class="total-td">${formatUsd(optTotal(opt))}</td>
             `;
             tableBody.appendChild(tr);
         });
 
         updateSortIndicators();
-        handleSearch(); 
+        handleSearch(); // שמירה על סינון פעיל אחרי רינדור מחדש
     }
 
     function sortTable(key) {
@@ -1460,6 +1501,18 @@ Handling Agent: {agent}`,
             arrow.textContent = isActive ? (sortState.dir === 1 ? '▲' : '▼') : '⇅';
         });
     }
+
+    // השלמת דרישות בסיסיות לכל מדינה (למקרה של קצוות)
+    Object.keys(visaData).forEach(code => {
+        visaData[code].options.forEach(opt => {
+            if (!opt.docs) {
+                opt.docs = {
+                    he: ["צילום דרכון ברור בתוקף לחצי שנה לפחות", "תמונת פספורט עדכנית", "כרטיסי טיסה ומלון (לרוב נדרש)", "לנסיעת עסקים: מכתב הזמנה ומכתב מעסיק"],
+                    en: ["Clear copy of passport valid for at least 6 months", "Recent passport photo", "Flight and hotel itineraries (usually required)", "For business: invitation letter and employer dispatch letter"]
+                };
+            }
+        });
+    });
 
     if (document.readyState === "loading") { 
         document.addEventListener("DOMContentLoaded", () => {
@@ -1486,7 +1539,7 @@ Handling Agent: {agent}`,
         handleSearch();
     }
 
-    /* --- STREAMING_CHUNK: Initializing accordion and details drawer... --- */
+    // פונקציית עזר לפתיחה וסגירה של אקורדיון הדרישות
     function toggleReqs(index) {
         const reqsDiv = document.getElementById(`reqs-${index}`);
         if (!reqsDiv) return;
@@ -1495,7 +1548,7 @@ Handling Agent: {agent}`,
         
         if (reqsDiv.style.display === 'none' || reqsDiv.style.display === '') {
             reqsDiv.style.display = 'block';
-            reqsDiv.offsetHeight; 
+            reqsDiv.offsetHeight; // כפיית reflow להפעלת האנימציה
             reqsDiv.classList.add('active');
             if (btn) { btn.classList.add('active'); btn.setAttribute('aria-expanded', 'true'); }
         } else {
@@ -1509,18 +1562,11 @@ Handling Agent: {agent}`,
         }
     }
 
+    // בניית רשימת המסמכים והדרישות בעיצוב הצ'קליסט התכול היוקרתי (נקי ללא וי בצד שמאל)
     function buildDocsHtml(opt, index) {
-        const docsObj = opt.docs;
-        if (!docsObj) return '';
-        let listArr = [];
-        if (Array.isArray(docsObj)) {
-            listArr = docsObj;
-        } else if (docsObj[currentLang]) {
-            listArr = docsObj[currentLang];
-        }
-        if (!listArr.length) return '';
+        if (!opt.docs || !opt.docs[currentLang] || !opt.docs[currentLang].length) return '';
         
-        const items = listArr.map(d => `
+        const items = opt.docs[currentLang].map(d => `
             <li>
                 <span>${d}</span>
             </li>
@@ -1530,7 +1576,7 @@ Handling Agent: {agent}`,
             <div class="visa-docs" id="reqs-${index}">
                 <h4 class="visa-docs-title">
                     <span>${t('lblDocs')}</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#00BCD4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="22" height="22">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00BCD4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                         <polyline points="14 2 14 8 20 8"></polyline>
                         <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -1545,7 +1591,36 @@ Handling Agent: {agent}`,
         `;
     }
 
-    /* --- STREAMING_CHUNK: Opening detailed country profile... --- */
+    // חישוב מחיר דינמי ב-Drawer עם שירותים נלווים
+    function updateDrawerTotal(index, basePrice, code, trigger) {
+        let total = basePrice;
+        const upsOneCheck = document.querySelector(`.addon-ups-one-${index}`);
+        const upsTwoCheck = document.querySelector(`.addon-ups-two-${index}`);
+        const formCheck = document.querySelector(`.addon-form-${index}`);
+        
+        // מנגנון מניעת בחירה כפולה לשירותי השילוח (הדדיות)
+        if (trigger === 'ups-one' && upsOneCheck && upsOneCheck.checked) {
+            if (upsTwoCheck) upsTwoCheck.checked = false;
+        } else if (trigger === 'ups-two' && upsTwoCheck && upsTwoCheck.checked) {
+            if (upsOneCheck) upsOneCheck.checked = false;
+        }
+        
+        if (upsOneCheck && upsOneCheck.checked) {
+            total += 25;
+        }
+        if (upsTwoCheck && upsTwoCheck.checked) {
+            total += 50;
+        }
+        if (formCheck && formCheck.checked) {
+            total += 50;
+        }
+        
+        const totalEl = document.querySelector(`#totalPrice-${index}`);
+        if (totalEl) {
+            totalEl.innerText = formatUsd(total);
+        }
+    }
+
     function openCountry(code) {
         const country = visaData[code];
         const countryName = country.name[currentLang];
@@ -1567,10 +1642,20 @@ Handling Agent: {agent}`,
         `;
 
         country.options.forEach((opt, index) => {
-            const govFeeText = opt.feeUsd !== undefined ? formatUsd(opt.feeUsd) : opt.fee;
-            const serviceFeeText = opt.serviceUsd !== undefined ? formatUsd(opt.serviceUsd) : opt.service;
-            const totalText = opt.feeUsd !== undefined && opt.serviceUsd !== undefined ? formatUsd(optTotal(opt)) : opt.total;
-            const validityText = opt.validity ? opt.validity[currentLang] : (opt.textValidity ? opt.textValidity[currentLang] : '');
+            // לוגיקת בחירת הבלוקים הייחודית החדשה:
+            let showUpsOption = country.ups === true;
+            let showFormOption = (code === 'US') || (code === 'CN' && index !== 2);
+
+            // הפעלת התאמה מוגדרת מראש לפי בקשת המשתמש למקרה של ארה"ב (US):
+            if (code === 'US') {
+                if (index === 0) { // ESTA
+                    showUpsOption = false; // להוריד את המשלוחים
+                    showFormOption = false; // להוריד את הסיוע בטופס
+                } else if (index === 1) { // B1/B2
+                    showUpsOption = true; // להשאיר שילוח
+                    showFormOption = false; // להוריד את הסיוע בטופס
+                }
+            }
 
             htmlContent += `
                 <div class="visa-option-card" id="visaCard-${index}">
@@ -1581,33 +1666,59 @@ Handling Agent: {agent}`,
 
                     <div class="visa-details-grid">
                         <div class="detail-item"><span>${t('lblProcessingTime')}</span><strong>${opt.time[currentLang]}</strong></div>
-                        <div class="detail-item"><span>${t('lblValidity')}</span><strong>${validityText}</strong></div>
-                        <div class="detail-item"><span>${t('lblGovFee')}</span><strong>${govFeeText}</strong></div>
-                        <div class="detail-item"><span>${t('lblServiceFee')}</span><strong>${serviceFeeText}</strong></div>
+                        <div class="detail-item"><span>${t('lblValidity')}</span><strong>${opt.validity[currentLang]}</strong></div>
+                        <div class="detail-item"><span>${t('lblGovFee')}</span><strong>${formatUsd(opt.feeUsd)}</strong></div>
+                        <div class="detail-item"><span>${t('lblServiceFee')}</span><strong>${formatUsd(opt.serviceUsd)}</strong></div>
                     </div>
                     
+                    <!-- בלוק בחירת שירותים נלווים משודרג ודינמי (הורד הפלוס הלא נוח ונוסף פיצול כיוונים לשילוח) -->
+                    ${(showUpsOption || showFormOption) ? `
+                    <div class="addons-section">
+                        <h4 style="margin: 0 0 10px 0; font-size: 0.9em; font-weight: 800; color: var(--secondary-color);">שירותים נוספים ושדרוגים (אופציונלי):</h4>
+                        ${showUpsOption ? `
+                        <label class="addon-label">
+                            <input type="checkbox" class="addon-checkbox addon-ups-one-${index}" onchange="updateDrawerTotal(${index}, ${optTotal(opt)}, '${code}', 'ups-one')">
+                            <span>משלוח דרכון כיוון אחד (UPS) - <strong>$25.00</strong></span>
+                        </label>
+                        <label class="addon-label">
+                            <input type="checkbox" class="addon-checkbox addon-ups-two-${index}" onchange="updateDrawerTotal(${index}, ${optTotal(opt)}, '${code}', 'ups-two')">
+                            <span>משלוח דרכון הלוך וחזור (UPS) - <strong>$50.00</strong></span>
+                        </label>
+                        ` : ''}
+                        ${showFormOption ? `
+                        <label class="addon-label">
+                            <input type="checkbox" class="addon-checkbox addon-form-${index}" onchange="updateDrawerTotal(${index}, ${optTotal(opt)}, '${code}', 'form')">
+                            <span>סיוע מקצועי במילוי טופס הבקשה הרשמי - <strong>$50.00</strong></span>
+                        </label>
+                        ` : ''}
+                    </div>
+                    ` : ''}
+
                     <div class="visa-price-total">
                         <span>${t('lblTotalFor')}</span>
-                        <strong>${totalText}</strong>
+                        <strong id="totalPrice-${index}">${formatUsd(optTotal(opt))}</strong>
                     </div>
+
+                    <!-- אזור הדפסה ייחודי להצגת השירותים שנבחרו -->
+                    <div id="addonsPrintContainer-${index}" class="print-only-element" style="margin-top: 10px; font-size: 0.9em; border-top: 1px dashed #ccc; padding-top: 10px;"></div>
 
                     ${buildDocsHtml(opt, index)}
 
                     <div class="card-action-bar">
                         <button class="action-btn btn-toggle-docs" aria-expanded="false" aria-controls="reqs-${index}" onclick="toggleReqs(${index})">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; color: var(--primary-color);" aria-hidden="true" width="18" height="18"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; color: var(--primary-color);" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                             <span>${t('btnReqs')}</span>
                         </button>
                         <button class="action-btn" onclick="printVisaDetails(${index})">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
                             ${t('btnPrint')}
                         </button>
                         <button class="action-btn action-btn-lead" onclick="openLeadModalWithData('${code}', ${index})">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                             ${t('btnTransferLead')}
                         </button>
                         <button class="action-btn" onclick="copyVisaDetails('${code}', ${index})">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                             ${t('btnCopy')}
                         </button>
                     </div>
@@ -1664,13 +1775,14 @@ Handling Agent: {agent}`,
         }
     }
 
-    /* --- STREAMING_CHUNK: Setting search delay and form dialogs... --- */
+    // השהיית חיפוש (debounce) למניעת סינון על כל הקלדה
     let searchTimer;
     function onSearchInput() {
         clearTimeout(searchTimer);
         searchTimer = setTimeout(handleSearch, 180);
     }
 
+    /* --- ניהול פוקוס, נעילת גלילה ומלכודת Tab עבור החלוניות --- */
     let panelPrevFocus = null;
     let modalPrevFocus = null;
 
@@ -1708,6 +1820,7 @@ Handling Agent: {agent}`,
     });
 
     function openLeadModal() { 
+        // שליפת שם הסוכן מהזכרון (אם קיים) ומילוי אוטומטי של השדה
         document.getElementById('agentName').value = localStorage.getItem('savedAgentName') || '';
         modalPrevFocus = document.activeElement;
         document.getElementById('leadModalOverlay').style.display = 'flex'; 
@@ -1717,7 +1830,6 @@ Handling Agent: {agent}`,
     }
     
     function openLeadModalWithData(code, index) {
-        closePanel(); 
         const country = visaData[code];
         const countryName = country.name[currentLang];
         const visaType = country.options[index].type[currentLang];
@@ -1726,9 +1838,36 @@ Handling Agent: {agent}`,
         destSelect.value = countryName; 
         
         const notesArea = document.getElementById('leadNotes');
-        const defaultNote = currentLang === 'he' ? `סוג אשרה מבוקשת: ${visaType}\n` : `Requested Visa Type: ${visaType}\n`;
-        notesArea.value = defaultNote;
+        let defaultNote = currentLang === 'he' ? `סוג אשרה מבוקשת: ${visaType}\n` : `Requested Visa Type: ${visaType}\n`;
         
+        // שליפת סימוני תיבות השירותים הנלווים והזרמתם למייל ול-CRM (ללא פלוס, מותאם לפיצול כיווני UPS)
+        const upsOneCheck = document.querySelector(`.addon-ups-one-${index}`);
+        const upsTwoCheck = document.querySelector(`.addon-ups-two-${index}`);
+        const formCheck = document.querySelector(`.addon-form-${index}`);
+        
+        let selectedAddons = [];
+        let addonTotal = 0;
+        if (upsOneCheck && upsOneCheck.checked) {
+            selectedAddons.push(currentLang === 'he' ? "שילוח דרכון פיזי כיוון אחד UPS ($25.00)" : "Secure UPS Shipping One-Way ($25.00)");
+            addonTotal += 25;
+        }
+        if (upsTwoCheck && upsTwoCheck.checked) {
+            selectedAddons.push(currentLang === 'he' ? "שילוח דרכון פיזי הלוך וחזור UPS ($50.00)" : "Secure UPS Shipping Round-Trip ($50.00)");
+            addonTotal += 50;
+        }
+        if (formCheck && formCheck.checked) {
+            selectedAddons.push(currentLang === 'he' ? "סיוע במילוי טופס הבקשה הרשמי ($50.00)" : "Official Form Filling Assistance ($50.00)");
+            addonTotal += 50;
+        }
+        
+        if (selectedAddons.length > 0) {
+            defaultNote += currentLang === 'he' 
+                ? `\nשירותים נלווים שנבחרו:\n• ${selectedAddons.join('\n• ')}\nתוספת לעלות הבסיס: $${addonTotal}.00\n`
+                : `\nSelected Add-ons:\n• ${selectedAddons.join('\n• ')}\nAdd-on cost: $${addonTotal}.00\n`;
+        }
+        
+        notesArea.value = defaultNote;
+        closePanel(); 
         openLeadModal(); 
     }
 
@@ -1741,8 +1880,8 @@ Handling Agent: {agent}`,
     }
     document.getElementById('leadModalOverlay').addEventListener('click', function(e) { if (e.target === this) closeLeadModal(); });
 
-    /* --- STREAMING_CHUNK: Processing data submissions and integrations... --- */
     function submitLead(mailType) {
+        // בדיקת מלכודת בוטים: אם השדה הנסתר מולא — מדובר בבוט, מתעלמים בשקט
         const honeypot = document.getElementById('lead_honeypot_check');
         if (honeypot && honeypot.value.trim() !== '') { closeLeadModal(); return; }
 
@@ -1754,21 +1893,22 @@ Handling Agent: {agent}`,
         const phone = document.getElementById('clientPhone').value;
         const email = document.getElementById('clientEmail').value;
         const country = document.getElementById('destCountry').value;
-        const flightDate = document.getElementById('flightDate').value || (currentLang === 'he' ? 'לא צוין' : 'Not specified');
+        const plannedFlightRaw = document.getElementById('plannedFlight').value;
         const notes = document.getElementById('leadNotes').value || (currentLang === 'he' ? 'אין הערות נוספות' : 'No additional notes');
 
-        let formattedFlightDate = flightDate;
-        if (flightDate && flightDate !== 'לא צוין' && flightDate !== 'Not specified') {
-            const parts = flightDate.split('-');
-            if (parts.length === 3) {
-                formattedFlightDate = `${parts[2]}/${parts[1]}/${parts[0]}`;
-            }
+        let plannedFlightFormatted = "";
+        if (plannedFlightRaw) {
+            const parts = plannedFlightRaw.split('-');
+            plannedFlightFormatted = parts[2] + '/' + parts[1] + '/' + parts[0]; // DD/MM/YYYY
         }
 
+        // שמירת שם הסוכן להבא ב-Local Storage
         localStorage.setItem('savedAgentName', agent);
 
+        // ייצור מספר פנייה למעקב (Tracking ID)
         const trackingId = 'AMS-' + Math.floor(100000 + Math.random() * 900000); 
 
+        // --- גיבוי ושליחת הליד ל-CRM / Webhook (אוטומציה) ---
         const webhookUrl = "https://script.google.com/macros/s/AKfycbyFFGDTP7vAynszYq_4UVo29t3vUfa_LBFiVQCfnO4EI6YY_Q9VtohzFt-3spxaV1AzdQ/exec"; 
         
         if (webhookUrl) {
@@ -1779,20 +1919,22 @@ Handling Agent: {agent}`,
                 phone: phone,
                 email: email,
                 country: country,
-                flightDate: formattedFlightDate, 
+                plannedFlight: plannedFlightFormatted,
                 notes: notes,
-                timestamp: new Date().toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' }) 
+                timestamp: new Date().toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' }) // זמן מדויק לישראל
             };
             
+            // שליחה אסינכרונית "שקטה" מותאמת לגוגל שיטס
             fetch(webhookUrl, {
                 method: 'POST',
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' }, 
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // חובה לגוגל שיטס כדי למנוע חסימות CORS
                 body: JSON.stringify(leadData),
                 mode: 'no-cors'
             }).catch(err => console.error("Error saving lead to CRM:", err));
         }
+        // --------------------------------------------------------
 
-        const tplData = { country, client, phone, email, notes, agent, trackingId, flightDate: formattedFlightDate };
+        const tplData = { country, client, phone, email, notes, agent, trackingId, plannedFlight: plannedFlightFormatted };
         const rawSubject = fillTemplate(t('emailSubject'), tplData);
         const rawBody = fillTemplate(t('emailBody'), tplData);
 
@@ -1810,33 +1952,44 @@ Handling Agent: {agent}`,
         const country = visaData[code];
         const opt = country.options[index];
 
-        const govFeeText = opt.feeUsd !== undefined ? formatUsd(opt.feeUsd) : opt.fee;
-        const serviceFeeText = opt.serviceUsd !== undefined ? formatUsd(opt.serviceUsd) : opt.service;
-        const totalText = opt.feeUsd !== undefined && opt.serviceUsd !== undefined ? formatUsd(optTotal(opt)) : opt.total;
-        const validityText = opt.validity ? opt.validity[currentLang] : (opt.textValidity ? opt.textValidity[currentLang] : '');
-
         let txt = `*${t('printQuoteTitle')} ${country.name[currentLang]}*\n`;
         txt += `===================\n\n`;
         txt += `*${opt.type[currentLang]}*\n`;
         txt += `${t('optProcessType')}: ${tagLabel(opt.tag)}\n`;
         txt += `${t('lblProcessingTime')}: ${opt.time[currentLang]}\n`;
-        txt += `${t('lblValidity')}: ${validityText}\n`;
-        txt += `${t('lblGovFee')}: ${govFeeText} | ${t('lblServiceFee')}: ${serviceFeeText}\n`;
+        txt += `${t('lblValidity')}: ${opt.validity[currentLang]}\n`;
+        txt += `${t('lblGovFee')}: ${formatUsd(opt.feeUsd)} | ${t('lblServiceFee')}: ${formatUsd(opt.serviceUsd)}\n`;
         
-        txt += `*${t('lblTotalFor')} ${totalText}*\n`;
-
-        let listArr = [];
-        if (opt.docs) {
-            if (Array.isArray(opt.docs)) {
-                listArr = opt.docs;
-            } else if (opt.docs[currentLang]) {
-                listArr = opt.docs[currentLang];
-            }
+        // הכללת שירותים נלווים בטקסט המועתק (ללא פלוס, מותאם לפיצול כיווני UPS)
+        const upsOneCheck = document.querySelector(`.addon-ups-one-${index}`);
+        const upsTwoCheck = document.querySelector(`.addon-ups-two-${index}`);
+        const formCheck = document.querySelector(`.addon-form-${index}`);
+        let addonTotal = 0;
+        let addonsText = "";
+        
+        if (upsOneCheck && upsOneCheck.checked) {
+            addonTotal += 25;
+            addonsText += currentLang === 'he' ? `• שילוח כיוון אחד UPS: $25.00\n` : `• One-Way UPS Shipping: $25.00\n`;
+        }
+        if (upsTwoCheck && upsTwoCheck.checked) {
+            addonTotal += 50;
+            addonsText += currentLang === 'he' ? `• שילוח הלוך וחזור UPS: $50.00\n` : `• Round-Trip UPS Shipping: $50.00\n`;
+        }
+        if (formCheck && formCheck.checked) {
+            addonTotal += 50;
+            addonsText += currentLang === 'he' ? `• סיוע במילוי טופס בקשה רשמי: $50.00\n` : `• Professional Form Filling Assistance: $50.00\n`;
         }
 
-        if (listArr.length) {
+        txt += `*${t('lblTotalFor')} ${formatUsd(optTotal(opt) + addonTotal)}*\n`;
+        
+        if (addonsText) {
+            txt += currentLang === 'he' ? `\n*שירותים נוספים שנבחרו:*\n${addonsText}` : `\n*Selected Add-on Services:*\n${addonsText}`;
+        }
+
+        // הוספת רשימת המסמכים והדרישות
+        if (opt.docs && opt.docs[currentLang] && opt.docs[currentLang].length) {
             txt += `\n*${t('lblDocs')}:*\n`;
-            listArr.forEach(d => { txt += `• ${d}\n`; });
+            opt.docs[currentLang].forEach(d => { txt += `• ${d}\n`; });
         }
 
         txt += `-------------------\n\n`;
@@ -1857,8 +2010,35 @@ Handling Agent: {agent}`,
         document.body.removeChild(textArea);
     }
 
+    // הדפסה רשמית ל-PDF עם שילוח ואגרות מעודכנים (ללא פלוס, מבוסס פיצול כיווני UPS)
     function printVisaDetails(index) {
         document.getElementById('printPaxSubtitle').innerText = t('printSinglePax');
+
+        // עדכון פרטי שירותים נוספים שהסוכן בחר כדי שיופיעו בהדפסה הרשמית ללקוח
+        const upsOneCheck = document.querySelector(`.addon-ups-one-${index}`);
+        const upsTwoCheck = document.querySelector(`.addon-ups-two-${index}`);
+        const formCheck = document.querySelector(`.addon-form-${index}`);
+        const printAddonsContainer = document.querySelector(`#addonsPrintContainer-${index}`);
+        
+        if (printAddonsContainer) {
+            let addonsHtml = "";
+            if (upsOneCheck && upsOneCheck.checked) {
+                addonsHtml += currentLang === 'he' ? `<div>• שילוח דרכון פיזי כיוון אחד UPS (עלות $25.00)</div>` : `<div>• Secure UPS Passport Shipping One-Way ($25.00)</div>`;
+            }
+            if (upsTwoCheck && upsTwoCheck.checked) {
+                addonsHtml += currentLang === 'he' ? `<div>• שילוח דרכון פיזי הלוך וחזור UPS (עלות $50.00)</div>` : `<div>• Secure UPS Passport Shipping Round-Trip ($50.00)</div>`;
+            }
+            if (formCheck && formCheck.checked) {
+                addonsHtml += currentLang === 'he' ? `<div>• סיוע והגשת טופס הבקשה הרשמי (עלות $50.00)</div>` : `<div>• Professional Form Filling Assistance ($50.00)</div>`;
+            }
+            if (addonsHtml) {
+                printAddonsContainer.innerHTML = currentLang === 'he' 
+                    ? `<div style="font-weight: 800; margin-bottom: 5px; color: var(--secondary-color);">שירותים נוספים שנבחרו:</div>${addonsHtml}`
+                    : `<div style="font-weight: 800; margin-bottom: 5px; color: var(--secondary-color);">Selected Add-on Services:</div>${addonsHtml}`;
+            } else {
+                printAddonsContainer.innerHTML = "";
+            }
+        }
 
         const allCards = document.querySelectorAll('.visa-option-card');
         allCards.forEach((card, i) => card.classList.toggle('print-active', i === index));
